@@ -18,26 +18,33 @@ namespace PhumlaKamnandi.Business
         }
 
         #region Methods
+        #region Duplicate of the Reservation class
+        /*  // Method to create a reservation
+          public Reservation CreateReservation(int reservationId, Guest guest, List<Room> rooms, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, string extras = "")
+          {
+              // Check if guest already has a reservation
+              Reservation existingReservation = FindReservationByGuestId(guest.GuestID);
+              if (existingReservation != null)
+              {
+                  Console.WriteLine($"Guest {guest.Name} already has a reservation.");
+                  return null;
+              }
 
-        // Method to create a reservation
-        public Reservation CreateReservation(int reservationId, Guest guest, List<Room> rooms, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, string extras = "")
+              // Create a new reservation
+              Reservation newReservation = new Reservation(reservationId, guest.GuestID, rooms, checkInDate, checkOutDate, noOfGuests, extras);
+              reservations.Add(newReservation);
+
+              Console.WriteLine("Reservation created successfully.");
+              return newReservation;
+          }
+        */
+        #endregion
+        #region Add a Reservation into a List
+        public void Add2List(Reservation res)
         {
-            // Check if guest already has a reservation
-            Reservation existingReservation = FindReservationByGuestId(guest.GuestID);
-            if (existingReservation != null)
-            {
-                Console.WriteLine($"Guest {guest.Name} already has a reservation.");
-                return null;
-            }
-
-            // Create a new reservation
-            Reservation newReservation = new Reservation(reservationId, guest.GuestID, rooms, checkInDate, checkOutDate, noOfGuests, extras);
-            reservations.Add(newReservation);
-
-            Console.WriteLine("Reservation created successfully.");
-            return newReservation;
+            reservations.Add(res);//adds it into a List
         }
-
+        #endregion
         // Method to update a reservation
         public bool UpdateReservation(int reservationId, List<Room> newRooms, DateTime newCheckInDate, DateTime newCheckOutDate, string newExtras)
         {
@@ -50,7 +57,7 @@ namespace PhumlaKamnandi.Business
             }
 
             // Update reservation details
-            reservation.Rooms = newRooms;
+            reservation.NoOfRooms = newRooms;
             reservation.CheckInDate = newCheckInDate;
             reservation.CheckOutDate = newCheckOutDate;
             reservation.Extras = newExtras;
@@ -78,6 +85,9 @@ namespace PhumlaKamnandi.Business
         // Method to retrieve reservation details
         public Reservation FindReservationById(int reservationId)
         {
+            /*
+             * r => r.ReservationId - it takes each element in the list referrred as r and check its ResevationId
+             * */
             return reservations.Find(r => r.ReservationId == reservationId);
         }
 
@@ -97,7 +107,7 @@ namespace PhumlaKamnandi.Business
 
             foreach (var reservation in reservations)
             {
-                reservation.PrintReservationDetails();
+                reservation.GetReservationDetails();
             }
         }
 

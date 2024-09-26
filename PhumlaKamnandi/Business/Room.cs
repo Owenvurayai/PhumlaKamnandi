@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,77 +9,80 @@ namespace PhumlaKamnandi.Business
 {
     public class Room
     {
+
+       
         #region properties
         // Properties of the Room class
-        public int RoomID { get; private set; }
-        public string RoomType { get; private set; }
-        public string OccupancyStatus { get; set; }
-        public string BedType { get; private set; }
+        public int RoomNumber { get; private set; }
+        public RoomType roomType { get; private set; }
+        public string OccupancyStatus { get; set; }//Availability
         public decimal RatePerNight { get; private set; }
         public string Extras { get; set; }
         #endregion
 
-
-        #region constructor
-        public Room(int roomID, string occupancyStatus = "Available", string extras = "")
+        #region RoomTypes
+        public enum RoomType
         {
-            RoomID = roomID;
-            OccupancyStatus = occupancyStatus;
-            Extras = extras;
+            Single = 0, Double = 1, Suite = 2, Deluxe = 3
+        }
 
-            // Assign room type and bed type based on room number
-            AssignRoomTypeAndBed(roomID);
+
+
+
+        #endregion
+        #region constructor
+        public Room(int roomNum, RoomType roomtype, string extras)
+        {
+           // RoomID = roomID;
+            RoomNumber = roomNum;
+            OccupancyStatus = "Available";
+            Extras = extras;
+            roomType = roomtype;
+            AssignRates();//Assign the rates
+         
+            
         }
         public Room() {
-            RoomID = 0;
+            RoomNumber = 0;//There is no room Zero in the Hotel
             OccupancyStatus = "";
             Extras = "";
         }
         #endregion 
-        // Method to assign room type and bed type based on the room number
-        private void AssignRoomTypeAndBed(int roomNo)
+
+
+        /*
+         * We assign rates per night according to the room type
+         * */
+        private void AssignRates()
         {
-            if (roomNo >= 1 && roomNo <= 10)
+
+            //You gents can change the prices
+            switch (roomType)
             {
-                RoomType = "Single";
-                BedType = "Single Bed";
-                RatePerNight = 100; // Example rate for single room
-            }
-            else if (roomNo >= 11 && roomNo <= 20)
-            {
-                RoomType = "Double";
-                BedType = "Double Bed";
-                RatePerNight = 150; // Example rate for double room
-            }
-            else if (roomNo >= 21 && roomNo <= 30)
-            {
-                RoomType = "Queen";
-                BedType = "Queen Bed";
-                RatePerNight = 200; // Example rate for queen room
-            }
-            else if (roomNo >= 31 && roomNo <= 40)
-            {
-                RoomType = "King";
-                BedType = "King Bed";
-                RatePerNight = 250; // Example rate for king room
-            }
-            else if (roomNo >= 41 && roomNo <= 50)
-            {
-                RoomType = "Triple";
-                BedType = "Triple Bed";
-                RatePerNight = 300; // Example rate for triple room
-            }
-            else
-            {
-                throw new ArgumentException("Invalid room number.");
+                case RoomType.Single:
+                    RatePerNight = 100;
+                    break;
+                case RoomType.Double:
+                    RatePerNight = 250;
+                    break;
+                case RoomType.Suite:
+                    RatePerNight = 500;
+                    break;
+                case RoomType.Deluxe:
+                    RatePerNight = 600;
+                    break;
+                default:
+                    RatePerNight = 0;//no room type choosen
+                    break;
+               
             }
         }
+
 
         // Method to print room details
         public void PrintRoomDetails()
         {
-            Console.WriteLine($"Room Type: {RoomType}");
-            Console.WriteLine($"Bed Type: {BedType}");
+            Console.WriteLine($"Room Type: {roomType.ToString()}");//check this
             Console.WriteLine($"Occupancy Status: {OccupancyStatus}");
             Console.WriteLine($"Rate Per Night: {RatePerNight}");
             Console.WriteLine($"Extras: {Extras}");
@@ -88,14 +92,14 @@ namespace PhumlaKamnandi.Business
         public void UpdateOccupancyStatus(string newStatus)
         {
             OccupancyStatus = newStatus;
-            Console.WriteLine($"Room {RoomID} occupancy status updated to {OccupancyStatus}.");
+            Console.WriteLine($"Room {RoomNumber} occupancy status updated to {OccupancyStatus}.");
         }
 
         // Method to add extras to the room
         public void AddExtras(string additionalExtras)
         {
             Extras += ", " + additionalExtras;
-            Console.WriteLine($"Extras for room {RoomID} updated to: {Extras}");
+            Console.WriteLine($"Extras for room {RoomNumber} updated to: {Extras}");
         }
     }
 }

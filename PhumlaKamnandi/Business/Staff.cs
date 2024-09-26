@@ -16,7 +16,7 @@ namespace PhumlaKamnandi.Business
 
 
         #region constructor 
-        public Staff(int ID, String FName, String LName, String Phone, String Address, String JobtTitle, String , String EmpId)
+        public Staff(int ID, String FName, String LName, String Phone, String Address, String JobtTitle , String EmpId)
          : base(ID, FName, LName, Phone, Address)
         {
             JobTitle = JobtTitle;
@@ -28,7 +28,7 @@ namespace PhumlaKamnandi.Business
         #region Methods
         public string GetStaffDetails()
         {
-            return $"{GetFullName()}, Job Title: {JobTitle}, Salary: {Salary}, Shift: {ShiftSchedule}";
+            return $"{GetFullName()}\nJob Title: {JobTitle}\nSalary: {Salary}\nShift: {ShiftSchedule}";
         }
         #endregion
     }
