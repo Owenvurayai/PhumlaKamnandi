@@ -157,14 +157,17 @@ partial class Home
         // 
         linkLabel2.AutoSize = true;
         linkLabel2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        linkLabel2.LinkArea = new LinkArea(0, 20);
         linkLabel2.LinkBehavior = LinkBehavior.NeverUnderline;
         linkLabel2.LinkColor = Color.White;
         linkLabel2.Location = new Point(47, 112);
         linkLabel2.Name = "linkLabel2";
-        linkLabel2.Size = new Size(137, 28);
+        linkLabel2.Size = new Size(135, 33);
         linkLabel2.TabIndex = 8;
         linkLabel2.TabStop = true;
         linkLabel2.Text = "Make Enquiry";
+        linkLabel2.UseCompatibleTextRendering = true;
+        linkLabel2.LinkClicked += linkLabel2_LinkClicked;
         linkLabel2.MouseLeave += linkLabel2_MouseLeave;
         linkLabel2.MouseHover += linkLabel2_MouseHover;
         // 

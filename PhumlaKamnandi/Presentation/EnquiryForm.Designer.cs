@@ -33,6 +33,7 @@
             search = new Button();
             panel1 = new Panel();
             label6 = new Label();
+            listView1 = new ListView();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,7 +63,7 @@
             search.Location = new Point(80, 284);
             search.Margin = new Padding(3, 4, 3, 4);
             search.Name = "search";
-            search.Size = new Size(409, 31);
+            search.Size = new Size(409, 34);
             search.TabIndex = 4;
             search.Text = "search";
             search.UseVisualStyleBackColor = true;
@@ -88,17 +89,27 @@
             label6.TabIndex = 3;
             label6.Text = "Enquiry";
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(82, 385);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(407, 186);
+            listView1.TabIndex = 6;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // EnquiryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(546, 421);
+            ClientSize = new Size(546, 617);
+            Controls.Add(listView1);
             Controls.Add(panel1);
             Controls.Add(search);
             Controls.Add(reservationTextBox);
             Controls.Add(label2);
             Margin = new Padding(3, 4, 3, 4);
             Name = "EnquiryForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EnquiryForm";
             Load += EnquiryForm_Load;
             panel1.ResumeLayout(false);
@@ -113,5 +124,6 @@
         private Button search;
         private Panel panel1;
         private Label label6;
+        private ListView listView1;
     }
 }
