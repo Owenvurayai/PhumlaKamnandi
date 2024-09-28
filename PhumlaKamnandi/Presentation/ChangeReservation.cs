@@ -105,4 +105,9 @@ public partial class ChangeReservationForm : Form
     {
 
     }
+
+    private void ChangeReservationForm_Load(object sender, EventArgs e)
+    {
+
+    }
 }
