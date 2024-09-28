@@ -8,7 +8,7 @@ public partial class Home : Form
     Form changeReservationForm;
     Form cancelReservationForm;
     Form makeReservationForm;
-    Form EnquiryForm;
+    Form enquiryForm;
     //Form changeReservationForm;
 
     public Home()
@@ -63,7 +63,7 @@ public partial class Home : Form
     private void linkLabel4_MouseHover(object sender, EventArgs e)
     {
         responsiveLabelHover(linkLabel4);
-       
+
     }
 
     private void linkLabel4_MouseLeave(object sender, EventArgs e)
@@ -110,5 +110,15 @@ public partial class Home : Form
     private void linkLabel3_MouseLeave(object sender, EventArgs e)
     {
         responsiveLabelLeave(linkLabel3);
+    }
+
+    private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        if (enquiryForm == null)
+        {
+            enquiryForm = new EnquiryForm();
+            enquiryForm.Show();
+            //this.Visible = false;
+        }
     }
 }

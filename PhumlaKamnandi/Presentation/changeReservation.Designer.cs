@@ -58,7 +58,6 @@ partial class ChangeReservationForm
         dateTimePicker3 = new DateTimePicker();
         dateTimePicker4 = new DateTimePicker();
         dateTimePicker5 = new DateTimePicker();
-        button3 = new Button();
         label12 = new Label();
         panel1.SuspendLayout();
         panel2.SuspendLayout();
@@ -434,27 +433,6 @@ partial class ChangeReservationForm
         dateTimePicker5.Size = new Size(164, 27);
         dateTimePicker5.TabIndex = 28;
         // 
-        // button3
-        // 
-        button3.BackColor = Color.FromArgb(231, 76, 60);
-        button3.FlatAppearance.BorderSize = 0;
-        button3.FlatStyle = FlatStyle.Flat;
-        button3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        button3.ForeColor = SystemColors.Control;
-        button3.Image = (Image)resources.GetObject("button3.Image");
-        button3.ImageAlign = ContentAlignment.MiddleRight;
-        button3.Location = new Point(317, 468);
-        button3.Margin = new Padding(0);
-        button3.MaximumSize = new Size(327, 54);
-        button3.MinimumSize = new Size(327, 54);
-        button3.Name = "button3";
-        button3.Padding = new Padding(10, 0, 10, 0);
-        button3.Size = new Size(327, 54);
-        button3.TabIndex = 30;
-        button3.Text = "Select";
-        button3.TextAlign = ContentAlignment.MiddleLeft;
-        button3.UseVisualStyleBackColor = false;
-        // 
         // label12
         // 
         label12.AutoSize = true;
@@ -472,7 +450,6 @@ partial class ChangeReservationForm
         BackColor = SystemColors.Control;
         ClientSize = new Size(1308, 819);
         Controls.Add(label12);
-        Controls.Add(button3);
         Controls.Add(dateTimePicker4);
         Controls.Add(dateTimePicker5);
         Controls.Add(dateTimePicker3);
@@ -529,7 +506,6 @@ partial class ChangeReservationForm
     private DateTimePicker dateTimePicker1;
     private NumericUpDown numericUpDown1;
     private Panel panel3;
-    private Button SelectBtn1;
     private FlowLayoutPanel roomMenuContainer;
     private Button DefaultOptionContainer;
     private Button roomType1;
@@ -540,6 +516,6 @@ partial class ChangeReservationForm
     private DateTimePicker dateTimePicker3;
     private DateTimePicker dateTimePicker4;
     private DateTimePicker dateTimePicker5;
-    private Button button3;
+    private Button SelectBtn1;
     private Label label12;
 }
