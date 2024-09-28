@@ -28,96 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            homeButton = new Button();
-            button1 = new Button();
-            label1 = new Label();
             label2 = new Label();
             reservationTextBox = new TextBox();
             search = new Button();
+            panel1 = new Panel();
+            label6 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // homeButton
-            // 
-            homeButton.BackgroundImage = Properties.Resources.pngegg;
-            homeButton.BackgroundImageLayout = ImageLayout.Stretch;
-            homeButton.Location = new Point(3, 3);
-            homeButton.Name = "homeButton";
-            homeButton.Size = new Size(75, 51);
-            homeButton.TabIndex = 0;
-            homeButton.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.BackgroundImage = Properties.Resources.pngegg__2_;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(536, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 51);
-            button1.TabIndex = 1;
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe Print", 9.75F, FontStyle.Italic);
-            label1.Location = new Point(230, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(135, 23);
-            label1.TabIndex = 2;
-            label1.Text = "Phumla Kamnandi";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(149, 143);
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(80, 189);
             label2.Name = "label2";
-            label2.Size = new Size(115, 15);
+            label2.Size = new Size(153, 20);
             label2.TabIndex = 3;
             label2.Text = "Enter Reservation ID:";
             // 
             // reservationTextBox
             // 
-            reservationTextBox.Location = new Point(285, 140);
+            reservationTextBox.Location = new Point(256, 182);
+            reservationTextBox.Margin = new Padding(3, 4, 3, 4);
             reservationTextBox.Name = "reservationTextBox";
-            reservationTextBox.Size = new Size(163, 23);
+            reservationTextBox.Size = new Size(233, 27);
             reservationTextBox.TabIndex = 4;
             // 
             // search
             // 
             search.FlatStyle = FlatStyle.Flat;
             search.Font = new Font("Microsoft Sans Serif", 8.25F);
-            search.Location = new Point(252, 214);
+            search.ForeColor = Color.FromArgb(232, 65, 24);
+            search.Location = new Point(80, 284);
+            search.Margin = new Padding(3, 4, 3, 4);
             search.Name = "search";
-            search.Size = new Size(75, 23);
+            search.Size = new Size(409, 31);
             search.TabIndex = 4;
             search.Text = "search";
             search.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(137, 12, 12);
+            panel1.Controls.Add(label6);
+            panel1.Location = new Point(1, 0);
+            panel1.Margin = new Padding(0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(712, 80);
+            panel1.TabIndex = 5;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.ButtonHighlight;
+            label6.Location = new Point(25, 24);
+            label6.Name = "label6";
+            label6.Size = new Size(118, 38);
+            label6.TabIndex = 3;
+            label6.Text = "Enquiry";
+            // 
             // EnquiryForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(623, 316);
+            ClientSize = new Size(546, 421);
+            Controls.Add(panel1);
             Controls.Add(search);
             Controls.Add(reservationTextBox);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button1);
-            Controls.Add(homeButton);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "EnquiryForm";
             Text = "EnquiryForm";
             Load += EnquiryForm_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button homeButton;
-        private Button button1;
-        private Label label1;
         private Label label2;
         private TextBox reservationTextBox;
         private Button search;
+        private Panel panel1;
+        private Label label6;
     }
 }
