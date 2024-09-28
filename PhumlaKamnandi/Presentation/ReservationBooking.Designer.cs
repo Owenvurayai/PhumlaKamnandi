@@ -558,6 +558,7 @@
             Controls.Add(ReturnHomeButton1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "ReservationBooking";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ReservationBooking";
             Load += ReservationBooking_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

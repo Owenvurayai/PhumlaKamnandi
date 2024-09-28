@@ -16,5 +16,10 @@ namespace PhumlaKamnandi.Presentation
         {
             InitializeComponent();
         }
+
+        private void reservationTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

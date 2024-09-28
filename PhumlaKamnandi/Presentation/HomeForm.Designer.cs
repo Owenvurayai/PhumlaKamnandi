@@ -150,6 +150,7 @@ partial class HomeForm
         linkLabel3.TabIndex = 9;
         linkLabel3.TabStop = true;
         linkLabel3.Text = "Cancel Reservation";
+        linkLabel3.LinkClicked += linkLabel3_LinkClicked;
         linkLabel3.MouseLeave += linkLabel3_MouseLeave;
         linkLabel3.MouseHover += linkLabel3_MouseHover;
         // 
@@ -190,7 +191,7 @@ partial class HomeForm
         label6.TabIndex = 3;
         label6.Text = "Expected Check-in";
         // 
-        // Home
+        // HomeForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -199,7 +200,7 @@ partial class HomeForm
         Controls.Add(listView1);
         Controls.Add(panel2);
         Controls.Add(panel1);
-        Name = "Home";
+        Name = "HomeForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Home";
         panel1.ResumeLayout(false);

@@ -41,7 +41,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(80, 189);
+            label2.Location = new Point(71, 193);
             label2.Name = "label2";
             label2.Size = new Size(153, 20);
             label2.TabIndex = 3;
@@ -49,7 +49,7 @@
             // 
             // reservationTextBox
             // 
-            reservationTextBox.Location = new Point(256, 182);
+            reservationTextBox.Location = new Point(247, 186);
             reservationTextBox.Margin = new Padding(3, 4, 3, 4);
             reservationTextBox.Name = "reservationTextBox";
             reservationTextBox.Size = new Size(233, 27);
@@ -59,8 +59,8 @@
             // 
             search.FlatStyle = FlatStyle.Flat;
             search.Font = new Font("Microsoft Sans Serif", 8.25F);
-            search.ForeColor = Color.FromArgb(232, 65, 24);
-            search.Location = new Point(80, 284);
+            search.ForeColor = Color.FromArgb(68, 189, 50);
+            search.Location = new Point(71, 288);
             search.Margin = new Padding(3, 4, 3, 4);
             search.Name = "search";
             search.Size = new Size(409, 34);
@@ -75,7 +75,7 @@
             panel1.Location = new Point(1, 0);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(712, 80);
+            panel1.Size = new Size(547, 80);
             panel1.TabIndex = 5;
             // 
             // label6
@@ -83,7 +83,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.ButtonHighlight;
-            label6.Location = new Point(25, 24);
+            label6.Location = new Point(30, 19);
             label6.Name = "label6";
             label6.Size = new Size(118, 38);
             label6.TabIndex = 3;
@@ -91,7 +91,7 @@
             // 
             // listView1
             // 
-            listView1.Location = new Point(82, 385);
+            listView1.Location = new Point(73, 389);
             listView1.Name = "listView1";
             listView1.Size = new Size(407, 186);
             listView1.TabIndex = 6;
