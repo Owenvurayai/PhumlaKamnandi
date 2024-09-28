@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore these file they are deffective
+Business_No_Uploading_Not_Working_Code/
