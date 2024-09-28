@@ -59,7 +59,7 @@ partial class Home
         // pictureBox1
         // 
         pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-        pictureBox1.Location = new Point(712, 62);
+        pictureBox1.Location = new Point(444, 35);
         pictureBox1.Name = "pictureBox1";
         pictureBox1.Size = new Size(87, 65);
         pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -71,7 +71,7 @@ partial class Home
         label1.AutoSize = true;
         label1.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
         label1.ForeColor = Color.White;
-        label1.Location = new Point(607, 13);
+        label1.Location = new Point(537, 54);
         label1.Name = "label1";
         label1.Size = new Size(331, 46);
         label1.TabIndex = 0;

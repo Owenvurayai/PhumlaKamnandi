@@ -59,13 +59,7 @@ partial class ChangeReservationForm
         dateTimePicker4 = new DateTimePicker();
         dateTimePicker5 = new DateTimePicker();
         button3 = new Button();
-        radioButton1 = new RadioButton();
         label12 = new Label();
-        textBox1 = new TextBox();
-        textBox2 = new TextBox();
-        label13 = new Label();
-        textBox3 = new TextBox();
-        label14 = new Label();
         panel1.SuspendLayout();
         panel2.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -98,17 +92,17 @@ partial class ChangeReservationForm
         // 
         // panel2
         // 
-        panel2.BackColor = Color.FromArgb(53, 59, 72);
+        panel2.BackColor = Color.FromArgb(60, 99, 130);
         panel2.Controls.Add(label10);
         panel2.Controls.Add(label9);
         panel2.Controls.Add(label8);
         panel2.Controls.Add(label7);
         panel2.Controls.Add(label5);
         panel2.Controls.Add(pictureBox1);
-        panel2.Location = new Point(1054, 128);
+        panel2.Location = new Point(1000, 128);
         panel2.Margin = new Padding(0);
         panel2.Name = "panel2";
-        panel2.Size = new Size(257, 695);
+        panel2.Size = new Size(311, 695);
         panel2.TabIndex = 1;
         // 
         // label10
@@ -169,9 +163,9 @@ partial class ChangeReservationForm
         // 
         // pictureBox1
         // 
-        pictureBox1.BackColor = Color.FromArgb(53, 59, 72);
+        pictureBox1.BackColor = Color.FromArgb(60, 99, 130);
         pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-        pictureBox1.Location = new Point(83, 73);
+        pictureBox1.Location = new Point(107, 75);
         pictureBox1.Name = "pictureBox1";
         pictureBox1.Size = new Size(86, 80);
         pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -192,9 +186,9 @@ partial class ChangeReservationForm
         // richTextBox1
         // 
         richTextBox1.BackColor = SystemColors.HighlightText;
-        richTextBox1.Location = new Point(317, 493);
+        richTextBox1.Location = new Point(317, 561);
         richTextBox1.Name = "richTextBox1";
-        richTextBox1.Size = new Size(686, 213);
+        richTextBox1.Size = new Size(637, 136);
         richTextBox1.TabIndex = 7;
         richTextBox1.Text = "";
         richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -214,7 +208,7 @@ partial class ChangeReservationForm
         // 
         label3.AutoSize = true;
         label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
-        label3.Location = new Point(31, 479);
+        label3.Location = new Point(31, 547);
         label3.Name = "label3";
         label3.Size = new Size(182, 25);
         label3.TabIndex = 14;
@@ -244,7 +238,7 @@ partial class ChangeReservationForm
         // 
         button2.BackColor = Color.FromArgb(76, 209, 55);
         button2.ForeColor = Color.White;
-        button2.Location = new Point(851, 747);
+        button2.Location = new Point(802, 747);
         button2.Margin = new Padding(0);
         button2.Name = "button2";
         button2.Size = new Size(152, 37);
@@ -269,7 +263,7 @@ partial class ChangeReservationForm
         numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         numericUpDown1.Name = "numericUpDown1";
         numericUpDown1.ReadOnly = true;
-        numericUpDown1.Size = new Size(327, 27);
+        numericUpDown1.Size = new Size(428, 27);
         numericUpDown1.TabIndex = 22;
         numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
@@ -414,9 +408,9 @@ partial class ChangeReservationForm
         dateTimePicker3.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
         dateTimePicker3.CustomFormat = "hh:mm";
         dateTimePicker3.Format = DateTimePickerFormat.Custom;
-        dateTimePicker3.Location = new Point(507, 272);
+        dateTimePicker3.Location = new Point(559, 272);
         dateTimePicker3.Name = "dateTimePicker3";
-        dateTimePicker3.Size = new Size(137, 27);
+        dateTimePicker3.Size = new Size(186, 27);
         dateTimePicker3.TabIndex = 27;
         dateTimePicker3.Value = new DateTime(2024, 9, 23, 6, 42, 0, 0);
         // 
@@ -425,9 +419,9 @@ partial class ChangeReservationForm
         dateTimePicker4.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
         dateTimePicker4.CustomFormat = "hh:mm";
         dateTimePicker4.Format = DateTimePickerFormat.Custom;
-        dateTimePicker4.Location = new Point(507, 327);
+        dateTimePicker4.Location = new Point(559, 326);
         dateTimePicker4.Name = "dateTimePicker4";
-        dateTimePicker4.Size = new Size(137, 27);
+        dateTimePicker4.Size = new Size(186, 27);
         dateTimePicker4.TabIndex = 29;
         dateTimePicker4.Value = new DateTime(2024, 9, 23, 6, 48, 0, 0);
         // 
@@ -442,86 +436,34 @@ partial class ChangeReservationForm
         // 
         // button3
         // 
-        button3.BackColor = Color.FromArgb(52, 152, 219);
+        button3.BackColor = Color.FromArgb(231, 76, 60);
+        button3.FlatAppearance.BorderSize = 0;
         button3.FlatStyle = FlatStyle.Flat;
-        button3.ForeColor = Color.White;
-        button3.Location = new Point(732, 201);
+        button3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        button3.ForeColor = SystemColors.Control;
+        button3.Image = (Image)resources.GetObject("button3.Image");
+        button3.ImageAlign = ContentAlignment.MiddleRight;
+        button3.Location = new Point(317, 468);
+        button3.Margin = new Padding(0);
+        button3.MaximumSize = new Size(327, 54);
+        button3.MinimumSize = new Size(327, 54);
         button3.Name = "button3";
-        button3.Size = new Size(271, 33);
+        button3.Padding = new Padding(10, 0, 10, 0);
+        button3.Size = new Size(327, 54);
         button3.TabIndex = 30;
-        button3.Text = "Change Payment Details";
+        button3.Text = "Select";
+        button3.TextAlign = ContentAlignment.MiddleLeft;
         button3.UseVisualStyleBackColor = false;
-        button3.Click += button3_Click;
-        // 
-        // radioButton1
-        // 
-        radioButton1.AutoSize = true;
-        radioButton1.Enabled = false;
-        radioButton1.Location = new Point(732, 251);
-        radioButton1.Name = "radioButton1";
-        radioButton1.Size = new Size(148, 24);
-        radioButton1.TabIndex = 31;
-        radioButton1.TabStop = true;
-        radioButton1.Text = "Credit/Debit Card";
-        radioButton1.UseVisualStyleBackColor = true;
         // 
         // label12
         // 
         label12.AutoSize = true;
-        label12.Enabled = false;
-        label12.Location = new Point(732, 295);
+        label12.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+        label12.Location = new Point(31, 468);
         label12.Name = "label12";
-        label12.Size = new Size(98, 20);
-        label12.TabIndex = 32;
-        label12.Text = "Card Number";
-        label12.Click += label12_Click;
-        // 
-        // textBox1
-        // 
-        textBox1.BorderStyle = BorderStyle.FixedSingle;
-        textBox1.Enabled = false;
-        textBox1.Location = new Point(732, 326);
-        textBox1.Name = "textBox1";
-        textBox1.Size = new Size(271, 27);
-        textBox1.TabIndex = 33;
-        // 
-        // textBox2
-        // 
-        textBox2.BorderStyle = BorderStyle.FixedSingle;
-        textBox2.Enabled = false;
-        textBox2.Location = new Point(903, 397);
-        textBox2.Name = "textBox2";
-        textBox2.Size = new Size(100, 27);
-        textBox2.TabIndex = 34;
-        // 
-        // label13
-        // 
-        label13.AutoSize = true;
-        label13.Enabled = false;
-        label13.Location = new Point(903, 374);
-        label13.Name = "label13";
-        label13.Size = new Size(100, 20);
-        label13.TabIndex = 35;
-        label13.Text = "Security Code";
-        // 
-        // textBox3
-        // 
-        textBox3.BorderStyle = BorderStyle.FixedSingle;
-        textBox3.Enabled = false;
-        textBox3.Location = new Point(730, 397);
-        textBox3.Name = "textBox3";
-        textBox3.Size = new Size(129, 27);
-        textBox3.TabIndex = 36;
-        // 
-        // label14
-        // 
-        label14.AutoSize = true;
-        label14.Enabled = false;
-        label14.Location = new Point(730, 374);
-        label14.Name = "label14";
-        label14.Size = new Size(110, 20);
-        label14.TabIndex = 37;
-        label14.Text = "Expiration date";
+        label12.Size = new Size(94, 25);
+        label12.TabIndex = 31;
+        label12.Text = "Meal Plan";
         // 
         // ChangeReservationForm
         // 
@@ -529,13 +471,7 @@ partial class ChangeReservationForm
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.Control;
         ClientSize = new Size(1308, 819);
-        Controls.Add(label14);
-        Controls.Add(textBox3);
-        Controls.Add(label13);
-        Controls.Add(textBox2);
-        Controls.Add(textBox1);
         Controls.Add(label12);
-        Controls.Add(radioButton1);
         Controls.Add(button3);
         Controls.Add(dateTimePicker4);
         Controls.Add(dateTimePicker5);
@@ -559,6 +495,7 @@ partial class ChangeReservationForm
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Change Reservation";
         TopMost = true;
+        Load += ChangeReservationForm_Load;
         panel1.ResumeLayout(false);
         panel1.PerformLayout();
         panel2.ResumeLayout(false);
@@ -604,11 +541,5 @@ partial class ChangeReservationForm
     private DateTimePicker dateTimePicker4;
     private DateTimePicker dateTimePicker5;
     private Button button3;
-    private RadioButton radioButton1;
     private Label label12;
-    private TextBox textBox1;
-    private TextBox textBox2;
-    private Label label13;
-    private TextBox textBox3;
-    private Label label14;
 }
