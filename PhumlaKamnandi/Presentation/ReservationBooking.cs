@@ -16,5 +16,10 @@ namespace PhumlaKamnandi.Presentation
         {
             InitializeComponent();
         }
+
+        private void ReservationBooking_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
