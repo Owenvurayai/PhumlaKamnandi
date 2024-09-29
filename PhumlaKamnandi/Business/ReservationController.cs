@@ -62,7 +62,7 @@ namespace PhumlaKamnandi.Business
             reservation.CheckOutDate = newCheckOutDate;
             reservation.Extras = newExtras;
 
-            Console.WriteLine("Reservation updated successfully.");
+            //Console.WriteLine("Reservation updated successfully.");
             return true;
         }
 
@@ -78,7 +78,7 @@ namespace PhumlaKamnandi.Business
             }
 
             reservations.Remove(reservation);
-            Console.WriteLine("Reservation canceled successfully.");
+           // Console.WriteLine("Reservation canceled successfully.");
             return true;
         }
 
