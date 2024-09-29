@@ -16,8 +16,8 @@ namespace PhumlaKamnandi
             public string Address { get; set; }
         #endregion
         #region Constructor
-        public Person(int ID,String FName , String LName, String Phone, String Address) {
-            PersonID = ID;
+        public Person(String FName , String LName, String Phone, String Address) {
+            
             FirstName = FName;
             LastName = LName;
             ContactDetails = Phone;

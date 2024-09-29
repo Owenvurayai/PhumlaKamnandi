@@ -10,7 +10,7 @@ namespace PhumlaKamnandi.Business
     public class Room
     {
 
-       
+
         #region properties
         // Properties of the Room class
         public int RoomNumber { get; private set; }
@@ -18,6 +18,7 @@ namespace PhumlaKamnandi.Business
         public string OccupancyStatus { get; set; }//Availability
         public decimal RatePerNight { get; private set; }
         public string Extras { get; set; }
+        public int MaxOccupancy { get; private set; }//maximum number of people that can stay in the room
         #endregion
 
         #region RoomTypes
@@ -33,16 +34,17 @@ namespace PhumlaKamnandi.Business
         #region constructor
         public Room(int roomNum, RoomType roomtype, string extras)
         {
-           // RoomID = roomID;
+            // RoomID = roomID;
             RoomNumber = roomNum;
             OccupancyStatus = "Available";
             Extras = extras;
             roomType = roomtype;
             AssignRates();//Assign the rates
-         
-            
+
+
         }
-        public Room() {
+        public Room()
+        {
             RoomNumber = 0;//There is no room Zero in the Hotel
             OccupancyStatus = "";
             Extras = "";
@@ -60,46 +62,54 @@ namespace PhumlaKamnandi.Business
             switch (roomType)
             {
                 case RoomType.Single:
+                    MaxOccupancy = 1;
                     RatePerNight = 100;
                     break;
                 case RoomType.Double:
+                    MaxOccupancy = 2;
                     RatePerNight = 250;
                     break;
                 case RoomType.Suite:
+                    MaxOccupancy = 4;
                     RatePerNight = 500;
                     break;
                 case RoomType.Deluxe:
+                    MaxOccupancy = 6;//check this
                     RatePerNight = 600;
                     break;
                 default:
                     RatePerNight = 0;//no room type choosen
                     break;
-               
+
             }
         }
 
 
-        // Method to print room details
-        public void PrintRoomDetails()
+        // Method to get room details
+        public string getRoomDetails()
         {
-            Console.WriteLine($"Room Type: {roomType.ToString()}");//check this
-            Console.WriteLine($"Occupancy Status: {OccupancyStatus}");
-            Console.WriteLine($"Rate Per Night: {RatePerNight}");
-            Console.WriteLine($"Extras: {Extras}");
+            string results = $"Room Type: {roomType.ToString()}\nOccupancy Status: {OccupancyStatus}\nRate Per Night: {RatePerNight}\n MaxOccupancy: {MaxOccupancy} \nExtras: {Extras}";
+            return results;
         }
 
         // Method to update occupancy status
         public void UpdateOccupancyStatus(string newStatus)
         {
             OccupancyStatus = newStatus;
-            Console.WriteLine($"Room {RoomNumber} occupancy status updated to {OccupancyStatus}.");
+            //   Console.WriteLine($"Room {RoomNumber} occupancy status updated to {OccupancyStatus}.");
         }
 
         // Method to add extras to the room
-        public void AddExtras(string additionalExtras)
+        public void AddMoreExtras(string additionalExtras)
         {
-            Extras += ", " + additionalExtras;
-            Console.WriteLine($"Extras for room {RoomNumber} updated to: {Extras}");
+            Extras += " " + additionalExtras;
+            //   Console.WriteLine($"Extras for room {RoomNumber} updated to: {Extras}");
+        }
+
+        //Method to change Extras
+        public void ReplaceExtras(string newExtras)
+        {
+            Extras = newExtras;
         }
     }
 }

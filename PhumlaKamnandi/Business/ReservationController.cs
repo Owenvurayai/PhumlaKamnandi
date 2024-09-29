@@ -44,36 +44,41 @@ namespace PhumlaKamnandi.Business
         {
             reservations.Add(res);//adds it into a List
         }
+
+
+        public void Remove2List(Reservation res)
+        {
+            reservations.Remove(res);
+        }
         #endregion
         // Method to update a reservation
-        public bool UpdateReservation(int reservationId, List<Room> newRooms, DateTime newCheckInDate, DateTime newCheckOutDate, string newExtras)
+        public bool UpdateReservation(string reservationId, RoomController newRooms, DateTime newCheckInDate, DateTime newCheckOutDate, string newExtras)
         {
             Reservation reservation = FindReservationById(reservationId);
 
             if (reservation == null)
             {
-                Console.WriteLine("Reservation not found.");
+                //Console.WriteLine("Reservation not found.");
                 return false;
             }
 
             // Update reservation details
-            reservation.NoOfRooms = newRooms;
-            reservation.CheckInDate = newCheckInDate;
-            reservation.CheckOutDate = newCheckOutDate;
-            reservation.Extras = newExtras;
+            reservation.UpdateExtras(newExtras);
+            reservation.UpdateDates(newCheckInDate, newCheckOutDate);
+            reservation.RoomController = newRooms;
 
             //Console.WriteLine("Reservation updated successfully.");
             return true;
         }
 
         // Method to cancel a reservation
-        public bool CancelReservation(int reservationId)
+        public bool CancelReservationByResID(string reservationId)
         {
             Reservation reservation = FindReservationById(reservationId);
 
             if (reservation == null)
             {
-                Console.WriteLine("Reservation not found.");
+               // Console.WriteLine("Reservation not found.");
                 return false;
             }
 
@@ -83,26 +88,30 @@ namespace PhumlaKamnandi.Business
         }
 
         // Method to retrieve reservation details
-        public Reservation FindReservationById(int reservationId)
+        public Reservation FindReservationById(string reservationId)
         {
             /*
              * r => r.ReservationId - it takes each element in the list referrred as r and check its ResevationId
              * */
             return reservations.Find(r => r.ReservationId == reservationId);
         }
-
+        
+        /*
+         * Check this out
         // Method to find reservation by guest ID
-        public Reservation FindReservationByGuestId(int guestId)
+        public Reservation FindReservationByGuestId(string guestId)
         {
-            return reservations.Find(r => r.GuestID == guestId);
-        }
 
+        */
+
+        /*
+         * check this too
         // Method to display all reservations
         public void DisplayAllReservations()
         {
             if (reservations.Count == 0)
             {
-                Console.WriteLine("No reservations found.");
+               // Console.WriteLine("No reservations found.");
             }
 
             foreach (var reservation in reservations)
@@ -110,7 +119,7 @@ namespace PhumlaKamnandi.Business
                 reservation.GetReservationDetails();
             }
         }
-
+        */
         #endregion
     }
 }

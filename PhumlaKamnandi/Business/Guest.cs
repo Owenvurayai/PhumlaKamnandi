@@ -18,8 +18,8 @@ namespace PhumlaKamnandi.Business
 
        
         #region constructor
-        public Guest(int ID, String FName, String LName, String Phone , String Address ,String crdCard, String Prf, String GstID)
-          : base(ID,FName,LName,Phone,Address)
+        public Guest(String FName, String LName, String Phone , String Address ,String crdCard, String Prf, String GstID)
+          : base(FName,LName,Phone,Address)
         {
             CreditCardNo = crdCard;
             Preferences = Prf;
