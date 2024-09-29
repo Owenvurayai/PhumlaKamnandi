@@ -103,6 +103,7 @@ partial class HomeForm
         linkLabel5.TabIndex = 11;
         linkLabel5.TabStop = true;
         linkLabel5.Text = "Generate Report";
+        linkLabel5.LinkClicked += linkLabel5_LinkClicked;
         linkLabel5.MouseLeave += linkLabel5_MouseLeave;
         linkLabel5.MouseHover += linkLabel5_MouseHover;
         // 

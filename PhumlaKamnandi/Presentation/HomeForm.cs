@@ -136,4 +136,9 @@ public partial class HomeForm : Form
             //this.Visible = false;
         }
     }
+
+    private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        // we still need to do something about this
+    }
 }
