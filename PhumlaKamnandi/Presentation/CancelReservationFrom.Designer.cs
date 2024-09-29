@@ -28,122 +28,128 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cancelReservationLabel = new Label();
-            ReservationIDLabel = new Label();
-            ReservationIDtextbox = new TextBox();
-            pictureBox1 = new PictureBox();
-            ProfilepictureBox = new PictureBox();
-            CancelReservationButton = new Button();
             ClearButton = new Button();
-            returnHomeButton = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ProfilepictureBox).BeginInit();
+            reservationTextBox = new TextBox();
+            label2 = new Label();
+            panel1 = new Panel();
+            label6 = new Label();
+            listView1 = new ListView();
+            search = new Button();
+            button1 = new Button();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // cancelReservationLabel
-            // 
-            cancelReservationLabel.AutoSize = true;
-            cancelReservationLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cancelReservationLabel.Location = new Point(30, 18);
-            cancelReservationLabel.Name = "cancelReservationLabel";
-            cancelReservationLabel.Size = new Size(185, 25);
-            cancelReservationLabel.TabIndex = 0;
-            cancelReservationLabel.Text = "Cancel Reservation ";
-            // 
-            // ReservationIDLabel
-            // 
-            ReservationIDLabel.AutoSize = true;
-            ReservationIDLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ReservationIDLabel.Location = new Point(92, 111);
-            ReservationIDLabel.Margin = new Padding(2, 0, 2, 0);
-            ReservationIDLabel.Name = "ReservationIDLabel";
-            ReservationIDLabel.Size = new Size(123, 15);
-            ReservationIDLabel.TabIndex = 1;
-            ReservationIDLabel.Text = "Enter Reservation ID";
-            // 
-            // ReservationIDtextbox
-            // 
-            ReservationIDtextbox.Location = new Point(235, 103);
-            ReservationIDtextbox.Name = "ReservationIDtextbox";
-            ReservationIDtextbox.Size = new Size(189, 23);
-            ReservationIDtextbox.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(248, 18);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(131, 50);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // ProfilepictureBox
-            // 
-            ProfilepictureBox.InitialImage = Properties.Resources.pngegg__2_;
-            ProfilepictureBox.Location = new Point(665, 12);
-            ProfilepictureBox.Name = "ProfilepictureBox";
-            ProfilepictureBox.Size = new Size(100, 50);
-            ProfilepictureBox.TabIndex = 4;
-            ProfilepictureBox.TabStop = false;
-            ProfilepictureBox.WaitOnLoad = true;
-            // 
-            // CancelReservationButton
-            // 
-            CancelReservationButton.Location = new Point(425, 156);
-            CancelReservationButton.Name = "CancelReservationButton";
-            CancelReservationButton.Size = new Size(140, 23);
-            CancelReservationButton.TabIndex = 5;
-            CancelReservationButton.Text = "Cancel  Reservation ";
-            CancelReservationButton.UseVisualStyleBackColor = true;
             // 
             // ClearButton
             // 
-            ClearButton.Location = new Point(319, 156);
+            ClearButton.Location = new Point(62, 545);
             ClearButton.Name = "ClearButton";
-            ClearButton.Size = new Size(75, 23);
+            ClearButton.Size = new Size(151, 36);
             ClearButton.TabIndex = 6;
             ClearButton.Text = "Clear";
             ClearButton.UseVisualStyleBackColor = true;
             // 
-            // returnHomeButton
+            // reservationTextBox
             // 
-            returnHomeButton.Location = new Point(166, 156);
-            returnHomeButton.Name = "returnHomeButton";
-            returnHomeButton.Size = new Size(112, 23);
-            returnHomeButton.TabIndex = 7;
-            returnHomeButton.Text = "Return Home";
-            returnHomeButton.UseVisualStyleBackColor = true;
+            reservationTextBox.Location = new Point(236, 153);
+            reservationTextBox.Margin = new Padding(3, 4, 3, 4);
+            reservationTextBox.Name = "reservationTextBox";
+            reservationTextBox.Size = new Size(233, 27);
+            reservationTextBox.TabIndex = 9;
+            reservationTextBox.TextChanged += reservationTextBox_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(60, 160);
+            label2.Name = "label2";
+            label2.Size = new Size(153, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Enter Reservation ID:";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(137, 12, 12);
+            panel1.Controls.Add(label6);
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(547, 80);
+            panel1.TabIndex = 10;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.ButtonHighlight;
+            label6.Location = new Point(30, 19);
+            label6.Name = "label6";
+            label6.Size = new Size(264, 38);
+            label6.TabIndex = 3;
+            label6.Text = "Cancel Reservation";
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(62, 326);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(407, 186);
+            listView1.TabIndex = 12;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // search
+            // 
+            search.FlatStyle = FlatStyle.Flat;
+            search.Font = new Font("Microsoft Sans Serif", 8.25F);
+            search.ForeColor = Color.FromArgb(68, 189, 50);
+            search.Location = new Point(60, 225);
+            search.Margin = new Padding(3, 4, 3, 4);
+            search.Name = "search";
+            search.Size = new Size(409, 34);
+            search.TabIndex = 11;
+            search.Text = "Search";
+            search.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.ForeColor = Color.Red;
+            button1.Location = new Point(318, 545);
+            button1.Name = "button1";
+            button1.Size = new Size(151, 36);
+            button1.TabIndex = 13;
+            button1.Text = "Cancel Reservation";
+            button1.UseVisualStyleBackColor = true;
             // 
             // CancelReservationFrom
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 253);
-            Controls.Add(returnHomeButton);
+            ClientSize = new Size(546, 617);
+            Controls.Add(button1);
+            Controls.Add(listView1);
+            Controls.Add(search);
+            Controls.Add(panel1);
+            Controls.Add(reservationTextBox);
+            Controls.Add(label2);
             Controls.Add(ClearButton);
-            Controls.Add(CancelReservationButton);
-            Controls.Add(ProfilepictureBox);
-            Controls.Add(pictureBox1);
-            Controls.Add(ReservationIDtextbox);
-            Controls.Add(ReservationIDLabel);
-            Controls.Add(cancelReservationLabel);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "CancelReservationFrom";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CancelReservationFrom";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ProfilepictureBox).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label cancelReservationLabel;
-        private Label ReservationIDLabel;
-        private TextBox ReservationIDtextbox;
-        private PictureBox pictureBox1;
-        private PictureBox ProfilepictureBox;
-        private Button CancelReservationButton;
         private Button ClearButton;
         private Button returnHomeButton;
+        private TextBox reservationTextBox;
+        private Label label2;
+        private Panel panel1;
+        private Label label6;
+        private ListView listView1;
+        private Button search;
+        private Button button1;
     }
 }
