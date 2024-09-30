@@ -40,7 +40,7 @@ namespace PhumlaKamnandi.Business
 
         #region Constructor
         // Constructor for Guest reservations
-        public Reservation(string reservationId, Guest guest, , DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
+        public Reservation(string reservationId, Guest guest, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
     {
         ReservationId = reservationId;
         GuestType = "Guest";
