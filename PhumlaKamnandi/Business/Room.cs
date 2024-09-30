@@ -62,23 +62,24 @@ namespace PhumlaKamnandi.Business
             switch (roomType)
             {
                 case RoomType.Single:
-                    MaxOccupancy = 1;
+                    MaxOccupancy = 2;
                     RatePerNight = 100;
                     break;
                 case RoomType.Double:
-                    MaxOccupancy = 2;
+                    MaxOccupancy = 4;
                     RatePerNight = 250;
                     break;
                 case RoomType.Suite:
-                    MaxOccupancy = 4;
+                    MaxOccupancy = 8;
                     RatePerNight = 500;
                     break;
                 case RoomType.Deluxe:
-                    MaxOccupancy = 6;//check this
+                    MaxOccupancy = 12;//check this
                     RatePerNight = 600;
                     break;
                 default:
                     RatePerNight = 0;//no room type choosen
+                    MaxOccupancy = 0;//default one
                     break;
 
             }

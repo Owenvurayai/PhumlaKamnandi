@@ -9,7 +9,9 @@ namespace PhumlaKamnandi.Business
     public class Guest : Person
     {
         #region Properties
-        public string CreditCardNo { get; set; }
+        public string CardNo { get; set; }
+        public string SecurityDate {  get; set; }
+        public int CVC {  get; set; }
         public string Preferences { get; set; }
 
         public string GuestID { get; set; }
@@ -18,16 +20,18 @@ namespace PhumlaKamnandi.Business
 
        
         #region constructor
-        public Guest(String FName, String LName, String Phone , String Address ,String crdCard, String Prf, String GstID)
+        public Guest(String FName, String LName, String Phone , String Address ,String crdCard,string SecurityDate, int CVC, String Prf, String GstID)
           : base(FName,LName,Phone,Address)
         {
-            CreditCardNo = crdCard;
+            CardNo = crdCard;
+            this.SecurityDate = SecurityDate;
+            this.CVC = CVC;
             Preferences = Prf;
             GuestID = GstID;
         }
 
         public Guest() :base() {
-            CreditCardNo = "";
+            CardNo = "";
             Preferences = "";
             GuestID = "";
 
@@ -39,12 +43,14 @@ namespace PhumlaKamnandi.Business
         {
             Preferences = preferences;
         }
-        public void UpdateCreditCardNo(string creditCardNo) {
-            CreditCardNo = creditCardNo;  
+        public void UpdatePaymentDetails(string creditCardNo, string SecurityCode, int CVC) {
+            CardNo = creditCardNo; 
+            this.SecurityDate= SecurityCode;
+            this.CVC = CVC;
         }
         public string GetGuestDetails()
         {
-            return $"{GetFullName()}, CreditCardNo: {CreditCardNo }, Preferences: {Preferences}";
+            return $"{GetFullName()}, CreditCardNo: {CardNo }, Security Date: {SecurityDate}, CVC: {CVC.ToString()} Preferences: {Preferences}";
         }
         #endregion
     }
