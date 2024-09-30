@@ -26,7 +26,7 @@ namespace PhumlaKamnandi.Business
     public RoomController RoomController { get; set; }//simple management of the rooms
     public int NoOfGuests { get; set; }
   //  public List<int> NoOfRooms { get; set; } // List of room numbers for the reservation
-    public string Extras { get; set; } // Any additional services or extras requested 
+   // public string Extras { get; set; } // Any additional services or extras requested 
     public ReservationStatus Status { get; private set; }  // New property to track reservation status
 
         public enum ReservationStatus
@@ -40,32 +40,28 @@ namespace PhumlaKamnandi.Business
 
         #region Constructor
         // Constructor for Guest reservations
-        public Reservation(string reservationId, Guest guest, int hotelID, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController, string extras)
+        public Reservation(string reservationId, Guest guest, , DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
     {
         ReservationId = reservationId;
         GuestType = "Guest";
         Guest = guest;
-        HotelID = hotelID;
         CheckInDate = checkInDate;
         CheckOutDate = checkOutDate;
         NoOfGuests = noOfGuests;
         RoomController = roomsController;
-        Extras = extras;
            Status = ReservationStatus.Booked;
     }
 
     // Constructor for Agent reservations
-    public Reservation(string reservationId, BookingAgent agent, int hotelID, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController, string extras)
+    public Reservation(string reservationId, BookingAgent agent, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
        {
          ReservationId = reservationId;
         GuestType = "Agent";
         Agent = agent;
-        HotelID = hotelID;
         CheckInDate = checkInDate;
         CheckOutDate = checkOutDate;
         NoOfGuests = noOfGuests;
            RoomController = roomsController;
-        Extras = extras;
             Status = ReservationStatus.Booked;
         }
     #endregion
@@ -91,11 +87,11 @@ namespace PhumlaKamnandi.Business
     {
         if (GuestType == "Guest")
         {
-            return $"Reservation ID: {ReservationId}, Guest: {Guest.GetFullName()}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}, Extras: {Extras}";
+            return $"Reservation ID: {ReservationId}, Guest: {Guest.GetFullName()}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}";
         }
         else if (GuestType == "Agent")
         {
-            return $"Reservation ID: {ReservationId}, Booking Agent: {Agent.GetFullName()}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}, Extras: {Extras}";
+            return $"Reservation ID: {ReservationId}, Booking Agent: {Agent.GetFullName()}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}";
         }
         else
         {
@@ -152,12 +148,14 @@ namespace PhumlaKamnandi.Business
         {
             RoomController.removeRoom(room);
         }
+        /*
         //update extras
         public void UpdateExtras(string newExtras)
         {
             Extras = newExtras;
             //Console.WriteLine($"Extras updated to: {Extras}");
         }
+        */
         /*This method allows updating information for the guest or agent associated with the reservation.
          * For example, if a guest's details change, you can update the object linked to the reservation.
          */

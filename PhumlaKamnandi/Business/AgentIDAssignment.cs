@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhumlaKamnandi.Business
 {
-    internal class AgentIDAssignment
+    public class AgentIDAssignment
     {
         private ArrayList assignedAgentIDs=new ArrayList();
         private int counter = 1;

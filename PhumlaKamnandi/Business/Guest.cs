@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,36 +13,35 @@ namespace PhumlaKamnandi.Business
         public string CardNo { get; set; }
         public string SecurityDate {  get; set; }
         public int CVC {  get; set; }
-        public string Preferences { get; set; }
-
         public string GuestID { get; set; }
+        public string Email { get; set; }
 
         #endregion
 
        
         #region constructor
-        public Guest(String FName, String LName, String Phone , String Address ,String crdCard,string SecurityDate, int CVC, String Prf, String GstID)
+        public Guest(String GstID, String FName, String LName, String Phone , String Address ,string Email, String crdCard,string SecurityDate, int CVC)
           : base(FName,LName,Phone,Address)
         {
             CardNo = crdCard;
             this.SecurityDate = SecurityDate;
             this.CVC = CVC;
-            Preferences = Prf;
+            this.Email = Email;
             GuestID = GstID;
         }
 
         public Guest() :base() {
             CardNo = "";
-            Preferences = "";
             GuestID = "";
+            Email = "";//create a method to change this
 
         }
         #endregion
 
         #region Method
-        public void UpdatePreferences(string preferences)
+        public void UpdateEmail(string newEmail)
         {
-            Preferences = preferences;
+           Email = newEmail;
         }
         public void UpdatePaymentDetails(string creditCardNo, string SecurityCode, int CVC) {
             CardNo = creditCardNo; 
@@ -50,7 +50,7 @@ namespace PhumlaKamnandi.Business
         }
         public string GetGuestDetails()
         {
-            return $"{GetFullName()}, CreditCardNo: {CardNo }, Security Date: {SecurityDate}, CVC: {CVC.ToString()} Preferences: {Preferences}";
+            return $"{GetFullName()}, CreditCardNo: {CardNo }, Security Date: {SecurityDate}, CVC: {CVC.ToString()} Email: {Email}";
         }
         #endregion
     }

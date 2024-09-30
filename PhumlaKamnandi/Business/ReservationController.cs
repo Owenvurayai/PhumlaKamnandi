@@ -52,7 +52,7 @@ namespace PhumlaKamnandi.Business
         }
         #endregion
         // Method to update a reservation
-        public bool UpdateReservation(string reservationId, RoomController newRooms, DateTime newCheckInDate, DateTime newCheckOutDate, string newExtras)
+        public bool UpdateReservation(string reservationId, RoomController newRooms, DateTime newCheckInDate, DateTime newCheckOutDate)
         {
             Reservation reservation = FindReservationById(reservationId);
 
@@ -63,7 +63,6 @@ namespace PhumlaKamnandi.Business
             }
 
             // Update reservation details
-            reservation.UpdateExtras(newExtras);
             reservation.UpdateDates(newCheckInDate, newCheckOutDate);
             reservation.RoomController = newRooms;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhumlaKamnandi.Business
 {
-    public class GuestController//Owen WIll add THIS
+    public class GuestController
     {
         List<Guest> guests;
         public GuestController()
@@ -40,10 +40,10 @@ namespace PhumlaKamnandi.Business
             guest.UpdatePaymentDetails(creditCardNo, SecurityCode, CVC);    
         }
 
-        public void UpdatePreferences(string id, string preferences)
+        public void UpdateEmail(string id, string newEmail)
         {
             Guest guest = FindGuest(id);
-            guest.UpdatePreferences(preferences);
+            guest.UpdateEmail(newEmail);
         }
 
         public string getGuestDetails(string id)
