@@ -12,7 +12,7 @@ namespace PhumlaKamnandi.Presentation
 {
     public partial class LoginForm : Form
     {
-        // Step 1: Declare a dictionary to store usernames and passwords.
+        //Declare a dictionary to store usernames and passwords.
         Dictionary<string, string> employees = new Dictionary<string, string>
     {
         { "Given", "MHLGIV006" },
