@@ -78,7 +78,7 @@ namespace PhumlaKamnandi.Presentation
                 // Close the application
                 Application.Exit();
             }
-            // If "No" is clicked, the application will continue running
+
         }
     }
 }
