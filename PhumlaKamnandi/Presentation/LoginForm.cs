@@ -33,7 +33,7 @@ namespace PhumlaKamnandi.Presentation
         private void button3_Click(object sender, EventArgs e)
         {
             // Show a confirmation dialog box with "Yes" and "No" buttons
-            DialogResult result = MessageBox.Show("Are you sure you want to exit?",
+            DialogResult result = MessageBox.Show("Are you sure you want to exit the app?",
                                                   "Exit Application",
                                                   MessageBoxButtons.YesNo,
                                                   MessageBoxIcon.Question);

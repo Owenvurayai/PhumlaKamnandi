@@ -108,6 +108,8 @@ namespace PhumlaKamnandi.Presentation
             ExpirationDateTxtbox.Text= " ";
             Address1TextBox1.Text = " ";
             Address2TextBox.Text = " ";
+            EmailAddresstextBox.Text = " ";
+            IDtextBox.Text = " ";
         }
     }
 }
