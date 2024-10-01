@@ -15,7 +15,8 @@ namespace PhumlaKamnandi.Data
 
         #region Variable declaration
         //***Once the database is created you can find the correct connection string by using the Settings.Default object to select the correct connection string
-        private string strConn = Settings.Default.EmployeeDatabaseConnectionString;
+        private string strConn = "Your_Connection_String";
+        //private string strConn = Settings.Default.EmployeeDatabaseConnectionString;
         protected SqlConnection cnMain;
         protected DataSet dsMain;
         protected SqlDataAdapter daMain;
