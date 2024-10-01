@@ -67,10 +67,10 @@
             GuestRadioButton = new RadioButton();
             AgentRadioButton = new RadioButton();
             label1 = new Label();
-            richTextBox1 = new RichTextBox();
-            richTextBox2 = new RichTextBox();
+            Address1TextBox1 = new RichTextBox();
+            Address2TextBox = new RichTextBox();
             crdTextBox = new TextBox();
-            crdDateTxtbox = new TextBox();
+            ExpirationDateTxtbox = new TextBox();
             label2 = new Label();
             label4 = new Label();
             cvcTxtBox = new TextBox();
@@ -97,6 +97,7 @@
             ClearButton.TabIndex = 1;
             ClearButton.Text = "Clear";
             ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
             // SubmitButton
             // 
@@ -420,23 +421,23 @@
             label1.TabIndex = 45;
             label1.Text = "Reservation Booking";
             // 
-            // richTextBox1
+            // Address1TextBox1
             // 
-            richTextBox1.Location = new Point(765, 309);
-            richTextBox1.Margin = new Padding(3, 2, 3, 2);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(304, 61);
-            richTextBox1.TabIndex = 46;
-            richTextBox1.Text = "";
+            Address1TextBox1.Location = new Point(765, 309);
+            Address1TextBox1.Margin = new Padding(3, 2, 3, 2);
+            Address1TextBox1.Name = "Address1TextBox1";
+            Address1TextBox1.Size = new Size(304, 61);
+            Address1TextBox1.TabIndex = 46;
+            Address1TextBox1.Text = "";
             // 
-            // richTextBox2
+            // Address2TextBox
             // 
-            richTextBox2.Location = new Point(765, 417);
-            richTextBox2.Margin = new Padding(3, 2, 3, 2);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(304, 67);
-            richTextBox2.TabIndex = 47;
-            richTextBox2.Text = "";
+            Address2TextBox.Location = new Point(765, 417);
+            Address2TextBox.Margin = new Padding(3, 2, 3, 2);
+            Address2TextBox.Name = "Address2TextBox";
+            Address2TextBox.Size = new Size(304, 67);
+            Address2TextBox.TabIndex = 47;
+            Address2TextBox.Text = "";
             // 
             // crdTextBox
             // 
@@ -445,12 +446,12 @@
             crdTextBox.Size = new Size(246, 23);
             crdTextBox.TabIndex = 48;
             // 
-            // crdDateTxtbox
+            // ExpirationDateTxtbox
             // 
-            crdDateTxtbox.Location = new Point(767, 234);
-            crdDateTxtbox.Name = "crdDateTxtbox";
-            crdDateTxtbox.Size = new Size(98, 23);
-            crdDateTxtbox.TabIndex = 49;
+            ExpirationDateTxtbox.Location = new Point(767, 234);
+            ExpirationDateTxtbox.Name = "ExpirationDateTxtbox";
+            ExpirationDateTxtbox.Size = new Size(98, 23);
+            ExpirationDateTxtbox.TabIndex = 49;
             // 
             // label2
             // 
@@ -495,10 +496,10 @@
             Controls.Add(cvcTxtBox);
             Controls.Add(label4);
             Controls.Add(label2);
-            Controls.Add(crdDateTxtbox);
+            Controls.Add(ExpirationDateTxtbox);
             Controls.Add(crdTextBox);
-            Controls.Add(richTextBox2);
-            Controls.Add(richTextBox1);
+            Controls.Add(Address2TextBox);
+            Controls.Add(Address1TextBox1);
             Controls.Add(label1);
             Controls.Add(AgentRadioButton);
             Controls.Add(GuestRadioButton);
@@ -588,10 +589,10 @@
         private RadioButton GuestRadioButton;
         private RadioButton AgentRadioButton;
         private Label label1;
-        private RichTextBox richTextBox1;
-        private RichTextBox richTextBox2;
+        private RichTextBox Address1TextBox1;
+        private RichTextBox Address2TextBox;
         private TextBox crdTextBox;
-        private TextBox crdDateTxtbox;
+        private TextBox ExpirationDateTxtbox;
         private Label label2;
         private Label label4;
         private TextBox cvcTxtBox;

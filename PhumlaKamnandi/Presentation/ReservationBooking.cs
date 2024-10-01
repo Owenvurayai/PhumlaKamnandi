@@ -28,10 +28,10 @@ namespace PhumlaKamnandi.Presentation
         public ReservationBooking()
         {
             InitializeComponent();
-            guestID_generator = new GuestIDAssignment();   
+            guestID_generator = new GuestIDAssignment();
             guestController = new GuestController();
             reservationID_generator = new ReservationIDAssignment();
-            agentID_generator = new AgentIDAssignment();    
+            agentID_generator = new AgentIDAssignment();
             roomController = new RoomController();
             roomNumber_generator = new RoomNumberAssignment();
         }
@@ -53,7 +53,7 @@ namespace PhumlaKamnandi.Presentation
             if (GuestRadioButton.Checked)//Guest Radio Button is Checked
             {
                 IsGuest = true;
-               
+
             }
             else if (AgentRadioButton.Checked)//Agent Radio Button is Checked
             {
@@ -68,7 +68,7 @@ namespace PhumlaKamnandi.Presentation
                 //here just pass the roomcontroller, no need to create a new room object
                 if (IsGuest)
                 {
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNametextbox.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, crdTextBox.Text, crdDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNametextbox.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, crdTextBox.Text, ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
                 }
                 else if (!IsGuest)
@@ -83,7 +83,7 @@ namespace PhumlaKamnandi.Presentation
                           // roomController.AddRoom(); add it in to the thingie
                 if (IsGuest)
                 {
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNametextbox.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, crdTextBox.Text, crdDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNametextbox.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, crdTextBox.Text, ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
                 }
                 else if (!IsGuest)
@@ -92,6 +92,22 @@ namespace PhumlaKamnandi.Presentation
                 }
 
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            FirstNametextbox.Text = " ";
+            LastNametextbox.Text = " ";
+            PhonetextBox.Text = " ";
+            CitytextBox.Text = " ";
+            StatetextBox.Text = " ";
+            ZipCodetextBox.Text = " ";
+            CompanyNametextBox2.Text = " ";
+            ExpirationDateTxtbox.Text = " ";
+            cvcTxtBox.Text = " ";
+            ExpirationDateTxtbox.Text= " ";
+            Address1TextBox1.Text = " ";
+            Address2TextBox.Text = " ";
         }
     }
 }
