@@ -37,7 +37,7 @@
             PersonalDetailsLabel = new Label();
             FirstNameLabel = new Label();
             address1Label = new Label();
-            LastNametextbox = new Label();
+            LastNameLabel = new Label();
             address2Label = new Label();
             CityLabel = new Label();
             StateLabel = new Label();
@@ -166,14 +166,14 @@
             address1Label.TabIndex = 10;
             address1Label.Text = "Address 1";
             // 
-            // LastNametextbox
+            // LastNameLabel
             // 
-            LastNametextbox.AutoSize = true;
-            LastNametextbox.Location = new Point(340, 111);
-            LastNametextbox.Name = "LastNametextbox";
-            LastNametextbox.Size = new Size(63, 15);
-            LastNametextbox.TabIndex = 11;
-            LastNametextbox.Text = "Last Name";
+            LastNameLabel.AutoSize = true;
+            LastNameLabel.Location = new Point(340, 111);
+            LastNameLabel.Name = "LastNameLabel";
+            LastNameLabel.Size = new Size(63, 15);
+            LastNameLabel.TabIndex = 11;
+            LastNameLabel.Text = "Last Name";
             // 
             // address2Label
             // 
@@ -529,7 +529,7 @@
             Controls.Add(StateLabel);
             Controls.Add(CityLabel);
             Controls.Add(address2Label);
-            Controls.Add(LastNametextbox);
+            Controls.Add(LastNameLabel);
             Controls.Add(address1Label);
             Controls.Add(FirstNameLabel);
             Controls.Add(PersonalDetailsLabel);
@@ -559,7 +559,7 @@
         private Label PersonalDetailsLabel;
         private Label FirstNameLabel;
         private Label address1Label;
-        private Label LastNametextbox;
+        private Label LastNameLabel;
         private Label address2Label;
         private Label CityLabel;
         private Label StateLabel;

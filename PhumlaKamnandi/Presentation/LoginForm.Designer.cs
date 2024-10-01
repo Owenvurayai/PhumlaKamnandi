@@ -35,8 +35,8 @@
             panel2 = new Panel();
             button3 = new Button();
             button2 = new Button();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            passwordTextBox = new TextBox();
+            usernameTextBox = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -84,8 +84,8 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(passwordTextBox);
+            panel2.Controls.Add(usernameTextBox);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
@@ -119,24 +119,24 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
-            // textBox2
+            // passwordTextBox
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Location = new Point(140, 144);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(245, 23);
-            textBox2.TabIndex = 4;
-            textBox2.UseSystemPasswordChar = true;
+            passwordTextBox.BorderStyle = BorderStyle.FixedSingle;
+            passwordTextBox.Location = new Point(140, 144);
+            passwordTextBox.Margin = new Padding(3, 2, 3, 2);
+            passwordTextBox.Name = "passwordTextBox";
+            passwordTextBox.Size = new Size(245, 23);
+            passwordTextBox.TabIndex = 4;
+            passwordTextBox.UseSystemPasswordChar = true;
             // 
-            // textBox1
+            // usernameTextBox
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(140, 100);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(245, 23);
-            textBox1.TabIndex = 3;
+            usernameTextBox.BorderStyle = BorderStyle.FixedSingle;
+            usernameTextBox.Location = new Point(140, 100);
+            usernameTextBox.Margin = new Padding(3, 2, 3, 2);
+            usernameTextBox.Name = "usernameTextBox";
+            usernameTextBox.Size = new Size(245, 23);
+            usernameTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -192,8 +192,8 @@
         private Panel panel1;
         private Panel panel2;
         private Label label1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox passwordTextBox;
+        private TextBox usernameTextBox;
         private Label label3;
         private Label label2;
         private Button button3;

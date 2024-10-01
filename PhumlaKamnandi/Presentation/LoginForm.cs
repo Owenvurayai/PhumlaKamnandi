@@ -12,6 +12,14 @@ namespace PhumlaKamnandi.Presentation
 {
     public partial class LoginForm : Form
     {
+        // Step 1: Declare a dictionary to store usernames and passwords.
+        Dictionary<string, string> employees = new Dictionary<string, string>
+    {
+        { "Given", "MHLGIV006" },
+        { "Kholisile", "NDZKHO004" },
+        { "Siyabonga", "ZNGSIY012" },
+         {"Owen","VRYOWE001" }
+    };
         public LoginForm()
         {
             InitializeComponent();
@@ -24,9 +32,35 @@ namespace PhumlaKamnandi.Presentation
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HomeForm h = new HomeForm();
-            h.Show();
-            this.Visible = false;
+            // Get user input from the textboxes
+            string enteredUsername = usernameTextBox.Text;
+            string enteredPassword = passwordTextBox.Text;
+
+            // Check if the username exists in the dictionary
+            if (employees.ContainsKey(enteredUsername))
+            {
+                // Check if the password matches the one stored in the dictionary
+                if (employees[enteredUsername] == enteredPassword)
+                {
+                    // Successful login
+                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    HomeForm h = new HomeForm();
+                    h.Show();
+                    this.Visible = false;
+                }
+                else
+                {
+                    // Incorrect password
+                    MessageBox.Show("Incorrect password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Username not found
+                MessageBox.Show("Username not found. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         //cancel button event Handler

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             ClearButton = new Button();
-            reservationTextBox = new TextBox();
+            reservationIDTextBox = new TextBox();
             label2 = new Label();
             panel1 = new Panel();
             label6 = new Label();
@@ -47,15 +47,16 @@
             ClearButton.TabIndex = 6;
             ClearButton.Text = "Clear";
             ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
-            // reservationTextBox
+            // reservationIDTextBox
             // 
-            reservationTextBox.Location = new Point(236, 153);
-            reservationTextBox.Margin = new Padding(3, 4, 3, 4);
-            reservationTextBox.Name = "reservationTextBox";
-            reservationTextBox.Size = new Size(233, 27);
-            reservationTextBox.TabIndex = 9;
-            reservationTextBox.TextChanged += reservationTextBox_TextChanged;
+            reservationIDTextBox.Location = new Point(236, 153);
+            reservationIDTextBox.Margin = new Padding(3, 4, 3, 4);
+            reservationIDTextBox.Name = "reservationIDTextBox";
+            reservationIDTextBox.Size = new Size(233, 23);
+            reservationIDTextBox.TabIndex = 9;
+            reservationIDTextBox.TextChanged += reservationTextBox_TextChanged;
             // 
             // label2
             // 
@@ -63,7 +64,7 @@
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(60, 160);
             label2.Name = "label2";
-            label2.Size = new Size(153, 20);
+            label2.Size = new Size(117, 15);
             label2.TabIndex = 8;
             label2.Text = "Enter Reservation ID:";
             // 
@@ -84,7 +85,7 @@
             label6.ForeColor = SystemColors.ButtonHighlight;
             label6.Location = new Point(30, 19);
             label6.Name = "label6";
-            label6.Size = new Size(264, 38);
+            label6.Size = new Size(209, 30);
             label6.TabIndex = 3;
             label6.Text = "Cancel Reservation";
             // 
@@ -121,14 +122,14 @@
             // 
             // CancelReservationFrom
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(546, 617);
             Controls.Add(button1);
             Controls.Add(listView1);
             Controls.Add(search);
             Controls.Add(panel1);
-            Controls.Add(reservationTextBox);
+            Controls.Add(reservationIDTextBox);
             Controls.Add(label2);
             Controls.Add(ClearButton);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -144,7 +145,7 @@
         #endregion
         private Button ClearButton;
         private Button returnHomeButton;
-        private TextBox reservationTextBox;
+        private TextBox reservationIDTextBox;
         private Label label2;
         private Panel panel1;
         private Label label6;
