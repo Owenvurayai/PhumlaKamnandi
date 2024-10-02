@@ -12,14 +12,14 @@ namespace PhumlaKamnandi.Business
     {
         // List of Reservations
         private Collection<Reservation> reservations;
-        private HotelDB hotelDB;
+       // private HotelDB hotelDB;
         private ReservationDB reservationDB;
 
         // Constructor
         public ReservationController()
         {
-            reservations = reservationDB.All;
-            hotelDB = new HotelDB();
+            reservations = reservationDB.Reservations;
+          //  hotelDB = new HotelDB();
             reservationDB = new ReservationDB();
         }
 
@@ -36,12 +36,14 @@ namespace PhumlaKamnandi.Business
             else//An Agent
             {
                 //add to the database
-              //  reservationDB.CreateAgentReservation(res.ReservationId, res.Agent.AgentID, res.CheckInDate, res.CheckOutDate, res.CalculateTotalStayCost());
+                 reservationDB.CreateAgentReservation(res.ReservationId, res.Agent.AgentID, res.CheckInDate, res.CheckOutDate, res.CalculateTotalStayCost());
                 reservations.Add(res);//adds it into a List
             }
-           
-        }
 
+        }
+    }
+}
+        /*
 
         public void Remove2List(Reservation res, bool IsGuest)
         {
@@ -93,15 +95,17 @@ namespace PhumlaKamnandi.Business
             return true;
         }
 
+        /*
+
         // Method to retrieve reservation details
         public Reservation FindReservationById(string reservationId)
         {
             /*
              * r => r.ReservationId - it takes each element in the list referrred as r and check its ResevationId
              * */
-            return reservations.Find(r => r.ReservationId == reservationId);
-        }
-        
+        //  return reservations.Find(r => r.ReservationId == reservationId);
+        //}
+
         /*
          * Check this out
         // Method to find reservation by guest ID
@@ -126,6 +130,7 @@ namespace PhumlaKamnandi.Business
             }
         }
         */
-        #endregion
-    }
-}
+
+   
+    
+

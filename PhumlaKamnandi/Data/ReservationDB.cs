@@ -39,8 +39,9 @@ namespace PhumlaKamnandi.Data
         #region GuestReservationCRUDMethods
         public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, decimal totalAmount)
         {
-            string command = "INSERT INTO GuestReservation (GuestID, CheckInDate, CheckOutDate, TotalAmount) VALUES (@GuestID, @CheckInDate, @CheckOutDate, @TotalAmount)";
+            string command = "INSERT INTO GuestReservation (ReservationID, GuestID, CheckInDate, CheckOutDate, TotalAmount) VALUES (@ReservationID, @GuestID, @CheckInDate, @CheckOutDate, @TotalAmount)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@ReservationID", ResID);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
             sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
             sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
@@ -89,10 +90,11 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region AgentReservationTable
-        public void CreateAgentReservation( string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, double totalAmount)
+        public void CreateAgentReservation(string reservationID, string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, double totalAmount)
         {
-            string command = "INSERT INTO AgentReservation (AgentID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@AgentID, @CheckInDate, @CheckOutDate, @NoOfGuests, @TotalAmount)";
+            string command = "INSERT INTO AgentReservation (ReservationID, AgentID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@Reservation, @AgentID, @CheckInDate, @CheckOutDate, @NoOfGuests, @TotalAmount)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
             sqlCommand.Parameters.AddWithValue("@AgentID", agentID);
             sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
             sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);

@@ -35,7 +35,7 @@ namespace PhumlaKamnandi.Business
             return null;
         }
 
-        public void UpdatePaymentDetails(string id, string creditCardNo, string SecurityCode, int CVC)
+        public void UpdatePaymentDetails(string id, int creditCardNo, string SecurityCode, int CVC)
         {
             Guest guest = FindGuest(id);
             guest.UpdatePaymentDetails(creditCardNo, SecurityCode, CVC);    
