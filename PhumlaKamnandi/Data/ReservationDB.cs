@@ -1,25 +1,40 @@
 ﻿using PhumlaKamnandi.Business;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhumlaKamnandi.Business;
 
 namespace PhumlaKamnandi.Data
 {
-    internal class ReservationDB
+    internal class ReservationDB:DB
     {
         /**
          * Update the methods of adding a reservation of an Agent to take in a ReservationID
          * */
+        #region Data members
         SqlConnection sqlConnection;
         SqlCommand sqlCommand;
+        private Collection<Reservation> reservations;
+        private string table1 = "Reservation";
+        private string sqlLocal1 = "SELECT * FROM Reservation";
+        public Collection<Reservation> Reservations
+        {
+            get { return reservations; }
+        }
+        #endregion
+
+        #region Constructors
         public ReservationDB(): base()
         {
-        
+            reservations = new Collection<Reservation>();
+            FillDataSet(sqlLocal1, table1);
         }
+        #endregion
 
         #region GuestReservationCRUDMethods
         public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, decimal totalAmount)
