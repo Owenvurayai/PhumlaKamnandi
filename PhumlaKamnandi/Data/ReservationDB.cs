@@ -11,6 +11,9 @@ namespace PhumlaKamnandi.Data
 {
     internal class ReservationDB
     {
+        /**
+         * Update the methods of adding a reservation of an Agent to take in a ReservationID
+         * */
         SqlConnection sqlConnection;
         SqlCommand sqlCommand;
         public ReservationDB(): base()
@@ -71,7 +74,7 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region AgentReservationTable
-        public void CreateAgentReservation(string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, double totalAmount)
+        public void CreateAgentReservation( string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, double totalAmount)
         {
             string command = "INSERT INTO AgentReservation (AgentID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@AgentID, @CheckInDate, @CheckOutDate, @NoOfGuests, @TotalAmount)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);

@@ -1,53 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhumlaKamnandi.Data;
 
 namespace PhumlaKamnandi.Business
 {
     public class ReservationController
     {
         // List of Reservations
-        private List<Reservation> reservations;
+        private Collection<Reservation> reservations;
+        private HotelDB hotelDB;
+        private ReservationDB reservationDB;
 
         // Constructor
         public ReservationController()
         {
-            reservations = new List<Reservation>();
+            //reservations = hotelDB.All;
+            hotelDB = new HotelDB();
+            reservationDB = new ReservationDB();
         }
 
         #region Methods
-        #region Duplicate of the Reservation class
-        /*  // Method to create a reservation
-          public Reservation CreateReservation(int reservationId, Guest guest, List<Room> rooms, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, string extras = "")
-          {
-              // Check if guest already has a reservation
-              Reservation existingReservation = FindReservationByGuestId(guest.GuestID);
-              if (existingReservation != null)
-              {
-                  Console.WriteLine($"Guest {guest.Name} already has a reservation.");
-                  return null;
-              }
-
-              // Create a new reservation
-              Reservation newReservation = new Reservation(reservationId, guest.GuestID, rooms, checkInDate, checkOutDate, noOfGuests, extras);
-              reservations.Add(newReservation);
-
-              Console.WriteLine("Reservation created successfully.");
-              return newReservation;
-          }
-        */
-        #endregion
         #region Add a Reservation into a List
-        public void Add2List(Reservation res)
+        public void Add2List(Reservation res, bool IsGuest)
         {
-            reservations.Add(res);//adds it into a List
+            if (IsGuest)//If it is a Guest
+            {
+                //add to the database
+                reservationDB.CreateGuestReservation(res.ReservationId, res.Guest.GuestID, res.CheckInDate, res.CheckOutDate, res.CalculateTotalStayCost());
+                reservations.Add(res);//adds it into a List
+            }
+            else//An Agent
+            {
+                //add to the database
+              //  reservationDB.CreateAgentReservation(res.ReservationId, res.Agent.AgentID, res.CheckInDate, res.CheckOutDate, res.CalculateTotalStayCost());
+                reservations.Add(res);//adds it into a List
+            }
+           
         }
 
 
-        public void Remove2List(Reservation res)
+        public void Remove2List(Reservation res, bool IsGuest)
         {
+            if (IsGuest)
+            {
+
+            }
+            else
+            {
+
+            }
+            //Delete then Reservation from the database
+            
             reservations.Remove(res);
         }
         #endregion
