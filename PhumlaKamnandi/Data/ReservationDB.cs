@@ -117,7 +117,7 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateAgentReservation(string reservationID, DateTime checkIn, DateTime checkOut, int noOfGuests, double totalAmount)
+        public void UpdateAgentReservation(string reservationID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
         {
             string command = "UPDATE AgentReservation SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, NoOfGuests = @NoOfGuests, TotalAmount = @TotalAmount WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
