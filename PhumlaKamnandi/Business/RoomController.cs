@@ -21,7 +21,7 @@ namespace PhumlaKamnandi.Business
         public RoomController()
         {
             hotelDB = new HotelDB();
-            rooms = hotelDB.AllRooms();//gets the occupied rooms in the database
+            rooms = hotelDB.AllRooms;//gets the occupied rooms in the database
         }
 
         //Add the room in the database

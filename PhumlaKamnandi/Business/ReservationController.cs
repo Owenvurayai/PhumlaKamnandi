@@ -18,7 +18,7 @@ namespace PhumlaKamnandi.Business
         // Constructor
         public ReservationController()
         {
-            //reservations = hotelDB.All;
+            reservations = reservationDB.All;
             hotelDB = new HotelDB();
             reservationDB = new ReservationDB();
         }

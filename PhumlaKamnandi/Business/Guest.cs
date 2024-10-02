@@ -10,7 +10,7 @@ namespace PhumlaKamnandi.Business
     public class Guest : Person
     {
         #region Properties
-        public string CardNo { get; set; }
+        public int CardNo { get; set; }
         public string ExpirationDate {  get; set; }
         public int CVC {  get; set; }
         public string GuestID { get; set; }
@@ -20,18 +20,18 @@ namespace PhumlaKamnandi.Business
 
        
         #region constructor
-        public Guest(String GstID, String FName, String LName, String Phone , String Address ,string Email, String crdCard,string SecurityDate, int CVC)
+        public Guest(String GstID, String FName, String LName, String Phone , String Address ,string Email, int crdCard,string SecurityDate, int CVC)
           : base(FName,LName,Phone,Address)
         {
             CardNo = crdCard;
-            this.SecurityDate = SecurityDate;
+            this.ExpirationDate = SecurityDate;
             this.CVC = CVC;
             this.Email = Email;
             GuestID = GstID;
         }
 
         public Guest() :base() {
-            CardNo = "";
+            CardNo = -1;
             GuestID = "";
             Email = "";//create a method to change this
 
@@ -43,14 +43,14 @@ namespace PhumlaKamnandi.Business
         {
            Email = newEmail;
         }
-        public void UpdatePaymentDetails(string creditCardNo, string SecurityCode, int CVC) {
+        public void UpdatePaymentDetails(int creditCardNo, string SecurityCode, int CVC) {
             CardNo = creditCardNo; 
             this.ExpirationDate = SecurityCode;
             this.CVC = CVC;
         }
         public string GetGuestDetails()
         {
-            return $"{GetFullName()}, CreditCardNo: {CardNo }, Security Date: {SecurityDate}, CVC: {CVC.ToString()} Email: {Email}";
+            return $"{GetFullName()}, CreditCardNo: {CardNo }, Security Date: {ExpirationDate}, CVC: {CVC.ToString()} Email: {Email}";
         }
         #endregion
     }
