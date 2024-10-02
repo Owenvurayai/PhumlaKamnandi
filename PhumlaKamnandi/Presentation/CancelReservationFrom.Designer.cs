@@ -41,11 +41,11 @@
             // 
             // ClearButton
             // 
+            ClearButton.Image = Properties.Resources.icons8_home_24;
             ClearButton.Location = new Point(62, 545);
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new Size(151, 36);
             ClearButton.TabIndex = 6;
-            ClearButton.Text = "Clear";
             ClearButton.UseVisualStyleBackColor = true;
             ClearButton.Click += ClearButton_Click;
             // 
@@ -54,7 +54,7 @@
             reservationIDTextBox.Location = new Point(236, 153);
             reservationIDTextBox.Margin = new Padding(3, 4, 3, 4);
             reservationIDTextBox.Name = "reservationIDTextBox";
-            reservationIDTextBox.Size = new Size(233, 23);
+            reservationIDTextBox.Size = new Size(233, 27);
             reservationIDTextBox.TabIndex = 9;
             reservationIDTextBox.TextChanged += reservationTextBox_TextChanged;
             // 
@@ -64,7 +64,7 @@
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(60, 160);
             label2.Name = "label2";
-            label2.Size = new Size(117, 15);
+            label2.Size = new Size(153, 20);
             label2.TabIndex = 8;
             label2.Text = "Enter Reservation ID:";
             // 
@@ -85,7 +85,7 @@
             label6.ForeColor = SystemColors.ButtonHighlight;
             label6.Location = new Point(30, 19);
             label6.Name = "label6";
-            label6.Size = new Size(209, 30);
+            label6.Size = new Size(264, 38);
             label6.TabIndex = 3;
             label6.Text = "Cancel Reservation";
             // 
@@ -122,7 +122,7 @@
             // 
             // CancelReservationFrom
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(546, 617);
             Controls.Add(button1);
@@ -133,6 +133,8 @@
             Controls.Add(label2);
             Controls.Add(ClearButton);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            MaximumSize = new Size(564, 664);
+            MinimumSize = new Size(564, 664);
             Name = "CancelReservationFrom";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CancelReservationFrom";

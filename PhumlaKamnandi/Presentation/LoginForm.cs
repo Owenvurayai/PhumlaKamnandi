@@ -12,6 +12,7 @@ namespace PhumlaKamnandi.Presentation
 {
     public partial class LoginForm : Form
     {
+        #region Fields
         //Declare a dictionary to store usernames and passwords.
         Dictionary<string, string> employees = new Dictionary<string, string>
     {
@@ -20,6 +21,9 @@ namespace PhumlaKamnandi.Presentation
         { "Siyabonga", "ZNGSIY012" },
          {"Owen","VRYOWE001" }
     };
+
+        bool isOpen=false;
+        #endregion
         public LoginForm()
         {
             InitializeComponent();
@@ -30,7 +34,7 @@ namespace PhumlaKamnandi.Presentation
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void loginSubmitbutton_Click(object sender, EventArgs e)
         {
             // Get user input from the textboxes
             string enteredUsername = usernameTextBox.Text;

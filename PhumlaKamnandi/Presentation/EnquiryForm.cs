@@ -12,6 +12,9 @@ namespace PhumlaKamnandi.Presentation
 {
     public partial class EnquiryForm : Form
     {
+        #region Fields
+        bool isOpen=false;
+        #endregion
         public EnquiryForm()
         {
             InitializeComponent();
@@ -42,6 +45,11 @@ namespace PhumlaKamnandi.Presentation
                 }
                 reservationTextBox.Text = "";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

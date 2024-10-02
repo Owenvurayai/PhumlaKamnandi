@@ -10,6 +10,7 @@ public partial class HomeForm : Form
     Form makeReservationForm;
     Form enquiryForm;
     //Form changeReservationForm;
+    bool isOpen = false;
 
     public HomeForm()
     {
@@ -29,13 +30,14 @@ public partial class HomeForm : Form
     }
 
     private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-    {
-        if (makeReservationForm == null)
-        {
+    { 
+
             makeReservationForm = new ReservationBooking();
             makeReservationForm.ShowDialog();
-            //this.Visible = false;
-        }
+        
+
+       
+        
     }
 
     public void responsiveLabelHover(LinkLabel l)
@@ -56,13 +58,13 @@ public partial class HomeForm : Form
     }
     private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-        if (changeReservationForm == null)
-        {
+       
+        
             changeReservationForm = new ChangeReservationForm();
             changeReservationForm.ShowDialog();
             //this.Visible = false;
-        }
-
+        
+     
     }
 
     private void linkLabel4_MouseHover(object sender, EventArgs e)
@@ -119,22 +121,19 @@ public partial class HomeForm : Form
 
     private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-        if (enquiryForm == null)
-        {
+      
             enquiryForm = new EnquiryForm();
             enquiryForm.ShowDialog();
             //this.Visible = false;
-        }
+      
     }
 
     private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-        if (cancelReservationForm == null)
-        {
             cancelReservationForm = new CancelReservationFrom();
             cancelReservationForm.ShowDialog();
             //this.Visible = false;
-        }
+      
     }
 
     private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

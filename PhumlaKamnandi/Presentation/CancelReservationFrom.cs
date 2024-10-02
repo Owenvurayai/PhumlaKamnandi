@@ -24,7 +24,7 @@ namespace PhumlaKamnandi.Presentation
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            reservationIDTextBox.Text = "";
+            this.Close();
         }
     }
 }

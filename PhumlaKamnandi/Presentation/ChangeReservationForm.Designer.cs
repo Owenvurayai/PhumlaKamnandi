@@ -59,6 +59,7 @@ partial class ChangeReservationForm
         dateTimePicker4 = new DateTimePicker();
         dateTimePicker5 = new DateTimePicker();
         label12 = new Label();
+        button3 = new Button();
         panel1.SuspendLayout();
         panel2.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -226,7 +227,7 @@ partial class ChangeReservationForm
         // 
         // button1
         // 
-        button1.Location = new Point(317, 747);
+        button1.Location = new Point(495, 748);
         button1.Name = "button1";
         button1.Size = new Size(152, 37);
         button1.TabIndex = 15;
@@ -443,12 +444,22 @@ partial class ChangeReservationForm
         label12.TabIndex = 31;
         label12.Text = "Meal Plan";
         // 
+        // button3
+        // 
+        button3.Image = (Image)resources.GetObject("button3.Image");
+        button3.Location = new Point(317, 748);
+        button3.Name = "button3";
+        button3.Size = new Size(151, 36);
+        button3.TabIndex = 32;
+        button3.UseVisualStyleBackColor = true;
+        // 
         // ChangeReservationForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.Control;
         ClientSize = new Size(1308, 819);
+        Controls.Add(button3);
         Controls.Add(label12);
         Controls.Add(dateTimePicker4);
         Controls.Add(dateTimePicker5);
@@ -518,4 +529,5 @@ partial class ChangeReservationForm
     private DateTimePicker dateTimePicker5;
     private Button SelectBtn1;
     private Label label12;
+    private Button button3;
 }

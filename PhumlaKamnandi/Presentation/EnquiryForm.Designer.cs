@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnquiryForm));
             label2 = new Label();
             reservationTextBox = new TextBox();
             search = new Button();
             panel1 = new Panel();
             label6 = new Label();
             listView1 = new ListView();
+            ClearButton = new Button();
+            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -41,7 +44,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(71, 193);
+            label2.Location = new Point(60, 160);
             label2.Name = "label2";
             label2.Size = new Size(153, 20);
             label2.TabIndex = 3;
@@ -49,7 +52,7 @@
             // 
             // reservationTextBox
             // 
-            reservationTextBox.Location = new Point(247, 186);
+            reservationTextBox.Location = new Point(236, 153);
             reservationTextBox.Margin = new Padding(3, 4, 3, 4);
             reservationTextBox.Name = "reservationTextBox";
             reservationTextBox.Size = new Size(233, 27);
@@ -60,7 +63,7 @@
             search.FlatStyle = FlatStyle.Flat;
             search.Font = new Font("Microsoft Sans Serif", 8.25F);
             search.ForeColor = Color.FromArgb(68, 189, 50);
-            search.Location = new Point(71, 288);
+            search.Location = new Point(60, 225);
             search.Margin = new Padding(3, 4, 3, 4);
             search.Name = "search";
             search.Size = new Size(409, 34);
@@ -91,23 +94,46 @@
             // 
             // listView1
             // 
-            listView1.Location = new Point(73, 389);
+            listView1.Location = new Point(62, 326);
             listView1.Name = "listView1";
             listView1.Size = new Size(407, 186);
             listView1.TabIndex = 6;
             listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // ClearButton
+            // 
+            ClearButton.Location = new Point(318, 549);
+            ClearButton.Name = "ClearButton";
+            ClearButton.Size = new Size(151, 36);
+            ClearButton.TabIndex = 7;
+            ClearButton.Text = "Clear";
+            ClearButton.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(62, 549);
+            button1.Name = "button1";
+            button1.Size = new Size(151, 36);
+            button1.TabIndex = 8;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // EnquiryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(546, 617);
+            Controls.Add(button1);
+            Controls.Add(ClearButton);
             Controls.Add(listView1);
             Controls.Add(panel1);
             Controls.Add(search);
             Controls.Add(reservationTextBox);
             Controls.Add(label2);
             Margin = new Padding(3, 4, 3, 4);
+            MaximumSize = new Size(564, 664);
+            MinimumSize = new Size(564, 664);
             Name = "EnquiryForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EnquiryForm";
@@ -125,5 +151,7 @@
         private Panel panel1;
         private Label label6;
         private ListView listView1;
+        private Button ClearButton;
+        private Button button1;
     }
 }
