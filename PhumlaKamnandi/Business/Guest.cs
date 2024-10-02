@@ -11,7 +11,7 @@ namespace PhumlaKamnandi.Business
     {
         #region Properties
         public string CardNo { get; set; }
-        public string SecurityDate {  get; set; }
+        public string ExpirationDate {  get; set; }
         public int CVC {  get; set; }
         public string GuestID { get; set; }
         public string Email { get; set; }
@@ -45,7 +45,7 @@ namespace PhumlaKamnandi.Business
         }
         public void UpdatePaymentDetails(string creditCardNo, string SecurityCode, int CVC) {
             CardNo = creditCardNo; 
-            this.SecurityDate= SecurityCode;
+            this.ExpirationDate = SecurityCode;
             this.CVC = CVC;
         }
         public string GetGuestDetails()
