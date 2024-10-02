@@ -36,7 +36,7 @@ namespace PhumlaKamnandi.Business
             else//An Agent
             {
                 //add to the database
-                 reservationDB.CreateAgentReservation(res.ReservationId, res.Agent.AgentID, res.CheckInDate, res.CheckOutDate, res.CalculateTotalStayCost());
+                 reservationDB.CreateAgentReservation(res.ReservationId, res.Agent.AgentID, res.CheckInDate, res.CheckOutDate, res.NoOfGuests,res.CalculateTotalStayCost());
                 reservations.Add(res);//adds it into a List
             }
 
