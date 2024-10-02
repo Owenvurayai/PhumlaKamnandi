@@ -63,7 +63,7 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateGuestReservation(string reservationID, DateTime checkIn, DateTime checkOut, double totalAmount)
+        public void UpdateGuestReservation(string reservationID, DateTime checkIn, DateTime checkOut, decimal totalAmount)
         {
             string command = "UPDATE GuestReservation SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, TotalAmount = @TotalAmount WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -90,7 +90,7 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region AgentReservationTable
-        public void CreateAgentReservation(string reservationID, string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, double totalAmount)
+        public void CreateAgentReservation(string reservationID, string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
         {
             string command = "INSERT INTO AgentReservation (ReservationID, AgentID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@Reservation, @AgentID, @CheckInDate, @CheckOutDate, @NoOfGuests, @TotalAmount)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
