@@ -22,7 +22,7 @@ namespace PhumlaKamnandi.Presentation
          {"Owen","VRYOWE001" }
     };
 
-        bool isOpen=false;
+        bool isOpen = false;
         #endregion
         public LoginForm()
         {
@@ -65,7 +65,7 @@ namespace PhumlaKamnandi.Presentation
                 // Username not found
                 MessageBox.Show("Username not found. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         //cancel button event Handler
@@ -83,6 +83,11 @@ namespace PhumlaKamnandi.Presentation
                 // Close the application
                 Application.Exit();
             }
+
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
 
         }
     }

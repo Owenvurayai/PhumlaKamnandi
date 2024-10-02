@@ -50,17 +50,19 @@
             panel1.BackColor = Color.FromArgb(137, 12, 12);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label4);
-            panel1.Location = new Point(-6, 0);
+            panel1.Location = new Point(-5, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(743, 121);
+            panel1.Size = new Size(650, 91);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(149, 13);
+            pictureBox1.Location = new Point(130, 10);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(87, 65);
+            pictureBox1.Size = new Size(76, 49);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
@@ -70,9 +72,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(241, 33);
+            label4.Location = new Point(211, 25);
             label4.Name = "label4";
-            label4.Size = new Size(331, 46);
+            label4.Size = new Size(264, 37);
             label4.TabIndex = 2;
             label4.Text = "Phumlani Kamnandi";
             // 
@@ -87,16 +89,18 @@
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(118, 195);
+            panel2.Location = new Point(103, 146);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(519, 331);
+            panel2.Size = new Size(454, 249);
             panel2.TabIndex = 0;
             // 
             // button3
             // 
-            button3.Location = new Point(160, 275);
+            button3.Location = new Point(140, 206);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(82, 22);
             button3.TabIndex = 6;
             button3.Text = "Cancel";
             button3.UseVisualStyleBackColor = true;
@@ -106,10 +110,10 @@
             // 
             submitButton.BackColor = Color.FromArgb(76, 209, 55);
             submitButton.ForeColor = Color.White;
-            submitButton.Location = new Point(346, 275);
+            submitButton.Location = new Point(303, 206);
             submitButton.Margin = new Padding(0);
             submitButton.Name = "submitButton";
-            submitButton.Size = new Size(94, 29);
+            submitButton.Size = new Size(82, 22);
             submitButton.TabIndex = 5;
             submitButton.Text = "Submit";
             submitButton.UseVisualStyleBackColor = false;
@@ -118,27 +122,29 @@
             // passwordTextBox
             // 
             passwordTextBox.BorderStyle = BorderStyle.FixedSingle;
-            passwordTextBox.Location = new Point(160, 192);
+            passwordTextBox.Location = new Point(140, 144);
+            passwordTextBox.Margin = new Padding(3, 2, 3, 2);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.Size = new Size(280, 27);
+            passwordTextBox.Size = new Size(245, 23);
             passwordTextBox.TabIndex = 4;
             passwordTextBox.UseSystemPasswordChar = true;
             // 
             // usernameTextBox
             // 
             usernameTextBox.BorderStyle = BorderStyle.FixedSingle;
-            usernameTextBox.Location = new Point(160, 133);
+            usernameTextBox.Location = new Point(140, 100);
+            usernameTextBox.Margin = new Padding(3, 2, 3, 2);
             usernameTextBox.Name = "usernameTextBox";
-            usernameTextBox.Size = new Size(280, 27);
+            usernameTextBox.Size = new Size(245, 23);
             usernameTextBox.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(49, 199);
+            label3.Location = new Point(43, 149);
             label3.Name = "label3";
-            label3.Size = new Size(73, 20);
+            label3.Size = new Size(57, 15);
             label3.TabIndex = 2;
             label3.Text = "Password";
             // 
@@ -146,9 +152,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(49, 136);
+            label2.Location = new Point(43, 102);
             label2.Name = "label2";
-            label2.Size = new Size(78, 20);
+            label2.Size = new Size(60, 15);
             label2.TabIndex = 1;
             label2.Text = "Username";
             // 
@@ -157,22 +163,24 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(210, 29);
+            label1.Location = new Point(184, 22);
             label1.Name = "label1";
-            label1.Size = new Size(85, 38);
+            label1.Size = new Size(66, 30);
             label1.TabIndex = 0;
             label1.Text = "Login";
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(737, 689);
+            ClientSize = new Size(645, 517);
             Controls.Add(panel1);
             Controls.Add(panel2);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
