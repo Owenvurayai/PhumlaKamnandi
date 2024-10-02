@@ -1,40 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhumlaKamnandi.Data;
+using PhumlaKamnandi.Business;
+using static PhumlaKamnandi.Business.Room;
+using System.Collections.ObjectModel;
 
 namespace PhumlaKamnandi.Business
 {
     public class RoomController
     {
+        private HotelDB hotelDB;
         // List of Reservations
-        private List<Room> rooms;//store the occupied rooms
+        private Collection<Room> rooms;//store the occupied rooms
 
         // Constructor
         public RoomController()
         {
-            rooms = new List<Room>();
+            hotelDB = new HotelDB();
+            rooms = hotelDB.AllRooms();//gets the occupied rooms in the database
         }
 
-        // Method to add a room
+        //Add the room in the database
         public void AddRoom(Room room)
         {
-            rooms.Add(room);
+            
+            //Add the room in the database
+            hotelDB.CreateRoom(room.RoomNumber, room.RoomNumber, room.roomType);
+            rooms.Add(room);//add in the list too
+         
         }
+
 
         // Method to find a room by room number
         public Room FindRoomByNumber(int roomNumber)
         {
+            DataTable roomData = hotelDB.ReadRoom(roomNumber);
 
-            foreach (Room room in rooms)
+            if (roomData.Rows.Count == 0)//There is no row that has the data that contains the roomNUmber
             {
-                if (room.RoomNumber == roomNumber)
-                {
-                    return room;
-                }
+                //Console.WriteLine("Room not found.");
+                return null;//Room is not found
             }
-            return null;
+
+            // Convert DataTable row to Room object
+            DataRow row = roomData.Rows[0];
+            Room room = new Room(Convert.ToInt32(row["RoomID"]), (Room.RoomType)Enum.Parse(typeof(Room.RoomType), Convert.ToString(row["RoomType"]) ));//Create an object
+           // room.RatePerNight = Convert.ToDecimal(row["RatePerNight"]);
+          ///  room.RatePerNight = 2;
+          ///  Did not return the RatePerNight, since it is determined by the room type
+            return room;
+
         }
 
         // Method to update a room's availability
@@ -43,12 +62,13 @@ namespace PhumlaKamnandi.Business
             Room room = FindRoomByNumber(roomNumber);
             if(room != null)
               room.UpdateOccupancyStatus(newOccupancyStatus);//Updates the room's availability
-        
+            hotelDB.UpdateRoom(room.RoomNumber, room.RatePerNight, room.roomType);//Updates the availability in the database
         }
 
-        public List<Room> GetAllRooms()
+        //DO not know about this one, but created another one with return type of string
+        public Collection<Room> GetAllRooms()
         {
-            return rooms;
+            return rooms;//all the rooms in the database
         }
 
         //returns total costs of all booked rooms
@@ -69,22 +89,6 @@ namespace PhumlaKamnandi.Business
             return room.RatePerNight;
         }
 
-        public void ReplaceExtras(int roomNumber, string otherExtras)
-        {
-            Room room = FindRoomByNumber(roomNumber);
-            if(room != null)
-                room.ReplaceExtras(otherExtras);
-            
-        }
-
-        public void AddNewExtras(int roomNumber, string otherExtras)
-        {
-            Room room = FindRoomByNumber(roomNumber);
-            if (room != null)
-                room.AddMoreExtras(otherExtras);
-
-        }
-
         public string getRoomDetails(int roomNumber)
         {
             Room room = FindRoomByNumber(roomNumber);
@@ -96,17 +100,20 @@ namespace PhumlaKamnandi.Business
 
         //Method to remove rooms
         public void removeRoom(Room room)
-        {
-            rooms.Remove(room);
+        {   
+            hotelDB.DeleteRoom(room.RoomNumber);//remove the room in the database
+            rooms.Remove(room);//remove the room in a list
         }
 
+
+        //Should I keep this one
         public string getRoomNumbers()
         {
             string numbers = "";
             
             foreach (Room room in rooms)
             {
-                if(rooms.Capacity >1)
+                if(rooms.Count >1)
                    numbers += room.RoomNumber + ", ";//comma because they are many
                 else 
                      numbers += room.RoomNumber;//only 1
@@ -114,6 +121,15 @@ namespace PhumlaKamnandi.Business
             return numbers;
         }
 
-     //   public string getAllRoomDetails()  Not sure about this one
+        //get all booked rooms details
+       public string getAllRoomDetails()
+        {
+            string results = " ";
+            foreach (Room room in rooms)
+            {
+               results +=room.getRoomDetails();
+            }
+            return results;
+        }
     }
 }

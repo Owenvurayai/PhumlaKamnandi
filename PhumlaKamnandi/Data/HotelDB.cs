@@ -1,20 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhumlaKamnandi.Business;
+using PhumlaKamnandi.Data;
 
 namespace PhumlaKamnandi.Data
 {
-    internal class HotelDB
+    internal class HotelDB:DB
     {
+        #region Data members
         SqlConnection sqlConnection;
         SqlCommand sqlCommand;
+        private Collection<Guest> guests;
+        private Collection<Room> rooms;
+        private Collection<BookingAgent> bookings;
+        private string table1 = "Guest";
+        private string sqlLocal1 = "SELECT * FROM Guest";
+        private string table2 = "Room";
+        private string sqlLocal2 = "SELECT * FROM Room";
+        private string table3 = "Agent";
+        private string sqlLocal3 = "SELECT * FROM Agent";
+        public Collection<Room> AllRooms
+        {
+            get
+            {
+                return rooms;
+            }
+        }
 
-        public HotelDB() { }
+        public Collection<Guest> AllGuests
+        {
+            get
+            {
+                return guests;
+            }
+        }
+
+        public Collection<BookingAgent> AllAgents
+        {
+            get
+            {
+                return bookings;
+            }
+        }
+        #endregion
+
+        #region Constructors
+        public HotelDB(): base() 
+        {
+            guests = new Collection<Guest> ();
+            rooms = new Collection<Room> ();    
+            bookings = new Collection<BookingAgent> ();
+            FillDataSet(sqlLocal1, table1);
+            FillDataSet(sqlLocal2, table2);
+            //Add2Collection(table2);
+            FillDataSet(sqlLocal3, table3);
+            //Add2Collection(table3);
+            //update
+        }
+        #endregion
         #region GuestTable
         public void CreateGuest(string guestID, string name, string email, string address, string phoneNo)
         {

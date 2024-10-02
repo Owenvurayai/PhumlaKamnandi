@@ -17,7 +17,7 @@ namespace PhumlaKamnandi.Business
         public RoomType roomType { get; private set; }
         public string OccupancyStatus { get; set; }//Availability
         public decimal RatePerNight { get; private set; }
-        public string Extras { get; set; }
+        //public string Extras { get; set; }
         public int MaxOccupancy { get; private set; }//maximum number of people that can stay in the room
         #endregion
 
@@ -32,12 +32,12 @@ namespace PhumlaKamnandi.Business
 
         #endregion
         #region constructor
-        public Room(int roomNum, RoomType roomtype, string extras)
+        public Room(int roomNum, RoomType roomtype)
         {
             // RoomID = roomID;
             RoomNumber = roomNum;
             OccupancyStatus = "Available";
-            Extras = extras;
+          //  Extras = extras;
             roomType = roomtype;
             AssignRates();//Assign the rates
 
@@ -47,7 +47,7 @@ namespace PhumlaKamnandi.Business
         {
             RoomNumber = 0;//There is no room Zero in the Hotel
             OccupancyStatus = "";
-            Extras = "";
+            //Extras = "";
         }
         #endregion 
 
@@ -89,7 +89,7 @@ namespace PhumlaKamnandi.Business
         // Method to get room details
         public string getRoomDetails()
         {
-            string results = $"Room Type: {roomType.ToString()}\nOccupancy Status: {OccupancyStatus}\nRate Per Night: {RatePerNight}\n MaxOccupancy: {MaxOccupancy} \nExtras: {Extras}";
+            string results = $"RoomNumber: {RoomNumber}, Room Type: {roomType.ToString()}\nOccupancy Status: {OccupancyStatus}\nRate Per Night: {RatePerNight}\n MaxOccupancy: {MaxOccupancy}\n";
             return results;
         }
 
@@ -99,6 +99,8 @@ namespace PhumlaKamnandi.Business
             OccupancyStatus = newStatus;
             //   Console.WriteLine($"Room {RoomNumber} occupancy status updated to {OccupancyStatus}.");
         }
+
+        /*
 
         // Method to add extras to the room
         public void AddMoreExtras(string additionalExtras)
@@ -111,6 +113,6 @@ namespace PhumlaKamnandi.Business
         public void ReplaceExtras(string newExtras)
         {
             Extras = newExtras;
-        }
+        }*/
     }
 }
