@@ -5,7 +5,7 @@ namespace PhumlaKamnandi.Presentation;
 
 public partial class HomeForm : Form
 {
-    Form changeReservationForm;
+    Form findReservationForm;
     Form cancelReservationForm;
     Form makeReservationForm;
     Form enquiryForm;
@@ -62,8 +62,8 @@ public partial class HomeForm : Form
     {
 
 
-        changeReservationForm = new ChangeReservationForm();
-        changeReservationForm.ShowDialog();
+        findReservationForm = new FindReservation();
+        findReservationForm.ShowDialog();
         //this.Visible = false;
 
 
