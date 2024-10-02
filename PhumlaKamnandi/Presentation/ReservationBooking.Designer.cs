@@ -89,6 +89,7 @@
             ReturnHomeButton1.Size = new Size(125, 31);
             ReturnHomeButton1.TabIndex = 0;
             ReturnHomeButton1.UseVisualStyleBackColor = false;
+            ReturnHomeButton1.Click += ReturnHomeButton1_Click;
             // 
             // ClearButton
             // 

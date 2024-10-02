@@ -105,11 +105,17 @@ namespace PhumlaKamnandi.Presentation
             CompanyNametextBox2.Text = " ";
             ExpirationDateTxtbox.Text = " ";
             cvcTxtBox.Text = " ";
-            ExpirationDateTxtbox.Text= " ";
+            ExpirationDateTxtbox.Text = " ";
             Address1TextBox1.Text = " ";
             Address2TextBox.Text = " ";
             EmailAddresstextBox.Text = " ";
             IDtextBox.Text = " ";
+        }
+
+        private void ReturnHomeButton1_Click(object sender, EventArgs e)
+        {
+            // Go to the Home Page
+            if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
         }
     }
 }

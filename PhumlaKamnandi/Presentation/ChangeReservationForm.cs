@@ -37,50 +37,23 @@ public partial class ChangeReservationForm : Form
 
     private void SelectBtn1_Click_1(object sender, EventArgs e)
     {
-        if (!expand)
-        {
-            roomMenuContainer.Height += 54 * 3;
-            expand = true;
-        }
-        else { roomMenuContainer.Height = 54; expand = false; }
+     
     }
 
     private void roomType1_Click(object sender, EventArgs e)
     {
-        if (expand)
-        {
-
-            SelectBtn1.Text = roomType1.Text;
-            roomtypeValue = roomType.option1;
-            roomMenuContainer.Height = 54;
-            expand = false;
-        }
+     
     }
 
     private void roomType2_Click(object sender, EventArgs e)
     {
 
-        if (expand)
-        {
-
-            SelectBtn1.Text = roomType2.Text;
-            roomtypeValue = roomType.option2;
-            roomMenuContainer.Height = 54;
-            expand = false;
-        }
+     
     }
 
     private void roomType3_Click(object sender, EventArgs e)
     {
 
-        if (expand)
-        {
-
-            SelectBtn1.Text = roomType3.Text;
-            roomtypeValue = roomType.option3;
-            roomMenuContainer.Height = 54;
-            expand = false;
-        }
     }
 
     private void label12_Click(object sender, EventArgs e)
@@ -109,5 +82,11 @@ public partial class ChangeReservationForm : Form
     private void ChangeReservationForm_Load(object sender, EventArgs e)
     {
 
+    }
+
+    private void button3_Click_1(object sender, EventArgs e)
+    {
+        // Go to the Home Page
+        if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
     }
 }

@@ -49,7 +49,8 @@ namespace PhumlaKamnandi.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // Go to the Home Page
+            if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
         }
     }
 }

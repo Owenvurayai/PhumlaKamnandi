@@ -47,7 +47,7 @@
             ClearButton.Size = new Size(151, 36);
             ClearButton.TabIndex = 6;
             ClearButton.UseVisualStyleBackColor = true;
-            ClearButton.Click += ClearButton_Click;
+            ClearButton.Click += HomeButton_Click;
             // 
             // reservationIDTextBox
             // 
@@ -119,6 +119,7 @@
             button1.TabIndex = 13;
             button1.Text = "Cancel Reservation";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // CancelReservationFrom
             // 

@@ -47,25 +47,16 @@ partial class ChangeReservationForm
         button2 = new Button();
         dateTimePicker1 = new DateTimePicker();
         numericUpDown1 = new NumericUpDown();
-        panel3 = new Panel();
-        SelectBtn1 = new Button();
-        roomMenuContainer = new FlowLayoutPanel();
-        DefaultOptionContainer = new Button();
-        roomType1 = new Button();
-        roomType2 = new Button();
-        roomType3 = new Button();
         label11 = new Label();
-        dateTimePicker3 = new DateTimePicker();
-        dateTimePicker4 = new DateTimePicker();
         dateTimePicker5 = new DateTimePicker();
         label12 = new Label();
         button3 = new Button();
+        comboBox1 = new ComboBox();
+        comboBox2 = new ComboBox();
         panel1.SuspendLayout();
         panel2.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-        panel3.SuspendLayout();
-        roomMenuContainer.SuspendLayout();
         SuspendLayout();
         // 
         // panel1
@@ -249,10 +240,9 @@ partial class ChangeReservationForm
         // dateTimePicker1
         // 
         dateTimePicker1.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dateTimePicker1.Format = DateTimePickerFormat.Short;
         dateTimePicker1.Location = new Point(317, 272);
         dateTimePicker1.Name = "dateTimePicker1";
-        dateTimePicker1.Size = new Size(164, 27);
+        dateTimePicker1.Size = new Size(301, 27);
         dateTimePicker1.TabIndex = 19;
         // 
         // numericUpDown1
@@ -263,135 +253,9 @@ partial class ChangeReservationForm
         numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         numericUpDown1.Name = "numericUpDown1";
         numericUpDown1.ReadOnly = true;
-        numericUpDown1.Size = new Size(428, 27);
+        numericUpDown1.Size = new Size(439, 27);
         numericUpDown1.TabIndex = 22;
         numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
-        // 
-        // panel3
-        // 
-        panel3.Controls.Add(SelectBtn1);
-        panel3.Location = new Point(317, 385);
-        panel3.Margin = new Padding(0);
-        panel3.Name = "panel3";
-        panel3.Size = new Size(327, 52);
-        panel3.TabIndex = 24;
-        // 
-        // SelectBtn1
-        // 
-        SelectBtn1.BackColor = Color.FromArgb(231, 76, 60);
-        SelectBtn1.FlatAppearance.BorderSize = 0;
-        SelectBtn1.FlatStyle = FlatStyle.Flat;
-        SelectBtn1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        SelectBtn1.ForeColor = SystemColors.Control;
-        SelectBtn1.Image = (Image)resources.GetObject("SelectBtn1.Image");
-        SelectBtn1.ImageAlign = ContentAlignment.MiddleRight;
-        SelectBtn1.Location = new Point(0, 0);
-        SelectBtn1.Margin = new Padding(0);
-        SelectBtn1.MaximumSize = new Size(327, 54);
-        SelectBtn1.MinimumSize = new Size(327, 54);
-        SelectBtn1.Name = "SelectBtn1";
-        SelectBtn1.Padding = new Padding(10, 0, 10, 0);
-        SelectBtn1.Size = new Size(327, 54);
-        SelectBtn1.TabIndex = 0;
-        SelectBtn1.Text = "Select";
-        SelectBtn1.TextAlign = ContentAlignment.MiddleLeft;
-        SelectBtn1.UseVisualStyleBackColor = false;
-        SelectBtn1.Click += SelectBtn1_Click_1;
-        // 
-        // roomMenuContainer
-        // 
-        roomMenuContainer.BackColor = SystemColors.ButtonFace;
-        roomMenuContainer.Controls.Add(DefaultOptionContainer);
-        roomMenuContainer.Controls.Add(roomType1);
-        roomMenuContainer.Controls.Add(roomType2);
-        roomMenuContainer.Controls.Add(roomType3);
-        roomMenuContainer.Location = new Point(317, 385);
-        roomMenuContainer.MaximumSize = new Size(327, 216);
-        roomMenuContainer.MinimumSize = new Size(327, 54);
-        roomMenuContainer.Name = "roomMenuContainer";
-        roomMenuContainer.Size = new Size(327, 54);
-        roomMenuContainer.TabIndex = 23;
-        // 
-        // DefaultOptionContainer
-        // 
-        DefaultOptionContainer.BackColor = Color.FromArgb(231, 76, 60);
-        DefaultOptionContainer.FlatAppearance.BorderSize = 0;
-        DefaultOptionContainer.FlatStyle = FlatStyle.Flat;
-        DefaultOptionContainer.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        DefaultOptionContainer.ForeColor = SystemColors.Control;
-        DefaultOptionContainer.Image = (Image)resources.GetObject("DefaultOptionContainer.Image");
-        DefaultOptionContainer.ImageAlign = ContentAlignment.MiddleRight;
-        DefaultOptionContainer.Location = new Point(0, 0);
-        DefaultOptionContainer.Margin = new Padding(0);
-        DefaultOptionContainer.MaximumSize = new Size(327, 54);
-        DefaultOptionContainer.MinimumSize = new Size(327, 54);
-        DefaultOptionContainer.Name = "DefaultOptionContainer";
-        DefaultOptionContainer.Padding = new Padding(10, 0, 10, 0);
-        DefaultOptionContainer.Size = new Size(327, 54);
-        DefaultOptionContainer.TabIndex = 1;
-        DefaultOptionContainer.Text = "Select";
-        DefaultOptionContainer.TextAlign = ContentAlignment.MiddleLeft;
-        DefaultOptionContainer.UseVisualStyleBackColor = false;
-        // 
-        // roomType1
-        // 
-        roomType1.BackColor = Color.FromArgb(232, 95, 81);
-        roomType1.FlatAppearance.BorderSize = 0;
-        roomType1.FlatStyle = FlatStyle.Flat;
-        roomType1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        roomType1.ForeColor = SystemColors.Control;
-        roomType1.ImageAlign = ContentAlignment.MiddleRight;
-        roomType1.Location = new Point(0, 54);
-        roomType1.Margin = new Padding(0);
-        roomType1.MaximumSize = new Size(327, 54);
-        roomType1.MinimumSize = new Size(327, 54);
-        roomType1.Name = "roomType1";
-        roomType1.Padding = new Padding(10, 0, 10, 0);
-        roomType1.RightToLeft = RightToLeft.No;
-        roomType1.Size = new Size(327, 54);
-        roomType1.TabIndex = 4;
-        roomType1.Text = "Tier 1";
-        roomType1.TextAlign = ContentAlignment.MiddleLeft;
-        roomType1.UseVisualStyleBackColor = false;
-        roomType1.Click += roomType1_Click;
-        // 
-        // roomType2
-        // 
-        roomType2.BackColor = Color.FromArgb(232, 95, 81);
-        roomType2.FlatAppearance.BorderSize = 0;
-        roomType2.FlatStyle = FlatStyle.Flat;
-        roomType2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        roomType2.ForeColor = SystemColors.Control;
-        roomType2.ImageAlign = ContentAlignment.MiddleRight;
-        roomType2.Location = new Point(0, 108);
-        roomType2.Margin = new Padding(0);
-        roomType2.Name = "roomType2";
-        roomType2.Padding = new Padding(10, 0, 10, 0);
-        roomType2.Size = new Size(330, 54);
-        roomType2.TabIndex = 5;
-        roomType2.Text = "Tier 2";
-        roomType2.TextAlign = ContentAlignment.MiddleLeft;
-        roomType2.UseVisualStyleBackColor = false;
-        roomType2.Click += roomType2_Click;
-        // 
-        // roomType3
-        // 
-        roomType3.BackColor = Color.FromArgb(232, 95, 81);
-        roomType3.FlatAppearance.BorderSize = 0;
-        roomType3.FlatStyle = FlatStyle.Flat;
-        roomType3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        roomType3.ForeColor = SystemColors.Control;
-        roomType3.ImageAlign = ContentAlignment.MiddleRight;
-        roomType3.Location = new Point(0, 162);
-        roomType3.Margin = new Padding(0);
-        roomType3.Name = "roomType3";
-        roomType3.Padding = new Padding(10, 0, 10, 0);
-        roomType3.Size = new Size(330, 54);
-        roomType3.TabIndex = 6;
-        roomType3.Text = "Tier 3";
-        roomType3.TextAlign = ContentAlignment.MiddleLeft;
-        roomType3.UseVisualStyleBackColor = false;
-        roomType3.Click += roomType3_Click;
         // 
         // label11
         // 
@@ -403,35 +267,12 @@ partial class ChangeReservationForm
         label11.TabIndex = 26;
         label11.Text = "Check-out Date";
         // 
-        // dateTimePicker3
-        // 
-        dateTimePicker3.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dateTimePicker3.CustomFormat = "hh:mm";
-        dateTimePicker3.Format = DateTimePickerFormat.Custom;
-        dateTimePicker3.Location = new Point(559, 272);
-        dateTimePicker3.Name = "dateTimePicker3";
-        dateTimePicker3.Size = new Size(186, 27);
-        dateTimePicker3.TabIndex = 27;
-        dateTimePicker3.Value = new DateTime(2024, 9, 23, 6, 42, 0, 0);
-        // 
-        // dateTimePicker4
-        // 
-        dateTimePicker4.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dateTimePicker4.CustomFormat = "hh:mm";
-        dateTimePicker4.Format = DateTimePickerFormat.Custom;
-        dateTimePicker4.Location = new Point(559, 326);
-        dateTimePicker4.Name = "dateTimePicker4";
-        dateTimePicker4.Size = new Size(186, 27);
-        dateTimePicker4.TabIndex = 29;
-        dateTimePicker4.Value = new DateTime(2024, 9, 23, 6, 48, 0, 0);
-        // 
         // dateTimePicker5
         // 
         dateTimePicker5.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dateTimePicker5.Format = DateTimePickerFormat.Short;
         dateTimePicker5.Location = new Point(317, 327);
         dateTimePicker5.Name = "dateTimePicker5";
-        dateTimePicker5.Size = new Size(164, 27);
+        dateTimePicker5.Size = new Size(301, 27);
         dateTimePicker5.TabIndex = 28;
         // 
         // label12
@@ -452,6 +293,39 @@ partial class ChangeReservationForm
         button3.Size = new Size(151, 36);
         button3.TabIndex = 32;
         button3.UseVisualStyleBackColor = true;
+        button3.Click += button3_Click_1;
+        // 
+        // comboBox1
+        // 
+        comboBox1.BackColor = Color.FromArgb(231, 76, 60);
+        comboBox1.FlatStyle = FlatStyle.Flat;
+        comboBox1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        comboBox1.ForeColor = Color.White;
+        comboBox1.FormattingEnabled = true;
+        comboBox1.ItemHeight = 23;
+        comboBox1.Items.AddRange(new object[] { "Delux", "Suite" });
+        comboBox1.Location = new Point(317, 468);
+        comboBox1.MinimumSize = new Size(327, 0);
+        comboBox1.Name = "comboBox1";
+        comboBox1.Size = new Size(327, 31);
+        comboBox1.TabIndex = 33;
+        comboBox1.Text = "Select";
+        // 
+        // comboBox2
+        // 
+        comboBox2.BackColor = Color.FromArgb(231, 76, 60);
+        comboBox2.FlatStyle = FlatStyle.Flat;
+        comboBox2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        comboBox2.ForeColor = Color.White;
+        comboBox2.FormattingEnabled = true;
+        comboBox2.ItemHeight = 23;
+        comboBox2.Items.AddRange(new object[] { "Delux", "Suite" });
+        comboBox2.Location = new Point(317, 406);
+        comboBox2.MinimumSize = new Size(327, 0);
+        comboBox2.Name = "comboBox2";
+        comboBox2.Size = new Size(327, 31);
+        comboBox2.TabIndex = 34;
+        comboBox2.Text = "Select";
         // 
         // ChangeReservationForm
         // 
@@ -459,14 +333,12 @@ partial class ChangeReservationForm
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.Control;
         ClientSize = new Size(1308, 819);
+        Controls.Add(comboBox2);
+        Controls.Add(comboBox1);
         Controls.Add(button3);
         Controls.Add(label12);
-        Controls.Add(dateTimePicker4);
         Controls.Add(dateTimePicker5);
-        Controls.Add(dateTimePicker3);
         Controls.Add(label11);
-        Controls.Add(panel3);
-        Controls.Add(roomMenuContainer);
         Controls.Add(numericUpDown1);
         Controls.Add(dateTimePicker1);
         Controls.Add(button2);
@@ -490,8 +362,6 @@ partial class ChangeReservationForm
         panel2.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-        panel3.ResumeLayout(false);
-        roomMenuContainer.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -516,18 +386,11 @@ partial class ChangeReservationForm
     private Label label8;
     private DateTimePicker dateTimePicker1;
     private NumericUpDown numericUpDown1;
-    private Panel panel3;
-    private FlowLayoutPanel roomMenuContainer;
-    private Button DefaultOptionContainer;
-    private Button roomType1;
-    private Button roomType2;
-    private Button roomType3;
     private DateTimePicker dateTimePicker2;
     private Label label11;
-    private DateTimePicker dateTimePicker3;
-    private DateTimePicker dateTimePicker4;
     private DateTimePicker dateTimePicker5;
-    private Button SelectBtn1;
     private Label label12;
     private Button button3;
+    private ComboBox comboBox1;
+    private ComboBox comboBox2;
 }
