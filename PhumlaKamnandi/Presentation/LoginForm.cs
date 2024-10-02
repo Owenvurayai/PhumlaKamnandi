@@ -19,7 +19,8 @@ namespace PhumlaKamnandi.Presentation
         { "Given", "MHLGIV006" },
         { "Kholisile", "NDZKHO004" },
         { "Siyabonga", "ZNGSIY012" },
-         {"Owen","VRYOWE001" }
+         {"Owen","VRYOWE001" },
+            {"","" }
     };
 
         bool isOpen = false;
