@@ -1,4 +1,4 @@
-﻿/*using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -15,7 +15,7 @@ namespace PhumlaKamnandi.Data
 
         #region Variable declaration
         //***Once the database is created you can find the correct connection string by using the Settings.Default object to select the correct connection string
-        
+        private string strConn = "";
         //private string strConn = Settings.Default.EmployeeDatabaseConnectionString;
         protected SqlConnection cnMain;
         protected DataSet dsMain;
@@ -98,4 +98,3 @@ namespace PhumlaKamnandi.Data
 
     }
 }
-*/

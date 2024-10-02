@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhumlaKamnandi.Business;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,7 +19,7 @@ namespace PhumlaKamnandi.Data
         }
 
         #region GuestReservationCRUDMethods
-        public void CreateGuestReservation(string guestID, DateTime checkIn, DateTime checkOut, double totalAmount)
+        public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, decimal totalAmount)
         {
             string command = "INSERT INTO GuestReservation (GuestID, CheckInDate, CheckOutDate, TotalAmount) VALUES (@GuestID, @CheckInDate, @CheckOutDate, @TotalAmount)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -124,7 +125,7 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region Room
-        public void CreateRoom(string roomID, double ratePerNight, string roomType)
+        public void CreateRoom(int roomID, double ratePerNight, Room.RoomType roomType)
         {
             string command = "INSERT INTO Room (RoomID, RatePerNight, RoomType) VALUES (@RoomID, @RatePerNight, @RoomType)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -137,7 +138,7 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Close();
         }
 
-        public DataTable ReadRoom(string roomID)
+        public DataTable ReadRoom(int roomID)
         {
             string command = "SELECT * FROM Room WHERE RoomID = @RoomID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -148,7 +149,7 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateRoom(string roomID, double ratePerNight, string roomType)
+        public void UpdateRoom(int roomID, double ratePerNight, Room.RoomType roomType)
         {
             string command = "UPDATE Room SET RatePerNight = @RatePerNight, RoomType = @RoomType WHERE RoomID = @RoomID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);

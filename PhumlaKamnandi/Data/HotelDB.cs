@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhumlaKamnandi.Business;
 
 namespace PhumlaKamnandi.Data
 {
@@ -15,16 +16,16 @@ namespace PhumlaKamnandi.Data
 
         public HotelDB() { }
         #region GuestTable
-        public void CreateGuest(string guestID, string reservationID, string name, string email, string address, DateTime dateOfBirth, string phoneNo)
+        public void CreateGuest(string guestID, string name, string email, string address, string phoneNo)
         {
-            string command = "INSERT INTO Guest (GuestID, ReservationID, Name, Email, Address, DateOfBirth, PhoneNo) VALUES (@GuestID, @ReservationID, @Name, @Email, @Address, @DateOfBirth, @PhoneNo)";
+            string command = "INSERT INTO Guest (GuestID, Name, Email, Address, PhoneNo) VALUES (@GuestID, @Name, @Email, @Address, @PhoneNo)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
-            sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
+            //sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
             sqlCommand.Parameters.AddWithValue("@Name", name);
             sqlCommand.Parameters.AddWithValue("@Email", email);
             sqlCommand.Parameters.AddWithValue("@Address", address);
-            sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+            //sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
             sqlCommand.Parameters.AddWithValue("@PhoneNo", phoneNo);
 
             sqlConnection.Open();
@@ -43,15 +44,15 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateGuest(string guestID, string name, string email, string address, DateTime dateOfBirth, string phoneNo)
+        public void UpdateGuest(string guestID, string name, string email, string address, string phoneNo)
         {
-            string command = "UPDATE Guest SET Name = @Name, Email = @Email, Address = @Address, DateOfBirth = @DateOfBirth, PhoneNo = @PhoneNo WHERE GuestID = @GuestID";
+            string command = "UPDATE Guest SET Name = @Name, Email = @Email, Address = @Address, PhoneNo = @PhoneNo WHERE GuestID = @GuestID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
             sqlCommand.Parameters.AddWithValue("@Name", name);
             sqlCommand.Parameters.AddWithValue("@Email", email);
             sqlCommand.Parameters.AddWithValue("@Address", address);
-            sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+            //sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
             sqlCommand.Parameters.AddWithValue("@PhoneNo", phoneNo);
 
             sqlConnection.Open();
@@ -62,7 +63,7 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region RoomTable
-        public void CreateRoom(string roomID, double ratePerNight, string roomType)
+        public void CreateRoom(int roomID, decimal ratePerNight, Room.RoomType roomType)
         {
             string command = "INSERT INTO Room (RoomID, RatePerNight, RoomType) VALUES (@RoomID, @RatePerNight, @RoomType)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -75,7 +76,7 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Close();
         }
 
-        public DataTable ReadRoom(string roomID)
+        public DataTable ReadRoom(int roomID)
         {
             string command = "SELECT * FROM Room WHERE RoomID = @RoomID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -86,7 +87,7 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateRoom(string roomID, double ratePerNight, string roomType)
+        public void UpdateRoom(int roomID, decimal ratePerNight, Room.RoomType roomType)
         {
             string command = "UPDATE Room SET RatePerNight = @RatePerNight, RoomType = @RoomType WHERE RoomID = @RoomID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -98,6 +99,18 @@ namespace PhumlaKamnandi.Data
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
+
+        public void DeleteRoom(int roomID)
+        {
+            string command = "DELETE FROM Room WHERE RoomID = @RoomID";
+            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
+
+            sqlConnection.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+
 
         #endregion
 
@@ -141,9 +154,21 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Close();
         }
 
+        public void DeleteStaff(string staffID)
+        {
+            string command = "DELETE FROM Agent WHERE StaffID = @StaffID";
+            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@StaffID", staffID);
+
+            sqlConnection.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+
         #endregion
+
         #region AgentTable
-        public void CreateAgent(string agentID, string companyName, string name, string email)
+        public void CreateAgent(string agentID, string companyName, string name, string email, string phoneNumber)
         {
             string command = "INSERT INTO Agent (AgentID, CompanyName, Name, Email) VALUES (@AgentID, @CompanyName, @Name, @Email)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -151,13 +176,14 @@ namespace PhumlaKamnandi.Data
             sqlCommand.Parameters.AddWithValue("@CompanyName", companyName);
             sqlCommand.Parameters.AddWithValue("@Name", name);
             sqlCommand.Parameters.AddWithValue("@Email", email);
+            sqlCommand.Parameters.AddWithValue("@PhoneNO", phoneNumber);
 
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
 
-        public DataTable ReadAgent(string agentID)
+        public DataTable ReadAgent(int agentID)
         {
             string command = "SELECT * FROM Agent WHERE AgentID = @AgentID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
