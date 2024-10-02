@@ -10,10 +10,12 @@ public partial class HomeForm : Form
     Form makeReservationForm;
     Form enquiryForm;
     //Form changeReservationForm;
-    bool isOpen = false;
+    LoginForm loginForm;
 
-    public HomeForm()
+
+    public HomeForm(LoginForm loginForm)
     {
+        this.loginForm = loginForm;
         InitializeComponent();
     }
 
@@ -30,14 +32,14 @@ public partial class HomeForm : Form
     }
 
     private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-    { 
+    {
 
-            makeReservationForm = new ReservationBooking();
-            makeReservationForm.ShowDialog();
-        
+        makeReservationForm = new ReservationBooking();
+        makeReservationForm.ShowDialog();
 
-       
-        
+
+
+
     }
 
     public void responsiveLabelHover(LinkLabel l)
@@ -58,13 +60,13 @@ public partial class HomeForm : Form
     }
     private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-       
-        
-            changeReservationForm = new ChangeReservationForm();
-            changeReservationForm.ShowDialog();
-            //this.Visible = false;
-        
-     
+
+
+        changeReservationForm = new ChangeReservationForm();
+        changeReservationForm.ShowDialog();
+        //this.Visible = false;
+
+
     }
 
     private void linkLabel4_MouseHover(object sender, EventArgs e)
@@ -121,23 +123,30 @@ public partial class HomeForm : Form
 
     private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-      
-            enquiryForm = new EnquiryForm();
-            enquiryForm.ShowDialog();
-            //this.Visible = false;
-      
+
+        enquiryForm = new EnquiryForm();
+        enquiryForm.ShowDialog();
+        //this.Visible = false;
+
     }
 
     private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-            cancelReservationForm = new CancelReservationFrom();
-            cancelReservationForm.ShowDialog();
-            //this.Visible = false;
-      
+        cancelReservationForm = new CancelReservationFrom();
+        cancelReservationForm.ShowDialog();
+        //this.Visible = false;
+
     }
 
     private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
         // we still need to do something about this
+    }
+
+    private void HomeForm_Closing(object sender, EventArgs e)
+    {
+        loginForm.Close();
+       
+
     }
 }

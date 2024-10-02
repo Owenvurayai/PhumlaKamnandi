@@ -204,6 +204,7 @@ partial class HomeForm
         Name = "HomeForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Home";
+        FormClosing += HomeForm_Closing;
         panel1.ResumeLayout(false);
         panel1.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -49,9 +49,10 @@ namespace PhumlaKamnandi.Presentation
                     // Successful login
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    HomeForm h = new HomeForm();
+                    HomeForm h = new HomeForm(this);
                     h.Show();
                     this.Visible = false;
+
                 }
                 else
                 {
