@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,12 @@ namespace PhumlaKamnandi.Data
 {
     internal class HotelDB
     {
+        SqlConnection sqlConnection;
+        SqlCommand sqlCommand;
+
         public HotelDB() { }
         #region GuestTable
-/*        public void CreateGuest(string guestID, string reservationID, string name, string email, string address, DateTime dateOfBirth, string phoneNo)
+        public void CreateGuest(string guestID, string reservationID, string name, string email, string address, DateTime dateOfBirth, string phoneNo)
         {
             string command = "INSERT INTO Guest (GuestID, ReservationID, Name, Email, Address, DateOfBirth, PhoneNo) VALUES (@GuestID, @ReservationID, @Name, @Email, @Address, @DateOfBirth, @PhoneNo)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -53,12 +57,12 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
-        }*/
+        }
 
         #endregion
 
         #region RoomTable
-/*        public void CreateRoom(string roomID, double ratePerNight, string roomType)
+        public void CreateRoom(string roomID, double ratePerNight, string roomType)
         {
             string command = "INSERT INTO Room (RoomID, RatePerNight, RoomType) VALUES (@RoomID, @RatePerNight, @RoomType)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -93,12 +97,12 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
-        }*/
+        }
 
         #endregion
 
         #region StaffTable
-/*        public void CreateStaff(string staffID, string name, string email, string position)
+        public void CreateStaff(string staffID, string name, string email, string position)
         {
             string command = "INSERT INTO Staff (StaffID, Name, Email, Position) VALUES (@StaffID, @Name, @Email, @Position)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -135,11 +139,11 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
-        }*/
+        }
 
         #endregion
         #region AgentTable
-        /*public void CreateAgent(string agentID, string companyName, string name, string email)
+        public void CreateAgent(string agentID, string companyName, string name, string email)
         {
             string command = "INSERT INTO Agent (AgentID, CompanyName, Name, Email) VALUES (@AgentID, @CompanyName, @Name, @Email)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -188,7 +192,7 @@ namespace PhumlaKamnandi.Data
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
-*/
+
         #endregion
     }
 }
