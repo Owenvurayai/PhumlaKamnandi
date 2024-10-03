@@ -109,6 +109,7 @@
             search.TabIndex = 11;
             search.Text = "Search";
             search.UseVisualStyleBackColor = true;
+            search.Click += search_Click;
             // 
             // button1
             // 

@@ -41,6 +41,8 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region Update the DateSet
+
+        // Fills the local dataset with the data from a specific table
         public void FillDataSet(string aSQLstring, string aTable)
         {
             //fills dataset fresh from the db for a specific table and with a specific Query
@@ -48,7 +50,7 @@ namespace PhumlaKamnandi.Data
             {
                 daMain = new SqlDataAdapter(aSQLstring, cnMain);
                 cnMain.Open();
-                //dsMain.Clear();
+                dsMain.Clear();
                 daMain.Fill(dsMain, aTable);
                 cnMain.Close();
             }

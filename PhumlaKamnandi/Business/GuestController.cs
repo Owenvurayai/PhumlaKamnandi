@@ -15,8 +15,9 @@ namespace PhumlaKamnandi.Business
 
         public GuestController()
         {
-            guests = hotelDB.AllGuests;
             hotelDB = new HotelDB();
+            guests = hotelDB.AllGuests;
+            
         }
 
         public void AddGuest(Guest guest)
