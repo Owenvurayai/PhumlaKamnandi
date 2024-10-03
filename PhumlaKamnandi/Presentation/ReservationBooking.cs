@@ -68,7 +68,7 @@ namespace PhumlaKamnandi.Presentation
                 //here just pass the roomcontroller, no need to create a new room object
                 if (IsGuest)
                 {
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, crdTextBox.Text, ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
                 }
                 else if (!IsGuest)
@@ -83,7 +83,7 @@ namespace PhumlaKamnandi.Presentation
                           // roomController.AddRoom(); add it in to the thingie
                 if (IsGuest)
                 {
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, crdTextBox.Text, ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
                 }
                 else if (!IsGuest)
