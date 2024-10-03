@@ -29,6 +29,7 @@ public partial class ChangeReservationForm : Form
 
     private void removeRoomRadioButton_CheckedChanged(object sender, EventArgs e)
     {
+        numericUpDown1.Enabled = false;
         numOfRoomsLabel.Text = "RoomID";
         roomTypeLabel.Visible = false;
         roomTypeComboBox.Visible = false;
@@ -45,14 +46,18 @@ public partial class ChangeReservationForm : Form
 
     private void addRoomRadioButton_CheckedChanged(object sender, EventArgs e)
     {
-
+        numericUpDown1.Enabled = true;
         roomTypeComboBox.Items.Clear();
+        roomTypeComboBox.Text = "Select";
+        roomTypeComboBox.Items.Add("Suite");
+        roomTypeComboBox.Items.Add("Single");
+        roomTypeComboBox.Items.Add("Double");
+        roomTypeComboBox.Items.Add("Deluxe");
 
-       
 
-
-        numOfRoomsLabel.Text = "Number of Rooms";
         roomTypeLabel.Visible = true;
+        roomTypeLabel.Text = "Room Type";
+        numOfRoomsLabel.Text = "Number of Rooms";
         roomTypeComboBox.Visible = true;
         adultsNumLabel.Visible = false;
         adultsNumComboBox.Visible = false;
@@ -67,6 +72,20 @@ public partial class ChangeReservationForm : Form
 
     private void changeGuestRadioButton_CheckedChanged(object sender, EventArgs e)
     {
+        numericUpDown1.Enabled = false;
+        roomTypeComboBox.Items.Clear();
+        roomTypeComboBox.Items.Add("1");
+        roomTypeComboBox.Items.Add("2");
+        roomTypeComboBox.Items.Add("3");
+        roomTypeComboBox.Items.Add("4");
+        roomTypeComboBox.SelectedIndex = 0;     //currently
+
+        adultsNumComboBox.Items.Clear();
+        adultsNumComboBox.Items.Add("1");
+        adultsNumComboBox.Items.Add("2");
+        adultsNumComboBox.Items.Add("3");
+        adultsNumComboBox.Items.Add("4");
+        adultsNumComboBox.SelectedIndex = 0;  //currently
         numOfRoomsLabel.Text = "RoomID";
         roomTypeLabel.Visible = true;
         roomTypeComboBox.Visible = true;
