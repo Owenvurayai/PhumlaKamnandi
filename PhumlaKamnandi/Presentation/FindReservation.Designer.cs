@@ -47,6 +47,7 @@
             button1.Size = new Size(151, 36);
             button1.TabIndex = 15;
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // ClearButton
             // 
@@ -122,6 +123,7 @@
             Controls.Add(reservationTextBox);
             Controls.Add(label2);
             Name = "FindReservation";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FindReservation";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
