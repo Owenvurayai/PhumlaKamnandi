@@ -35,13 +35,13 @@ namespace PhumlaKamnandi.Business
                     return random.Next(1, 100);
                 //Double Rooms Start at Room Number 101 - 200
                 case RoomType.Double:
-                    return random.Next(200, 300);
+                    return random.Next(101, 200);
                 //Suite Rooms Start at Room Number 201 - 300
                 case RoomType.Suite:
-                    return random.Next(300, 400);
+                    return random.Next(201, 300);
                 //Deluxe Rooms Start at Room Number 301 - 400
                 case RoomType.Deluxe:
-                    return random.Next(400, 500);
+                    return random.Next(301, 400);
                 default://throw an error if the entered room type is not 1 of the above 4 types
                     throw new ArgumentException("Room Type does not exist!!");
             }
