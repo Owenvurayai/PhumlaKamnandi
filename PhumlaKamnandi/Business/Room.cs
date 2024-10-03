@@ -56,8 +56,6 @@ namespace PhumlaKamnandi.Business
          * */
         private void AssignRates()
         {
-
-            //You gents can change the prices
             switch (roomType)
             {
                 case RoomType.Single:
@@ -73,7 +71,7 @@ namespace PhumlaKamnandi.Business
                     RatePerNight = 500;
                     break;
                 case RoomType.Deluxe:
-                    MaxOccupancy = 12;//check this
+                    MaxOccupancy = 12;
                     RatePerNight = 600;
                     break;
                 default:
