@@ -75,7 +75,7 @@ namespace PhumlaKamnandi.Business
            int Index = reservations.IndexOf(res);
             if (IsGuest)
             {
-                reservationDB.UpdateGuestReservation(res.ReservationId, res.CheckInDate, res.CheckOutDate,res.NoOfGuests,res.CalculateTotalStayCost());
+                reservationDB.UpdateGuestReservation(res.ReservationId, res.CheckInDate, res.CheckOutDate, res.NoOfGuests, res.CalculateTotalStayCost());
                 reservations[Index] = res;
             }
             else if (IsGuest == false)
@@ -101,6 +101,8 @@ namespace PhumlaKamnandi.Business
                     //Delete the data of the guest in the Guest Table
                     Guest guest = guestController.FindGuest(reservation.GuestID);
                     guestController.RemoveGuest(guest);
+                    //Remove the Room 
+                    reservationDB.DeleteGuestReservation(reservationId);
 
 
                     return true;
@@ -114,7 +116,7 @@ namespace PhumlaKamnandi.Business
                     BookingAgent agent = agentController.FindAgent(reservation.AgentID);
                     agentController.RemoveAgent(agent);
                     //Delete the room in the Room Table
-                    Room room = roomController.FindRoomByNumber(reservation.)
+                    reservationDB.DeleteAgentReservation(reservationId);
                     return true;
                 }
             }

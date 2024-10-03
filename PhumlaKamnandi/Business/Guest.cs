@@ -28,6 +28,11 @@ namespace PhumlaKamnandi.Business
             this.CVC = CVC;
             GuestID = GstID;
         }
+        public Guest(String GstID, string resID, string FName, String LName, String Phone, String Address, string Email): base(FName, LName, Email, Phone, Address)
+        {
+            ReservationID = resID;
+            GuestID = GstID;
+        }
 
         public Guest() :base() {
             CardNo = -1;

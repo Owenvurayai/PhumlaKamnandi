@@ -4,10 +4,13 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using PhumlaKamnandi.Business;
 using PhumlaKamnandi.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PhumlaKamnandi.Data
 {
@@ -25,6 +28,8 @@ namespace PhumlaKamnandi.Data
         private string sqlLocal2 = "SELECT * FROM Room";
         private string table3 = "Agent";
         private string sqlLocal3 = "SELECT * FROM Agent";
+
+        //collection of all the rooms that are booked 
         public Collection<Room> AllRooms
         {
             get
@@ -65,12 +70,13 @@ namespace PhumlaKamnandi.Data
         }
         #endregion
         #region GuestTable
-        public void CreateGuest(string guestID, string name, string email, string address, string phoneNo)
+        public void CreateGuest(string guestID, string res, string fname, string lname, string email, string address, string phoneNo)
         {
             string command = "INSERT INTO Guest (GuestID, Name, Email, Address, PhoneNo) VALUES (@GuestID, @Name, @Email, @Address, @PhoneNo)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
-            //sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
+            sqlCommand.Parameters.AddWithValue("@ReservationID", res);
+            String name = fname + " " + lname;
             sqlCommand.Parameters.AddWithValue("@Name", name);
             sqlCommand.Parameters.AddWithValue("@Email", email);
             sqlCommand.Parameters.AddWithValue("@Address", address);
@@ -80,6 +86,7 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
+            guests.Add(new Guest(guestID, res,fname, lname, phoneNo, address, email));
         }
 
         public DataTable ReadGuest(string guestID)
@@ -93,11 +100,12 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateGuest(string guestID, string name, string email, string address, string phoneNo)
+        public void UpdateGuest(string guestID, string res, string fname, string lname, string email, string address, string phoneNo)
         {
             string command = "UPDATE Guest SET Name = @Name, Email = @Email, Address = @Address, PhoneNo = @PhoneNo WHERE GuestID = @GuestID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
+            String name = fname + " " + lname;
             sqlCommand.Parameters.AddWithValue("@Name", name);
             sqlCommand.Parameters.AddWithValue("@Email", email);
             sqlCommand.Parameters.AddWithValue("@Address", address);
@@ -107,6 +115,17 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
+
+            DataTable dataTable = ReadGuest(guestID);//get the Guest that needs to be changed in the DB
+            DataRow row = dataTable.Rows[0];//gets the Table row with the specific GuestID
+            string fullName = Convert.ToString(row["Name"]);
+            string[] nameParts = fullName.Split(' ');
+            Guest oldguest = new Guest(guestID, Convert.ToString(row["ReservationID"]), nameParts[0], nameParts[1], Convert.ToString(row["PhoneNo"]), Convert.ToString(row["Address"]), Convert.ToString(row["Email"]));
+            int index = guests.IndexOf(oldguest);
+            Guest guest = new Guest(guestID, res, fname, lname, phoneNo, address, email);
+            guests[index] = guest;
+            
+           
         }
         public void DeleteGuest(string guestID)
         {
@@ -117,6 +136,15 @@ namespace PhumlaKamnandi.Data
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
+            DataTable dataTable = ReadGuest(guestID);//get the Guest that needs to be changed in the DB
+            DataRow row = dataTable.Rows[0];//gets the Table row with the specific GuestID
+            string fullName = Convert.ToString(row["Name"]);
+            string[] nameParts = fullName.Split(' ');
+            Guest oldguest = new Guest(guestID, Convert.ToString(row["ReservationID"]), nameParts[0], nameParts[1], Convert.ToString(row["PhoneNo"]), Convert.ToString(row["Address"]), Convert.ToString(row["Email"]));
+           // int index = guests.IndexOf(oldguest);
+            guests.Remove(oldguest);
+           
+
         }
 
         #endregion
