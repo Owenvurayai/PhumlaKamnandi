@@ -36,14 +36,15 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region GuestReservationCRUDMethods
-        public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, decimal totalAmount)
+        public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
         {
-            string command = "INSERT INTO GuestReservation (ReservationID, GuestID, CheckInDate, CheckOutDate, TotalAmount) VALUES (@ReservationID, @GuestID, @CheckInDate, @CheckOutDate, @TotalAmount)";
+            string command = "INSERT INTO GuestReservation (ReservationID, GuestID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@ReservationID, @GuestID, @CheckInDate, @CheckOutDate,@NoOfGuests, @TotalAmount)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", ResID);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
             sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
             sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
+            sqlCommand.Parameters.AddWithValue("@NoOfGuests", noOfGuests);
             sqlCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
 
             sqlConnection.Open();
@@ -62,13 +63,14 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateGuestReservation(string reservationID, DateTime checkIn, DateTime checkOut, decimal totalAmount)
+        public void UpdateGuestReservation(string reservationID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
         {
-            string command = "UPDATE GuestReservation SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, TotalAmount = @TotalAmount WHERE ReservationID = @ReservationID";
+            string command = "UPDATE GuestReservation SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, NoOfGuests=@NoOfGuests, TotalAmount = @TotalAmount WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
             sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
             sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
+            sqlCommand.Parameters.AddWithValue("@NoOfGuests", noOfGuests);
             sqlCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
 
             sqlConnection.Open();
