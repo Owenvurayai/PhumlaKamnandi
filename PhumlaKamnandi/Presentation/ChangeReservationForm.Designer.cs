@@ -223,7 +223,7 @@ partial class ChangeReservationForm
         // changeGuestRadioButton
         // 
         changeGuestRadioButton.AutoSize = true;
-        changeGuestRadioButton.Location = new Point(493, 15);
+        changeGuestRadioButton.Location = new Point(476, 16);
         changeGuestRadioButton.Name = "changeGuestRadioButton";
         changeGuestRadioButton.Size = new Size(149, 24);
         changeGuestRadioButton.TabIndex = 51;
@@ -271,7 +271,7 @@ partial class ChangeReservationForm
         // removeRoomRadioButton
         // 
         removeRoomRadioButton.AutoSize = true;
-        removeRoomRadioButton.Location = new Point(243, 15);
+        removeRoomRadioButton.Location = new Point(232, 15);
         removeRoomRadioButton.Name = "removeRoomRadioButton";
         removeRoomRadioButton.Size = new Size(128, 24);
         removeRoomRadioButton.TabIndex = 48;
@@ -355,9 +355,9 @@ partial class ChangeReservationForm
         panel3.Controls.Add(label2);
         panel3.Controls.Add(dateTimePicker5);
         panel3.Controls.Add(dateTimePicker1);
-        panel3.Location = new Point(682, 188);
+        panel3.Location = new Point(696, 188);
         panel3.Name = "panel3";
-        panel3.Size = new Size(315, 230);
+        panel3.Size = new Size(296, 230);
         panel3.TabIndex = 51;
         // 
         // label11

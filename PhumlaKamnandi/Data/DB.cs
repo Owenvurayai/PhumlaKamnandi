@@ -15,8 +15,8 @@ namespace PhumlaKamnandi.Data
 
         #region Variable declaration
         //***Once the database is created you can find the correct connection string by using the Settings.Default object to select the correct connection string
-        private string strConn = "";
-        //private string strConn = Settings.Default.EmployeeDatabaseConnectionString;
+        
+        private string strConn = Settings.Default.reservationDBconnectionString;
         protected SqlConnection cnMain;
         protected DataSet dsMain;
         protected SqlDataAdapter daMain;
@@ -34,7 +34,7 @@ namespace PhumlaKamnandi.Data
             catch (SystemException e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message, "Error");
-                return;
+                Environment.Exit(0);
             }
         }
 

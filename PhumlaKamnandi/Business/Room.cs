@@ -34,10 +34,8 @@ namespace PhumlaKamnandi.Business
         #region constructor
         public Room(int roomNum, RoomType roomtype)
         {
-            // RoomID = roomID;
             RoomNumber = roomNum;
             OccupancyStatus = "Available";
-          //  Extras = extras;
             roomType = roomtype;
             AssignRates();//Assign the rates
 
@@ -48,6 +46,7 @@ namespace PhumlaKamnandi.Business
             RoomNumber = 0;//There is no room Zero in the Hotel
             OccupancyStatus = "";
             //Extras = "";
+            //
         }
         #endregion 
 
