@@ -15,6 +15,7 @@ namespace PhumlaKamnandi.Business
         private Collection<Reservation> reservations;
        private HotelDB hotelDB;
         private ReservationDB reservationDB;
+       
 
         // Constructor
         public ReservationController()
@@ -30,13 +31,13 @@ namespace PhumlaKamnandi.Business
             if (IsGuest)//If it is a Guest
             {
                 //add to the database
-                reservationDB.CreateGuestReservation(res.ReservationId, res.Guest.GuestID, res.CheckInDate, res.CheckOutDate, res.CalculateTotalStayCost());
+                reservationDB.CreateGuestReservation(res.ReservationId, res.GuestID, res.CheckInDate, res.CheckOutDate,res.NoOfGuests, res.CalculateTotalStayCost());
                 reservations.Add(res);//adds it into a List
             }
             else//An Agent
             {
                 //add to the database
-                 reservationDB.CreateAgentReservation(res.ReservationId, res.Agent.AgentID, res.CheckInDate, res.CheckOutDate, res.NoOfGuests,res.CalculateTotalStayCost());
+                 reservationDB.CreateAgentReservation(res.ReservationId, res.AgentID, res.CheckInDate, res.CheckOutDate, res.NoOfGuests,res.CalculateTotalStayCost());
                 reservations.Add(res);//adds it into a List
             }
 

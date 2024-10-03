@@ -20,7 +20,7 @@ namespace PhumlaKamnandi.Business
 
        
         #region constructor
-        public Guest(String GstID, String FName, String LName, String Phone , String Address ,string Email, int crdCard,string SecurityDate, int CVC)
+        public Guest(String GstID, string FName, String LName, String Phone , String Address ,string Email, int crdCard,string SecurityDate, int CVC)
           : base(FName,LName,Phone,Address)
         {
             CardNo = crdCard;

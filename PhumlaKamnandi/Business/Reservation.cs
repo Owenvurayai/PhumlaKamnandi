@@ -76,6 +76,7 @@ namespace PhumlaKamnandi.Business
     // A method to display reservation details
     public string GetReservationDetails()
     {
+
         if (GuestType == "Guest")
         {
             return $"Reservation ID: {ReservationId}, Guest ID: {GuestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}\n";

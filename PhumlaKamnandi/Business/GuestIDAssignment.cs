@@ -18,5 +18,11 @@ namespace PhumlaKamnandi.Business
             assignedGuestIDs.Add(guestID); //Add the created ID into the list
             return guestID;
         }
+
+        //make the room number to be available
+        public void Delete(string guestID)
+        {
+            assignedGuestIDs.Remove(guestID);
+        }
     }
 }
