@@ -15,6 +15,9 @@ namespace PhumlaKamnandi.Business
         private Collection<Reservation> reservations;
        private HotelDB hotelDB;
         private ReservationDB reservationDB;
+        private GuestController guestController;
+        private RoomController roomController;
+        //private A
        
 
         // Constructor
@@ -23,6 +26,8 @@ namespace PhumlaKamnandi.Business
             reservations = reservationDB.Reservations;
             hotelDB = new HotelDB();
             reservationDB = new ReservationDB();
+            guestController = new GuestController();
+            roomController = new RoomController();
         }
 
       
@@ -90,6 +95,7 @@ namespace PhumlaKamnandi.Business
                 {
                     reservations.Remove(reservation);
                     reservationDB.DeleteGuestReservation(reservationId);
+
                     return true;
                 }
                 else if (IsGuest == false)
@@ -121,28 +127,6 @@ namespace PhumlaKamnandi.Business
             }
             return null;
 
-            /*
-            DataTable dataTable=null;
-            Reservation reservation=null;
-            if (IsGuest)//Guest
-            {
-                dataTable = reservationDB.ReadGuestReservation(reservationId);
-                //Create a Reservation object from the table data
-                DataRow row = dataTable.Rows[0];
-                RoomController roomController = new RoomController();
-                reservation = new Reservation(reservationId, Convert.ToString(row["GuestID"]), DateTime.Parse(Convert.ToString(row["CheckInDate"])), DateTime.Parse(Convert.ToString(row["CheckOutDate"])),int.Parse(Convert.ToString(row["NoOfGuests"])), roomController);
-
-            }
-            else//Agent 
-            {
-                dataTable = reservationDB.ReadAgentReservation(reservationId);
-                //Create a Reservation object from the table data
-                DataRow row = dataTable.Rows[0];
-                RoomController roomController = new RoomController();
-                reservation = new Reservation(reservationId, Convert.ToString(row["GuestID"]), DateTime.Parse(Convert.ToString(row["CheckInDate"])), DateTime.Parse(Convert.ToString(row["CheckOutDate"])), int.Parse(Convert.ToString(row["NoOfGuests"])), roomController);
-
-            }
-            return reservation;*/
 
         }
 

@@ -14,20 +14,18 @@ namespace PhumlaKamnandi.Business
         public string ExpirationDate {  get; set; }
         public int CVC {  get; set; }
         public string GuestID { get; set; }
-        public string Email { get; set; }
         public string ReservationID { get;set; }
         #endregion
 
        
         #region constructor
         public Guest(String GstID,string resID, string FName, String LName, String Phone , String Address ,string Email, int crdCard,string SecurityDate, int CVC)
-          : base(FName,LName,Phone,Address)
+          : base(FName,LName,Email, Phone,Address)
         {
             ReservationID = resID;
             CardNo = crdCard;
             this.ExpirationDate = SecurityDate;
             this.CVC = CVC;
-            this.Email = Email;
             GuestID = GstID;
         }
 
@@ -40,10 +38,7 @@ namespace PhumlaKamnandi.Business
         #endregion
 
         #region Method
-        public void UpdateEmail(string newEmail)
-        {
-           Email = newEmail;
-        }
+       
         public void UpdatePaymentDetails(int creditCardNo, string SecurityCode, int CVC) {
             CardNo = creditCardNo; 
             this.ExpirationDate = SecurityCode;
