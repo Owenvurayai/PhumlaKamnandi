@@ -82,7 +82,7 @@ namespace PhumlaKamnandi.Business
        // Method to cancel a reservation
        public bool CancelReservationByResID(string reservationId, bool IsGuest)
        {
-           Reservation reservation = FindReservationById(reservationId, IsGuest);
+           Reservation reservation = FindReservationById(reservationId);
 
             if(reservation!=null)
             {
@@ -102,12 +102,26 @@ namespace PhumlaKamnandi.Business
           
            return false;
        }
-
+        //method
+        public Collection<Reservation> GetReservations()
+        {
+            return reservations;
+        }
 
 
         // Method to retrieve reservation details
-        public Reservation FindReservationById(string reservationId, bool IsGuest)
+        public Reservation FindReservationById(string reservationId)
         {
+            foreach (Reservation res in reservations)
+            {
+                if (res.ReservationId == reservationId)
+                {
+                    return res;
+                }
+            }
+            return null;
+
+            /*
             DataTable dataTable=null;
             Reservation reservation=null;
             if (IsGuest)//Guest
@@ -128,7 +142,8 @@ namespace PhumlaKamnandi.Business
                 reservation = new Reservation(reservationId, Convert.ToString(row["GuestID"]), DateTime.Parse(Convert.ToString(row["CheckInDate"])), DateTime.Parse(Convert.ToString(row["CheckOutDate"])), int.Parse(Convert.ToString(row["NoOfGuests"])), roomController);
 
             }
-            return reservation;
+            return reservation;*/
+
         }
 
         // Method to get all reservations

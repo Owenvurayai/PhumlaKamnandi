@@ -15,14 +15,15 @@ namespace PhumlaKamnandi.Business
         public int CVC {  get; set; }
         public string GuestID { get; set; }
         public string Email { get; set; }
-
+        public string ReservationID { get;set; }
         #endregion
 
        
         #region constructor
-        public Guest(String GstID, string FName, String LName, String Phone , String Address ,string Email, int crdCard,string SecurityDate, int CVC)
+        public Guest(String GstID,string resID, string FName, String LName, String Phone , String Address ,string Email, int crdCard,string SecurityDate, int CVC)
           : base(FName,LName,Phone,Address)
         {
+            ReservationID = resID;
             CardNo = crdCard;
             this.ExpirationDate = SecurityDate;
             this.CVC = CVC;
@@ -34,7 +35,7 @@ namespace PhumlaKamnandi.Business
             CardNo = -1;
             GuestID = "";
             Email = "";//create a method to change this
-
+            ReservationID = "";
         }
         #endregion
 
@@ -50,7 +51,7 @@ namespace PhumlaKamnandi.Business
         }
         public string GetGuestDetails()
         {
-            return $"{GetFullName()}, CreditCardNo: {CardNo }, Security Date: {ExpirationDate}, CVC: {CVC.ToString()} Email: {Email}";
+            return $"Name: {GetFullName()}, Reservation ID: {ReservationID}, CreditCardNo: {CardNo }, Security Date: {ExpirationDate}, CVC: {CVC.ToString()} Email: {Email}";
         }
         #endregion
     }

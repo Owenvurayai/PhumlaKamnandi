@@ -108,6 +108,16 @@ namespace PhumlaKamnandi.Data
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
+        public void DeleteGuest(string guestID)
+        {
+            string command = "DELETE FROM Guest WHERE GuestID = @GuestID";
+            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
+
+            sqlConnection.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
 
         #endregion
 
