@@ -38,20 +38,12 @@ namespace PhumlaKamnandi.Business
         // Method to find a room by room number
         public Room FindRoomByNumber(int roomNumber)
         {
-            DataTable roomData = hotelDB.ReadRoom(roomNumber);
-
-            if (roomData.Rows.Count == 0)//There is no row that has the data that contains the roomNUmber
+            foreach (Room room in rooms)
             {
-                //Console.WriteLine("Room not found.");
-                return null;//Room is not found
+                if (room.RoomNumber == roomNumber)
+                    return room;
             }
-
-            // Convert DataTable row to Room object
-            DataRow row = roomData.Rows[0];
-            Room room = new Room(Convert.ToInt32(row["RoomID"]), (Room.RoomType)Enum.Parse(typeof(Room.RoomType), Convert.ToString(row["RoomType"]) ));//Create an object
-       
-            return room;
-
+            return null;
         }
 
         // Method to update a room's availability

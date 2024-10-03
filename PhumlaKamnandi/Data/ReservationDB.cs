@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -36,25 +37,22 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region GuestReservationCRUDMethods
-        public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
+        public void CreateGuestReservation(string ResID, string guestID, int roomID)
         {
-            string command = "INSERT INTO GuestReservation (ReservationID, GuestID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@ReservationID, @GuestID, @CheckInDate, @CheckOutDate,@NoOfGuests, @TotalAmount)";
+            string command = "INSERT INTO GuestReservationRoom (ReservationID, GuestID, RoomID) VALUES (@ReservationID, @GuestID, @RoomID)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", ResID);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
-            sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
-            sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
-            sqlCommand.Parameters.AddWithValue("@NoOfGuests", noOfGuests);
-            sqlCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
+            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
 
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
 
-        public DataTable ReadGuestReservation(string guestID)
+        public DataTable ReadGuestReservationRoom(string guestID)
         {
-            string command = "SELECT * FROM GuestReservation WHERE GuestID = @GuestID";
+            string command = "SELECT * FROM GuestReservationRoom WHERE GuestID = @GuestID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
             SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
@@ -63,24 +61,22 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateGuestReservation(string reservationID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
+        public void UpdateGuestReservationRoom(string reservationID, string guestID, int roomID)
         {
-            string command = "UPDATE GuestReservation SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, NoOfGuests=@NoOfGuests, TotalAmount = @TotalAmount WHERE ReservationID = @ReservationID";
+            string command = "UPDATE GuestReservationRoom SET GuestID = @GuestID, RoomID = @RoomID WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
-            sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
-            sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
-            sqlCommand.Parameters.AddWithValue("@NoOfGuests", noOfGuests);
-            sqlCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
+            sqlCommand.Parameters.AddWithValue("@GuestID", guestID);
+            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
 
             sqlConnection.Open();
 
             sqlConnection.Close();
         }
 
-        public void DeleteGuestReservation(string reservationID)
+        public void DeleteGuestReservationRoom(string reservationID)
         {
-            string command = "DELETE FROM GuestReservation WHERE ReservationID = @ReservationID";
+            string command = "DELETE FROM GuestReservationRoom WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
 
@@ -90,26 +86,22 @@ namespace PhumlaKamnandi.Data
         }
         #endregion
 
-        #region AgentReservationTable
-        public void CreateAgentReservation(string reservationID, string agentID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
+        #region AgentReservationRoom
+        public void CreateAgentReservationRoom(string reservationID, string agentID, int roomID)
         {
-            string command = "INSERT INTO AgentReservation (ReservationID, AgentID, CheckInDate, CheckOutDate, NoOfGuests, TotalAmount) VALUES (@Reservation, @AgentID, @CheckInDate, @CheckOutDate, @NoOfGuests, @TotalAmount)";
+            string command = "INSERT INTO AgentReservationRoom (ReservationID, AgentID, RoomID)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
             sqlCommand.Parameters.AddWithValue("@AgentID", agentID);
-            sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
-            sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
-            sqlCommand.Parameters.AddWithValue("@NoOfGuests", noOfGuests);
-            sqlCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
-
+            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
 
-        public DataTable ReadAgentReservation(string agentID)
+        public DataTable ReadAgentReservationRoom(string agentID)
         {
-            string command = "SELECT * FROM AgentReservation WHERE AgentID = @AgentID";
+            string command = "SELECT * FROM AgentReservationRoom WHERE AgentID = @AgentID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@AgentID", agentID);
             SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
@@ -118,24 +110,22 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateAgentReservation(string reservationID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
+        public void UpdateAgentReservationRoom(string reservationID, string agentID, int roomID)
         {
-            string command = "UPDATE AgentReservation SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, NoOfGuests = @NoOfGuests, TotalAmount = @TotalAmount WHERE ReservationID = @ReservationID";
+            string command = "UPDATE AgentReservationRoom SET AgentID = @AgentID, RoomID = @RoomID WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
-            sqlCommand.Parameters.AddWithValue("@CheckInDate", checkIn);
-            sqlCommand.Parameters.AddWithValue("@CheckOutDate", checkOut);
-            sqlCommand.Parameters.AddWithValue("@NoOfGuests", noOfGuests);
-            sqlCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
+            sqlCommand.Parameters.AddWithValue("@AgentID", agentID);
+            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
 
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
 
-        public void DeleteAgentReservation(string reservationID)
+        public void DeleteAgentReservationRoom(string reservationID)
         {
-            string command = "DELETE FROM AgentReservation WHERE ReservationID = @ReservationID";
+            string command = "DELETE FROM AgentReservationRoom WHERE ReservationID = @ReservationID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
 
@@ -145,43 +135,5 @@ namespace PhumlaKamnandi.Data
         }
         #endregion
 
-        #region Room
-        public void CreateRoom(int roomID, double ratePerNight, Room.RoomType roomType)
-        {
-            string command = "INSERT INTO Room (RoomID, RatePerNight, RoomType) VALUES (@RoomID, @RatePerNight, @RoomType)";
-            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
-            sqlCommand.Parameters.AddWithValue("@RatePerNight", ratePerNight);
-            sqlCommand.Parameters.AddWithValue("@RoomType", roomType);
-
-            sqlConnection.Open();
-            sqlCommand.ExecuteNonQuery();
-            sqlConnection.Close();
-        }
-
-        public DataTable ReadRoom(int roomID)
-        {
-            string command = "SELECT * FROM Room WHERE RoomID = @RoomID";
-            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            return dataTable;
-        }
-
-        public void UpdateRoom(int roomID, double ratePerNight, Room.RoomType roomType)
-        {
-            string command = "UPDATE Room SET RatePerNight = @RatePerNight, RoomType = @RoomType WHERE RoomID = @RoomID";
-            SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@RoomID", roomID);
-            sqlCommand.Parameters.AddWithValue("@RatePerNight", ratePerNight);
-            sqlCommand.Parameters.AddWithValue("@RoomType", roomType);
-
-            sqlConnection.Open();
-            sqlCommand.ExecuteNonQuery();
-            sqlConnection.Close();
-        }
-        #endregion
     }
 }
