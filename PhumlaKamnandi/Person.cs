@@ -14,10 +14,12 @@ namespace PhumlaKamnandi
             public string LastName { get; set; }
             public string ContactDetails { get; set; }
             public string Address { get; set; }
+        public string Email { get; set; }
         #endregion
         #region Constructor
-        public Person(String FName , String LName, String Phone, String Address) {
-            
+        public Person(String FName , String LName,String email, String Phone, String Address) {
+
+            Email = email;
             FirstName = FName;
             LastName = LName;
             ContactDetails = Phone;
@@ -39,8 +41,11 @@ namespace PhumlaKamnandi
             {
                 return $"{FirstName} {LastName}";
             }
-
-            public virtual void UpdateContactDetails(string contactDetails)
+        public void UpdateEmail(string newEmail)
+        {
+            Email = newEmail;
+        }
+        public virtual void UpdateContactDetails(string contactDetails)
             {
                 ContactDetails = contactDetails;
             }
