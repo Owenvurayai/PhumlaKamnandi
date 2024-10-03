@@ -86,7 +86,6 @@ partial class ChangeReservationForm
         label6.Size = new Size(298, 41);
         label6.TabIndex = 3;
         label6.Text = "Change Reservation";
-       
         // 
         // panel2
         // 
@@ -239,7 +238,6 @@ partial class ChangeReservationForm
         adultsNumComboBox.ForeColor = Color.White;
         adultsNumComboBox.FormattingEnabled = true;
         adultsNumComboBox.ItemHeight = 23;
-        adultsNumComboBox.Items.AddRange(new object[] { "Delux", "Suite" });
         adultsNumComboBox.Location = new Point(298, 354);
         adultsNumComboBox.MinimumSize = new Size(327, 0);
         adultsNumComboBox.Name = "adultsNumComboBox";
@@ -247,6 +245,7 @@ partial class ChangeReservationForm
         adultsNumComboBox.TabIndex = 50;
         adultsNumComboBox.Text = "Select";
         adultsNumComboBox.Visible = false;
+        adultsNumComboBox.SelectedIndexChanged += adultsNumComboBox_SelectedIndexChanged;
         // 
         // adultsNumLabel
         // 
@@ -332,13 +331,16 @@ partial class ChangeReservationForm
         roomTypeComboBox.ForeColor = Color.White;
         roomTypeComboBox.FormattingEnabled = true;
         roomTypeComboBox.ItemHeight = 23;
-        roomTypeComboBox.Items.AddRange(new object[] { "Delux", "Suite" });
         roomTypeComboBox.Location = new Point(298, 297);
         roomTypeComboBox.MinimumSize = new Size(327, 0);
         roomTypeComboBox.Name = "roomTypeComboBox";
         roomTypeComboBox.Size = new Size(327, 31);
         roomTypeComboBox.TabIndex = 43;
         roomTypeComboBox.Text = "Select";
+        roomTypeComboBox.Items.Add("Suite");
+        roomTypeComboBox.Items.Add("Single");
+        roomTypeComboBox.Items.Add("Double");
+        roomTypeComboBox.Items.Add("Deluxe");
         // 
         // roomTypeLabel
         // 
