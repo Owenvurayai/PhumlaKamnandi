@@ -45,6 +45,12 @@ public partial class ChangeReservationForm : Form
 
     private void addRoomRadioButton_CheckedChanged(object sender, EventArgs e)
     {
+
+        roomTypeComboBox.Items.Clear();
+
+       
+
+
         numOfRoomsLabel.Text = "Number of Rooms";
         roomTypeLabel.Visible = true;
         roomTypeComboBox.Visible = true;
@@ -77,18 +83,26 @@ public partial class ChangeReservationForm : Form
         // Add the room to the database
         string operation = addRoomButton.Text;
 
-        if (operation.Equals("Add Room")) {
-        
-        
-        }
-        else if (operation.Equals("Remove Room")) { 
-        
-
-        }
-        else if (operation.Equals("Modify")) {
-        
+        if (operation.Equals("Add Room"))
+        {
 
 
         }
+        else if (operation.Equals("Remove Room"))
+        {
+
+
+        }
+        else if (operation.Equals("Modify"))
+        {
+
+
+
+        }
+    }
+
+    private void adultsNumComboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
