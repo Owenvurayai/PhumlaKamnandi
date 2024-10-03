@@ -146,7 +146,7 @@ namespace PhumlaKamnandi.Data
         #endregion
 
         #region Room
-        public void CreateRoom(int roomID, double ratePerNight, Room.RoomType roomType)
+        public void CreateRoom(int roomID, decimal ratePerNight, Room.RoomType roomType)
         {
             string command = "INSERT INTO Room (RoomID, RatePerNight, RoomType) VALUES (@RoomID, @RatePerNight, @RoomType)";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
@@ -170,7 +170,7 @@ namespace PhumlaKamnandi.Data
             return dataTable;
         }
 
-        public void UpdateRoom(int roomID, double ratePerNight, Room.RoomType roomType)
+        public void UpdateRoom(int roomID, decimal ratePerNight, Room.RoomType roomType)
         {
             string command = "UPDATE Room SET RatePerNight = @RatePerNight, RoomType = @RoomType WHERE RoomID = @RoomID";
             SqlCommand sqlCommand = new SqlCommand(command, sqlConnection);
