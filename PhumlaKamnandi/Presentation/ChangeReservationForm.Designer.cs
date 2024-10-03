@@ -86,7 +86,7 @@ partial class ChangeReservationForm
         label6.Size = new Size(298, 41);
         label6.TabIndex = 3;
         label6.Text = "Change Reservation";
-        label6.Click += label6_Click;
+       
         // 
         // panel2
         // 
@@ -300,6 +300,7 @@ partial class ChangeReservationForm
         addRoomButton.TabIndex = 46;
         addRoomButton.Text = "Add Room";
         addRoomButton.UseVisualStyleBackColor = true;
+        addRoomButton.Click += addRoomButton_Click;
         // 
         // numericUpDown1
         // 
