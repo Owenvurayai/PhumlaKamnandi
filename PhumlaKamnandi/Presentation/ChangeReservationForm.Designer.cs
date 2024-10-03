@@ -281,12 +281,10 @@ partial class ChangeReservationForm
         // addRoomRadioButton
         // 
         addRoomRadioButton.AutoSize = true;
-        addRoomRadioButton.Checked = true;
         addRoomRadioButton.Location = new Point(12, 16);
         addRoomRadioButton.Name = "addRoomRadioButton";
         addRoomRadioButton.Size = new Size(98, 24);
         addRoomRadioButton.TabIndex = 47;
-        addRoomRadioButton.TabStop = true;
         addRoomRadioButton.Text = "Add room";
         addRoomRadioButton.UseVisualStyleBackColor = true;
         addRoomRadioButton.CheckedChanged += addRoomRadioButton_CheckedChanged;
@@ -337,10 +335,6 @@ partial class ChangeReservationForm
         roomTypeComboBox.Size = new Size(327, 31);
         roomTypeComboBox.TabIndex = 43;
         roomTypeComboBox.Text = "Select";
-        roomTypeComboBox.Items.Add("Suite");
-        roomTypeComboBox.Items.Add("Single");
-        roomTypeComboBox.Items.Add("Double");
-        roomTypeComboBox.Items.Add("Deluxe");
         // 
         // roomTypeLabel
         // 
