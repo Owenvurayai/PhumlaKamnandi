@@ -49,9 +49,7 @@ namespace PhumlaKamnandi.Business
             // Convert DataTable row to Room object
             DataRow row = roomData.Rows[0];
             Room room = new Room(Convert.ToInt32(row["RoomID"]), (Room.RoomType)Enum.Parse(typeof(Room.RoomType), Convert.ToString(row["RoomType"]) ));//Create an object
-           // room.RatePerNight = Convert.ToDecimal(row["RatePerNight"]);
-          ///  room.RatePerNight = 2;
-          ///  Did not return the RatePerNight, since it is determined by the room type
+       
             return room;
 
         }

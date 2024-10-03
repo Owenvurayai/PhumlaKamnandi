@@ -10,24 +10,15 @@ namespace PhumlaKamnandi.Business
     #region Properties
     public string ReservationId { get; set; }
     public string GuestType { get; set; }  // Could be 'Guest' or 'Agent'
-    public Guest Guest { get; set; }  // The Guest object associated with the reservation
-    public BookingAgent Agent { get; set; }  // The Agent object associated with the reservation
-    public int HotelID { get; set; }
-        /*string dateString = "7/10/1974 7:10:24 AM";
-         DateTime parsedDate = DateTime.Parse(dateString); // Parses the string to a DateTime object
-         
-        DateTime specificDateTime = new DateTime(2024, 3, 16, 10, 30, 0); // March 16, 2024 at 10:30 AM
+    public string GuestID { get; set; }  // The Guest object associated with the reservation
+    public string AgentID { get; set; }  // The Agent object associated with the reservation
+   
 
-         */
     public DateTime CheckInDate { get; set; }
     public DateTime CheckOutDate { get; set; }
-
-    //public List<Room> Rooms { get; set; }//numbe rof rooms booked
-    public RoomController RoomController { get; set; }//simple management of the rooms
+   public RoomController RoomController { get; set; }//simple management of the rooms
     public int NoOfGuests { get; set; }
-  //  public List<int> NoOfRooms { get; set; } // List of room numbers for the reservation
-   // public string Extras { get; set; } // Any additional services or extras requested 
-    public ReservationStatus Status { get; private set; }  // New property to track reservation status
+  public ReservationStatus Status { get; private set; }  // New property to track reservation status
 
         public enum ReservationStatus
         {
@@ -40,30 +31,30 @@ namespace PhumlaKamnandi.Business
 
         #region Constructor
         // Constructor for Guest reservations
-        public Reservation(string reservationId, Guest guest, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
+        public Reservation(string reservationId, string ID, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
     {
         ReservationId = reservationId;
-        GuestType = "Guest";
-        Guest = guest;
+        
         CheckInDate = checkInDate;
         CheckOutDate = checkOutDate;
         NoOfGuests = noOfGuests;
         RoomController = roomsController;
            Status = ReservationStatus.Booked;
+            if (ID.Contains("AGT"))
+            {
+                //  Agent reservation
+                GuestType = "Agent";
+                AgentID = ID;
+            }
+            else if (ID.Contains("Gus"))
+            {
+                //  Guest reservation
+                GuestType = "Guest";
+                GuestID = ID;
+            }
     }
 
-    // Constructor for Agent reservations
-    public Reservation(string reservationId, BookingAgent agent, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
-       {
-         ReservationId = reservationId;
-        GuestType = "Agent";
-        Agent = agent;
-        CheckInDate = checkInDate;
-        CheckOutDate = checkOutDate;
-        NoOfGuests = noOfGuests;
-           RoomController = roomsController;
-            Status = ReservationStatus.Booked;
-        }
+  
     #endregion
 
     #region Methods
@@ -87,11 +78,11 @@ namespace PhumlaKamnandi.Business
     {
         if (GuestType == "Guest")
         {
-            return $"Reservation ID: {ReservationId}, Guest: {Guest.GetFullName()}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}";
+            return $"Reservation ID: {ReservationId}, Guest ID: {GuestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}\n";
         }
         else if (GuestType == "Agent")
         {
-            return $"Reservation ID: {ReservationId}, Booking Agent: {Agent.GetFullName()}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}";
+            return $"Reservation ID: {ReservationId}, Agent ID: {AgentID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}\n";
         }
         else
         {
@@ -121,21 +112,8 @@ namespace PhumlaKamnandi.Business
             }
 
             NoOfGuests = newNoOfGuests;
-            //Console.WriteLine($"Number of guests updated to {NoOfGuests}.");
         }
-        /*
-        //updating the number of rooms 
-        public void UpdateRooms(List<int> newRooms)
-        {
-            if (newRooms == null || newRooms.Count == 0)
-            {
-                throw new ArgumentException("You must select at least one room.");
-            }
-
-            NoOfRooms = newRooms;
-           // Console.WriteLine($"Rooms updated to: {string.Join(", ", NoOfRooms)}.");
-        }
-        */
+       
 
         //AddING More rooms to the reservations
         public void AddRoom(Room room)
@@ -148,29 +126,7 @@ namespace PhumlaKamnandi.Business
         {
             RoomController.removeRoom(room);
         }
-        /*
-        //update extras
-        public void UpdateExtras(string newExtras)
-        {
-            Extras = newExtras;
-            //Console.WriteLine($"Extras updated to: {Extras}");
-        }
-        */
-        /*This method allows updating information for the guest or agent associated with the reservation.
-         * For example, if a guest's details change, you can update the object linked to the reservation.
-         */
-        public void UpdateGuestInfo(Guest updatedGuest)
-        {
-            Guest = updatedGuest;
-            //Console.WriteLine($"Guest information updated for reservation ID: {ReservationId}.");
-        }
-
-        public void UpdateAgentInfo(BookingAgent updatedAgent)
-        {
-            Agent = updatedAgent;
-           // Console.WriteLine($"Agent information updated for reservation ID: {ReservationId}.");
-        }
-
+       
         public void RescheduleReservation(DateTime newCheckInDate, DateTime newCheckOutDate)
         {
             // This could call the UpdateDates method internally with additional business logic.

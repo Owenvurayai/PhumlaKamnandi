@@ -97,22 +97,8 @@ namespace PhumlaKamnandi.Business
         public void UpdateOccupancyStatus(string newStatus)
         {
             OccupancyStatus = newStatus;
-            //   Console.WriteLine($"Room {RoomNumber} occupancy status updated to {OccupancyStatus}.");
         }
 
-        /*
-
-        // Method to add extras to the room
-        public void AddMoreExtras(string additionalExtras)
-        {
-            Extras += " " + additionalExtras;
-            //   Console.WriteLine($"Extras for room {RoomNumber} updated to: {Extras}");
-        }
-
-        //Method to change Extras
-        public void ReplaceExtras(string newExtras)
-        {
-            Extras = newExtras;
-        }*/
+       
     }
 }
