@@ -38,7 +38,7 @@ namespace PhumlaKamnandi.Presentation
 
         private void ReservationBooking_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         /*
@@ -54,10 +54,21 @@ namespace PhumlaKamnandi.Presentation
             {
                 IsGuest = true;
 
+                creditCardLabel.Text = "Credit Card no.";
+                expirationDateLabel.Text = "Expiration Date";
+                ExpirationDateTxtbox.Width = 111;
+                cvcTxtBox.Visible = true;
+                cvcLabel.Visible = true;
             }
             else if (AgentRadioButton.Checked)//Agent Radio Button is Checked
             {
                 IsGuest = false;
+                creditCardLabel.Text = "Company Name";
+                expirationDateLabel.Text = "Email";
+                ExpirationDateTxtbox.Width = 150;
+                cvcTxtBox.Visible = false;
+                cvcLabel.Visible = false;
+
             }
         }
 
@@ -68,7 +79,12 @@ namespace PhumlaKamnandi.Presentation
                 //here just pass the roomcontroller, no need to create a new room object
                 if (IsGuest)
                 {
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text,int.Parse( crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+<<<<<<< HEAD
+                    
+                   Guest guest = new Guest(guestID_generator.GenerateGuestID(),"resID0001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+=======
+              //      Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text,int.Parse( crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+>>>>>>> efa011b911934299dc074bb65e384b7dc89235a7
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
                 }
                 else if (!IsGuest)
@@ -83,8 +99,13 @@ namespace PhumlaKamnandi.Presentation
                           // roomController.AddRoom(); add it in to the thingie
                 if (IsGuest)
                 {
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+<<<<<<< HEAD
+                    Guest guest = new Guest(guestID_generator.GenerateGuestID(),"res001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
+=======
+             //       Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+             //       //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
+>>>>>>> efa011b911934299dc074bb65e384b7dc89235a7
                 }
                 else if (!IsGuest)
                 {
@@ -96,26 +117,70 @@ namespace PhumlaKamnandi.Presentation
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            FirstNametextbox.Text = " ";
-            LastNameLabel.Text = " ";
-            PhonetextBox.Text = " ";
-            CitytextBox.Text = " ";
-            StatetextBox.Text = " ";
-            ZipCodetextBox.Text = " ";
-            CompanyNametextBox2.Text = " ";
-            ExpirationDateTxtbox.Text = " ";
-            cvcTxtBox.Text = " ";
-            ExpirationDateTxtbox.Text = " ";
-            Address1TextBox1.Text = " ";
-            Address2TextBox.Text = " ";
-            EmailAddresstextBox.Text = " ";
-            IDtextBox.Text = " ";
+            //clearing all the text box
+            FirstNametextbox.Text = "";
+            lastNameTextBox.Text = "";
+            PhonetextBox.Text = "";
+            CitytextBox.Text = "";
+            StatetextBox.Text = "";
+            ZipCodetextBox.Text = "";
+           
+            ExpirationDateTxtbox.Text = "";
+            cvcTxtBox.Text = "";
+            ExpirationDateTxtbox.Text = "";
+            EmailAddresstextBox.Text = "";
+            IDtextBox.Text = "";
         }
 
         private void ReturnHomeButton1_Click(object sender, EventArgs e)
         {
             // Go to the Home Page
             if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
+        }
+
+        private void addRoomRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Enabled = true;
+            roomTypeComboBox.Items.Clear();
+            roomTypeComboBox.Text = "Select";
+            roomTypeComboBox.Items.Add("Suite");
+            roomTypeComboBox.Items.Add("Single");
+            roomTypeComboBox.Items.Add("Double");
+            roomTypeComboBox.Items.Add("Deluxe");
+
+
+            roomTypeLabel.Visible = true;
+            roomTypeLabel.Text = "Room Type";
+            numOfRoomsLabel.Text = "Number of Rooms";
+            roomTypeComboBox.Visible = true;
+            adultsNumLabel.Visible = false;
+            adultsNumComboBox.Visible = false;
+            addRoomButton.Text = "Add Room";
+            addRoomButton.ForeColor = Color.Black;
+        }
+
+        private void removeRoomRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Enabled = false;
+            numOfRoomsLabel.Text = "RoomID";
+            roomTypeLabel.Visible = false;
+            roomTypeComboBox.Visible = false;
+            adultsNumLabel.Visible = false;
+            adultsNumComboBox.Visible = false;
+            addRoomButton.Text = "Remove Room";
+            addRoomButton.ForeColor = Color.Red;
+        }
+
+        private void changeGuestRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Enabled = false;
+            numOfRoomsLabel.Text = "RoomID";
+            roomTypeLabel.Visible = false;
+            roomTypeComboBox.Visible = false;
+            adultsNumLabel.Visible = false;
+            adultsNumComboBox.Visible = false;
+            addRoomButton.Text = "Remove Room";
+            addRoomButton.ForeColor = Color.Red;
         }
     }
 }

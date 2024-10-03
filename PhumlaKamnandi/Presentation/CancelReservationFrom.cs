@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PhumlaKamnandi.Business;
 
 namespace PhumlaKamnandi.Presentation
 {
@@ -30,11 +31,16 @@ namespace PhumlaKamnandi.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-           //Fetch instruction need to completed for the reservation data to appear on the list View
-                
-                
+            //Fetch instruction need to completed for the reservation data to appear on the list View
 
-          
+
+
+
+
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
             
         }
     }

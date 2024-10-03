@@ -202,6 +202,7 @@ partial class ChangeReservationForm
         // 
         // addRemRoomPanel
         // 
+        addRemRoomPanel.BackColor = Color.FromArgb(236, 240, 241);
         addRemRoomPanel.Controls.Add(changeGuestRadioButton);
         addRemRoomPanel.Controls.Add(adultsNumComboBox);
         addRemRoomPanel.Controls.Add(adultsNumLabel);
@@ -348,6 +349,7 @@ partial class ChangeReservationForm
         // 
         // panel3
         // 
+        panel3.BackColor = Color.FromArgb(236, 240, 241);
         panel3.Controls.Add(label11);
         panel3.Controls.Add(label2);
         panel3.Controls.Add(dateTimePicker5);

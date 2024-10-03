@@ -15,7 +15,11 @@ namespace PhumlaKamnandi.Business
         private Collection<Reservation> reservations;
        private HotelDB hotelDB;
         private ReservationDB reservationDB;
-       
+        private GuestController guestController;
+        private RoomController roomController;
+        //private A
+       private AgentController agentController;
+        
 
         // Constructor
         public ReservationController()
@@ -23,6 +27,9 @@ namespace PhumlaKamnandi.Business
             reservations = reservationDB.Reservations;
             hotelDB = new HotelDB();
             reservationDB = new ReservationDB();
+            guestController = new GuestController();
+            roomController = new RoomController();
+            agentController = new AgentController();
         }
 
       
@@ -88,14 +95,26 @@ namespace PhumlaKamnandi.Business
             {
                 if(IsGuest)
                 {
+                    //Delete the reservation in the GuestReservationTable
                     reservations.Remove(reservation);
                     reservationDB.DeleteGuestReservation(reservationId);
+                    //Delete the data of the guest in the Guest Table
+                    Guest guest = guestController.FindGuest(reservation.GuestID);
+                    guestController.RemoveGuest(guest);
+
+
                     return true;
                 }
                 else if (IsGuest == false)
                 {
+                    //Delete the reservation in the AgentReservationTable
                     reservations.Remove(reservation);
                     reservationDB.DeleteAgentReservation(reservationId);
+                    //Delete the data of the guest in the Agent Table
+                    BookingAgent agent = agentController.FindAgent(reservation.AgentID);
+                    agentController.RemoveAgent(agent);
+                    //Delete the room in the Room Table
+                    Room room = roomController.FindRoomByNumber(reservation.)
                     return true;
                 }
             }
@@ -121,28 +140,6 @@ namespace PhumlaKamnandi.Business
             }
             return null;
 
-            /*
-            DataTable dataTable=null;
-            Reservation reservation=null;
-            if (IsGuest)//Guest
-            {
-                dataTable = reservationDB.ReadGuestReservation(reservationId);
-                //Create a Reservation object from the table data
-                DataRow row = dataTable.Rows[0];
-                RoomController roomController = new RoomController();
-                reservation = new Reservation(reservationId, Convert.ToString(row["GuestID"]), DateTime.Parse(Convert.ToString(row["CheckInDate"])), DateTime.Parse(Convert.ToString(row["CheckOutDate"])),int.Parse(Convert.ToString(row["NoOfGuests"])), roomController);
-
-            }
-            else//Agent 
-            {
-                dataTable = reservationDB.ReadAgentReservation(reservationId);
-                //Create a Reservation object from the table data
-                DataRow row = dataTable.Rows[0];
-                RoomController roomController = new RoomController();
-                reservation = new Reservation(reservationId, Convert.ToString(row["GuestID"]), DateTime.Parse(Convert.ToString(row["CheckInDate"])), DateTime.Parse(Convert.ToString(row["CheckOutDate"])), int.Parse(Convert.ToString(row["NoOfGuests"])), roomController);
-
-            }
-            return reservation;*/
 
         }
 
