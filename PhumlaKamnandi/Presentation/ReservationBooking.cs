@@ -47,7 +47,7 @@ namespace PhumlaKamnandi.Presentation
          * 
          * */
 
-
+        
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (GuestRadioButton.Checked)//Guest Radio Button is Checked
@@ -79,14 +79,11 @@ namespace PhumlaKamnandi.Presentation
                 //here just pass the roomcontroller, no need to create a new room object
                 if (IsGuest)
                 {
-<<<<<<< HEAD
+
                     
                    Guest guest = new Guest(guestID_generator.GenerateGuestID(),"resID0001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
-=======
-              //      Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text,int.Parse( crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
->>>>>>> efa011b911934299dc074bb65e384b7dc89235a7
-                    //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
-                }
+
+                 }
                 else if (!IsGuest)
                 {
                     //Create an Agent Object
@@ -99,13 +96,13 @@ namespace PhumlaKamnandi.Presentation
                           // roomController.AddRoom(); add it in to the thingie
                 if (IsGuest)
                 {
-<<<<<<< HEAD
+
                     Guest guest = new Guest(guestID_generator.GenerateGuestID(),"res001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
-=======
+
              //       Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
              //       //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
->>>>>>> efa011b911934299dc074bb65e384b7dc89235a7
+
                 }
                 else if (!IsGuest)
                 {
