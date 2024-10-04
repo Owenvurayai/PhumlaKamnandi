@@ -22,7 +22,7 @@ namespace PhumlaKamnandi.Business
 
     public string ReservationId { get { return reservationID; } set { reservationID = value; } }
     //public string GuestType { get; set; }  // Could be 'Guest' or 'Agent'
-    public string GuestID { get { return guestID; } set { guestID = value; } }  // The Guest object associated with the reservation
+    public string ID { get { return guestID; } set { guestID = value; } }  // The Guest object associated with the reservation
     public int NoOfGuests { get { return noOfGuests; } set { noOfGuests = value; } }
     public ReservationStatus Status  { get { return status; } set { status = value; } }
     public DateTime CheckInDate { get { return checkinDate; } set {checkinDate = value; } }

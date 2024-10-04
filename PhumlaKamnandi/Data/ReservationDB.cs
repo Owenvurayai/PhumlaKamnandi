@@ -19,7 +19,7 @@ namespace PhumlaKamnandi.Data
          * */
         #region Data members
         private Collection<Reservation> reservations;
-        private RoomController roomController;
+       // private RoomController roomController;
         private string table1 = "GuestReservation";
         private string sqlLocal1 = "SELECT * FROM GuestReservation";
         private string table2 = "AgentReservation";
@@ -72,7 +72,7 @@ namespace PhumlaKamnandi.Data
                     string resid = Convert.ToString(myRow["ResID"]).TrimEnd();
 
                     // Iterationg over the agent/guestRoom table finding the res
-                    foreach (DataRow myGuestAgentRow in dsMain.Tables[table+"Room"].Rows)
+                    foreach (DataRow myGuestAgentRow in dsMain.Tables[table].Rows)
                     {
                         if (!(myGuestAgentRow.RowState == DataRowState.Deleted)) {
                             
@@ -112,12 +112,12 @@ namespace PhumlaKamnandi.Data
 
 
                     }
-                        if (table == "GuestReservation")
-                    {
+                      
 
                         reservation = new Reservation(Convert.ToString(myRow["ResID"]).TrimEnd(),  Convert.ToString(myRow["GuestID"]).TrimEnd(),  Convert.ToDateTime(myRow["CheckInDate"]), Convert.ToDateTime(myRow["CheckOutDate"]),tempRoom,0);
-                    }
-                  
+                   
+                        reservations.Add(reservation);
+                        
                     
                   
                 }
@@ -125,7 +125,157 @@ namespace PhumlaKamnandi.Data
         }
 
 
+        private void FillRow(DataRow aRow, Reservation resv, DB.DBOperation operation)
+        {
+            aRow["ResID"] = resv.ReservationId;
+            aRow["AgentID"] = resv.ID;
+            aRow["CheckIn"] = resv.CheckInDate;
+            aRow["CheckOut"] = resv.CheckOutDate;
+            aRow["TotalAmount"] = resv.CalculateTotalStayCost();
+            aRow["Status"] = resv.Status;
+
+            switch (operation)
+            {
+                case DB.DBOperation.Add:
+                    break;
+                case DB.DBOperation.Delete:
+                    break;
+                case DB.DBOperation.Edit:
+                    break;
+            }
+
+
+        }
+
+
+
         #endregion
+
+        #region Database Operations CRUD
+        public void DataSetChange(Reservation resv, DB.DBOperation operation)
+        {
+            DataRow aRow = null;
+            string dataTable;
+
+            if (resv.ID.Contains("AGT")){
+                dataTable = table2;
+            }
+            else
+            {
+                dataTable = table1;
+            }
+            
+           
+            switch (operation)
+            {
+                case DB.DBOperation.Add:
+                    aRow = dsMain.Tables[dataTable].NewRow();
+                    FillRow(aRow, resv, operation);
+                    //Add to the dataset
+                    dsMain.Tables[dataTable].Rows.Add(aRow);
+                    break;
+                case DB.DBOperation.Edit:
+                    //aRow = dsMain.Tables[dataTable].Rows[FindRow(resv, dataTable)];
+                    //FillRow(aRow, resv, operation);
+                    //Add to the dataset
+                    //dsMain.Tables[dataTable].Rows.Add(aRow);
+                    break;
+
+            }
+
+        }
+
+        #endregion
+
+          #region Build Parameters, Create Commands & Update database
+        private void Build_INSERT_Parameters(Reservation resv)
+        {
+            //Create Parameters to communicate with SQL INSERT...add the input parameter and set its properties.
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("ResID", SqlDbType.NVarChar, 15, "ResID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.InsertCommand.Parameters.Add(param);//Add the parameter to the Parameters collection.
+
+            if (resv.ID.Contains("AGT"))
+            {
+                param = new SqlParameter("AgentID", SqlDbType.NVarChar, 10, "AgentID");//check the original
+                param.SourceVersion = DataRowVersion.Original;
+                daMain.InsertCommand.Parameters.Add(param);
+            }
+            else
+            {
+                param = new SqlParameter("GuestID", SqlDbType.NVarChar, 10, "GuestID");//check the original
+                param.SourceVersion = DataRowVersion.Original;
+                daMain.InsertCommand.Parameters.Add(param);
+
+            }
+
+            param = new SqlParameter("@CheckIn", SqlDbType.DateTime, 15, "CheckIn");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@CheckOut", SqlDbType.DateTime, 1, "CheckOut");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@TotalAmount", SqlDbType.Decimal, 15, "TotalAmount");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Status", SqlDbType.NVarChar, 15, "Status");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.InsertCommand.Parameters.Add(param);
+
+
+            //***https://msdn.microsoft.com/en-za/library/ms179882.aspx
+        }
+
+        private void Create_INSERT_Command(Reservation resv)
+        {
+            //Create the command that must be used to insert values into the Books table..
+            switch (resv.ID)
+            {
+                case "AGT":
+                    daMain.InsertCommand = new SqlCommand("INSERT into AgentReservation (ResID, AgentID, CheckIn, CheckOut, Status) VALUES (@ResID, @AgentID, @CheckIn, @CheckOut, @Status)", cnMain);
+                    break;
+                case "GUE":
+                    daMain.InsertCommand = new SqlCommand("INSERT into GuestReservation (ResID, GuestID,CheckIn, CheckOut, TotalAmount, Status ) VALUES (@ResID, @AgentID, @CheckIn, @CheckOut, @Status)", cnMain);
+                    break;
+            
+            }
+            Build_INSERT_Parameters(resv);
+        }
+
+        public bool UpdateDataSource(Reservation resv)
+        {
+            bool success = true;
+            Create_INSERT_Command(resv);
+
+            if (resv.ID.Contains("AGT"))
+            {
+                success = UpdateDataSource(sqlLocal2, table2);
+
+            }
+            else
+            {
+                success = UpdateDataSource(sqlLocal1, table1);
+            }
+           
+            
+            return success;
+        }
+        private void Create_UPDATE_Command(Reservation resv)
+        {
+          
+
+
+           
+                daMain.UpdateCommand = new SqlCommand("UPDATE AgentReservation SET CheckIn=@CheckIn, CheckOut=@CheckIn, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @ResID", cnMain);
+
+
+
+            Build_INSERT_Parameters(resv);
+        }
 
         #region GuestReservationCRUDMethods
         public void CreateGuestReservation(string ResID, string guestID, DateTime checkIn, DateTime checkOut, int noOfGuests, decimal totalAmount)
@@ -289,7 +439,7 @@ namespace PhumlaKamnandi.Data
         }
         #endregion
 
-        #region AgentReservationRoom
+      
         public void CreateAgentReservationRoom(string reservationID, string agentID, int roomID)
         {
             string command = "INSERT INTO AgentReservationRoom (ReservationID, AgentID, RoomID)";
@@ -336,7 +486,8 @@ namespace PhumlaKamnandi.Data
             sqlCommand.ExecuteNonQuery();
             cnMain.Close();
         }
-        #endregion
+       
 
     }
 }
+#endregion

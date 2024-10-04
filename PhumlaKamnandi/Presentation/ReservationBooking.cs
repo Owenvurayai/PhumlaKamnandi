@@ -16,23 +16,14 @@ namespace PhumlaKamnandi.Presentation
         #region Properties
         public bool IsGuest;//chech whether creating for a guest or an Agent
         public bool MoreRooms = false;//Want to ad more rooms? 
-        public GuestIDAssignment guestID_generator;
-        public GuestController guestController;
-        public ReservationIDAssignment reservationID_generator;
-        public AgentIDAssignment agentID_generator;
-
-        public RoomController roomController;
+      
         public RoomNumberAssignment roomNumber_generator;
 
         #endregion
         public ReservationBooking()
         {
             InitializeComponent();
-            guestID_generator = new GuestIDAssignment();
-            guestController = new GuestController();
-            reservationID_generator = new ReservationIDAssignment();
-            agentID_generator = new AgentIDAssignment();
-            roomController = new RoomController();
+           
             roomNumber_generator = new RoomNumberAssignment();
         }
 
@@ -81,7 +72,7 @@ namespace PhumlaKamnandi.Presentation
                 {
 
                     
-                   Guest guest = new Guest(guestID_generator.GenerateGuestID(),"resID0001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+                  // Guest guest = new Guest(guestID_generator.GenerateGuestID(),"resID0001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
 
                  }
                 else if (!IsGuest)
@@ -97,7 +88,7 @@ namespace PhumlaKamnandi.Presentation
                 if (IsGuest)
                 {
 
-                    Guest guest = new Guest(guestID_generator.GenerateGuestID(),"res001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+                   // Guest guest = new Guest(guestID_generator.GenerateGuestID(),"res001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
                     //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
 
              //       Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
