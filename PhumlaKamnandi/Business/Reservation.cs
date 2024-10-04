@@ -6,19 +6,30 @@ using System.Threading.Tasks;
 
 namespace PhumlaKamnandi.Business
 {
-    public  class Reservation {
-    #region Properties
-    public string ReservationId { get; set; }
-    public string GuestType { get; set; }  // Could be 'Guest' or 'Agent'
-    public string GuestID { get; set; }  // The Guest object associated with the reservation
-    public string AgentID { get; set; }  // The Agent object associated with the reservation
-   
 
-    public DateTime CheckInDate { get; set; }
-    public DateTime CheckOutDate { get; set; }
-   public RoomController RoomController { get; set; }//simple management of the rooms
-    public int NoOfGuests { get; set; }
-  public ReservationStatus Status { get; private set; }  // New property to track reservation status
+    public  class Reservation {
+    #region Fields, Getters and Setters
+
+
+    private string reservationID;
+    private string guestID;
+    private DateTime checkoutDate;
+    private DateTime checkinDate;
+    private decimal totalAmount;
+    private int noOfGuests;
+    private ReservationStatus status;
+    List<Room> rooms;
+
+    public string ReservationId { get { return reservationID; } set { reservationID = value; } }
+    //public string GuestType { get; set; }  // Could be 'Guest' or 'Agent'
+    public string GuestID { get { return guestID; } set { guestID = value; } }  // The Guest object associated with the reservation
+    public int NoOfGuests { get { return noOfGuests; } set { noOfGuests = value; } }
+    public ReservationStatus Status  { get { return status; } set { status = value; } }
+    public DateTime CheckInDate { get { return checkinDate; } set {checkinDate = value; } }
+    public DateTime CheckOutDate { get { return checkoutDate; } set { checkoutDate = value; } }
+    public List<Room> _Rooms { get { return rooms; } set { rooms = value; } }
+
+
 
         public enum ReservationStatus
         {
@@ -31,27 +42,15 @@ namespace PhumlaKamnandi.Business
 
         #region Constructor
         // Constructor for Guest reservations
-        public Reservation(string reservationId, string ID, DateTime checkInDate, DateTime checkOutDate, int noOfGuests, RoomController roomsController)
+        public Reservation(string reservationId, string GuestID, DateTime checkInDate, DateTime checkOutDate, List<Room> rooms, int noOfGuest)
     {
         ReservationId = reservationId;
-        
         CheckInDate = checkInDate;
         CheckOutDate = checkOutDate;
         NoOfGuests = noOfGuests;
-        RoomController = roomsController;
-           Status = ReservationStatus.Booked;
-            if (ID.Contains("AGT"))
-            {
-                //  Agent reservation
-                GuestType = "Agent";
-                AgentID = ID;
-            }
-            else if (ID.Contains("Gus"))
-            {
-                //  Guest reservation
-                GuestType = "Guest";
-                GuestID = ID;
-            }
+        _Rooms  = rooms;
+        Status = ReservationStatus.Booked;
+         totalAmount= CalculateTotalStayCost();
     }
 
   
@@ -68,28 +67,39 @@ namespace PhumlaKamnandi.Business
     public decimal CalculateTotalStayCost()
         {
             int numOfNights = GetStayDuration();//in days
-            decimal totalStayCost = RoomController.getTotalCost() * numOfNights;
+
+            
+            decimal rates = 0;
+            foreach(Room room in _Rooms)
+            {
+                rates += room.RatePerNight;
+            }
+           decimal totalStayCost = rates * numOfNights;
             return totalStayCost;
         }
 
      
     // A method to display reservation details
+
+     
     public string GetReservationDetails()
     {
-
-        if (GuestType == "Guest")
+            String allRoomNum= "";
+            foreach (Room room in _Rooms)
+            {
+                allRoomNum += Convert.ToString(room.RoomNumber)+" ";
+            }
+            if (guestID.Contains("Gue"))
         {
-            return $"Reservation ID: {ReservationId}, Guest ID: {GuestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}\n";
-        }
-        else if (GuestType == "Agent")
-        {
-            return $"Reservation ID: {ReservationId}, Agent ID: {AgentID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {RoomController.getRoomNumbers()}\n";
+            return $"Reservation ID: {ReservationId}, Guest ID: {guestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {allRoomNum}\n";
         }
         else
         {
-            return "Invalid reservation type";
+            return $"Reservation ID: {ReservationId}, Agent ID: {guestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {allRoomNum}\n";
         }
+       
     } 
+    
          //updating the reservation dates 
         public void UpdateDates(DateTime newCheckInDate, DateTime newCheckOutDate)
         {
@@ -119,13 +129,13 @@ namespace PhumlaKamnandi.Business
         //AddING More rooms to the reservations
         public void AddRoom(Room room)
         {
-            RoomController.AddRoom(room);
+            _Rooms.Add(room);
         }
 
         //Remove a rooom from the reservation
         public void RemoveRoom(Room room)
         {
-            RoomController.removeRoom(room);
+            _Rooms.Remove(room);
         }
        
         public void RescheduleReservation(DateTime newCheckInDate, DateTime newCheckOutDate)

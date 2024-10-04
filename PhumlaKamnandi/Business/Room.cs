@@ -15,7 +15,7 @@ namespace PhumlaKamnandi.Business
         // Properties of the Room class
         public int RoomNumber { get; private set; }
         public RoomType roomType { get; private set; }
-        public string OccupancyStatus { get; set; }//Availability
+        public OccupancyStatus occupancyStatus { get; set; }//Availability
         public decimal RatePerNight { get; private set; }
         //public string Extras { get; set; }
         public int MaxOccupancy { get; private set; }//maximum number of people that can stay in the room
@@ -26,27 +26,30 @@ namespace PhumlaKamnandi.Business
         {
             Single = 0, Double = 1, Suite = 2, Deluxe = 3
         }
+        public enum OccupancyStatus
+        {
+            Availaible,Occupied
+        }
 
 
 
 
         #endregion
         #region constructor
-        public Room(int roomNum, RoomType roomtype)
+        public Room(int roomNumber, RoomType roomtype,OccupancyStatus occupancyStatus)
         {
-            RoomNumber = roomNum;
-            OccupancyStatus = "Available";
+            RoomNumber = roomNumber;
+            this.occupancyStatus=occupancyStatus;
             roomType = roomtype;
             AssignRates();//Assign the rates
 
 
         }
-        public Room()
+     
+        public static OccupancyStatus getStatus(string status)
         {
-            RoomNumber = 0;//There is no room Zero in the Hotel
-            OccupancyStatus = "";
-            //Extras = "";
-            //
+            if (OccupancyStatus.Availaible.ToString().Equals(status)) return OccupancyStatus.Availaible;
+            return OccupancyStatus.Occupied;
         }
         #endregion 
 
@@ -86,15 +89,11 @@ namespace PhumlaKamnandi.Business
         // Method to get room details
         public string getRoomDetails()
         {
-            string results = $"RoomNumber: {RoomNumber}, Room Type: {roomType.ToString()}\nOccupancy Status: {OccupancyStatus}\nRate Per Night: {RatePerNight}\n MaxOccupancy: {MaxOccupancy}\n";
+            string results = $"RoomNumber: {RoomNumber}, Room Type: {roomType.ToString()}\nOccupancy Status: {occupancyStatus}\nRate Per Night: {RatePerNight}\n MaxOccupancy: {MaxOccupancy}\n";
             return results;
         }
 
-        // Method to update occupancy status
-        public void UpdateOccupancyStatus(string newStatus)
-        {
-            OccupancyStatus = newStatus;
-        }
+        
 
        
     }

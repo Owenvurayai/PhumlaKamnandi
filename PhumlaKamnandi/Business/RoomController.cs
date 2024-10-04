@@ -51,7 +51,7 @@ namespace PhumlaKamnandi.Business
         {
             Room room = FindRoomByNumber(roomNumber);
             if(room != null)
-              room.UpdateOccupancyStatus(newOccupancyStatus);//Updates the room's availability
+              room.occupancyStatus=Room.getStatus(newOccupancyStatus);//Updates the room's availability
             hotelDB.UpdateRoom(room.RoomNumber, room.RatePerNight, room.roomType);//Updates the availability in the database
         }
 

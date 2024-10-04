@@ -12,16 +12,22 @@ namespace PhumlaKamnandi.Data
 {
     public class DB
     {
-
         #region Variable declaration
         //***Once the database is created you can find the correct connection string by using the Settings.Default object to select the correct connection string
-        
         private string strConn = Settings.Default.reservationDBconnectionString;
         protected SqlConnection cnMain;
         protected DataSet dsMain;
         protected SqlDataAdapter daMain;
         #endregion
-        //
+        #region Enumeration type
+        public enum DBOperation
+        {
+            Add,
+            Edit,
+            Delete
+        }
+        #endregion
+
         #region Constructor
         public DB()
         {
@@ -34,15 +40,13 @@ namespace PhumlaKamnandi.Data
             catch (SystemException e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message, "Error");
-                Environment.Exit(0);
+                return;
             }
         }
 
         #endregion
 
         #region Update the DateSet
-
-        // Fills the local dataset with the data from a specific table
         public void FillDataSet(string aSQLstring, string aTable)
         {
             //fills dataset fresh from the db for a specific table and with a specific Query
@@ -50,7 +54,7 @@ namespace PhumlaKamnandi.Data
             {
                 daMain = new SqlDataAdapter(aSQLstring, cnMain);
                 cnMain.Open();
-                dsMain.Clear();
+                //dsMain.Clear();
                 daMain.Fill(dsMain, aTable);
                 cnMain.Close();
             }
@@ -89,14 +93,5 @@ namespace PhumlaKamnandi.Data
             return success;
         }
         #endregion
-
-        public enum DBOperation
-        {
-            Add,
-            Edit,
-            Delete
-        }
-
-
     }
 }
