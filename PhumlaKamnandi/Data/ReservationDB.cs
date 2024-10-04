@@ -36,7 +36,9 @@ namespace PhumlaKamnandi.Data
         private string sqlLoca7 = "SELECT * FROM Staff";
         private string table8 = "Account";
         private string sqlLocal8 = "SELECT * FROM Account";
-      
+        private string table9 = "AgentReservationRoom";
+        private string sqlLocal9 = "SELECT * FROM AgentReservationRoom";
+
         public Collection<Reservation> Reservations
         {
             get { return reservations; }
@@ -47,12 +49,19 @@ namespace PhumlaKamnandi.Data
         public ReservationDB(): base()
         {
             reservations = new Collection<Reservation>();
+
+            FillDataSet(sqlLocal3, table3);
+            //Add2Collection(table3);
+            FillDataSet(sqlLocal9, table9);
+            //Add2Collection(table9);
+            FillDataSet(sqlLocal4, table4);
+            //Add2Collection(table4);
+
             FillDataSet(sqlLocal1, table1);
             Add2Collection(table1);
             FillDataSet(sqlLocal2, table2);
             Add2Collection(table2);
-            FillDataSet(sqlLocal3, table3);
-            Add2Collection(table3);
+            
         }
 
 
@@ -62,6 +71,16 @@ namespace PhumlaKamnandi.Data
             DataRow myRow = null;
             Reservation reservation = null;
             List<Room> tempRoom = new List<Room>();
+            string roomTable=table;
+
+            if (roomTable.Equals("AgentReservation"))
+            {
+                roomTable += "Room";
+            }
+            else
+            {
+                roomTable += "Rooms";
+            }
             //READ from the table  
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
@@ -72,7 +91,7 @@ namespace PhumlaKamnandi.Data
                     string resid = Convert.ToString(myRow["ResID"]).TrimEnd();
 
                     // Iterationg over the agent/guestRoom table finding the res
-                    foreach (DataRow myGuestAgentRow in dsMain.Tables[table].Rows)
+                    foreach (DataRow myGuestAgentRow in dsMain.Tables[roomTable].Rows)
                     {
                         if (!(myGuestAgentRow.RowState == DataRowState.Deleted)) {
                             
@@ -88,13 +107,13 @@ namespace PhumlaKamnandi.Data
 
                                         if (roomid.Equals(Convert.ToString(roomRow["RoomID"]))) {
 
-                                            string roomtype = Convert.ToString(roomRow["Roomid"]);
+                                            string roomtype = Convert.ToString(roomRow["RoomType"]);
                                             Room r= null;
 
-                                            if (roomtype.Equals("Single")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Single, Room.getStatus(Convert.ToString(myGuestAgentRow["RoomType"]))); }
-                                            if (roomtype.Equals("Double")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Double, Room.getStatus(Convert.ToString(myGuestAgentRow["RoomType"]))); }
-                                            if (roomtype.Equals("Deluxe")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Deluxe, Room.getStatus(Convert.ToString(myGuestAgentRow["RoomType"]))); }
-                                            if (roomtype.Equals("Suite")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Suite, Room.getStatus(Convert.ToString(myGuestAgentRow["RoomType"]))); }
+                                            if (roomtype.Equals("Single")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Single, Room.getStatus(Convert.ToString(roomRow["Status"]))); }
+                                            if (roomtype.Equals("Double")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Double, Room.getStatus(Convert.ToString(roomRow["Status"]))); }
+                                            if (roomtype.Equals("Deluxe")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Deluxe, Room.getStatus(Convert.ToString(roomRow["Status"]))); }
+                                            if (roomtype.Equals("Suite")) { r = new Room(Convert.ToInt16(roomid), Room.RoomType.Suite, Room.getStatus(Convert.ToString(roomRow["Status"]))); }
 
                                             tempRoom.Add(r);
                                             
@@ -113,10 +132,21 @@ namespace PhumlaKamnandi.Data
 
                     }
                       
+                    if (table.Equals("GuestReservation"))
+                    {
 
-                        reservation = new Reservation(Convert.ToString(myRow["ResID"]).TrimEnd(),  Convert.ToString(myRow["GuestID"]).TrimEnd(),  Convert.ToDateTime(myRow["CheckInDate"]), Convert.ToDateTime(myRow["CheckOutDate"]),tempRoom,0);
-                   
+                        reservation = new Reservation(Convert.ToString(myRow["ResID"]).TrimEnd(), Convert.ToString(myRow["GuestID"]).TrimEnd(), Convert.ToDateTime(myRow["CheckIn"]), Convert.ToDateTime(myRow["CheckOut"]), tempRoom, 0);
+
                         reservations.Add(reservation);
+
+                    }
+                    else
+                    {
+                        reservation = new Reservation(Convert.ToString(myRow["ResID"]).TrimEnd(), Convert.ToString(myRow["AgentID"]).TrimEnd(), Convert.ToDateTime(myRow["CheckIn"]), Convert.ToDateTime(myRow["CheckOut"]), tempRoom, 0);
+
+                        reservations.Add(reservation);
+                    }
+
                         
                     
                   
@@ -127,9 +157,18 @@ namespace PhumlaKamnandi.Data
 
         private void FillRow(DataRow aRow, Reservation resv, DB.DBOperation operation)
         {
+
             aRow["ResID"] = resv.ReservationId;
-            aRow["AgentID"] = resv.ID;
-            aRow["CheckIn"] = resv.CheckInDate;
+
+            if (resv.ID.Contains("AGT"))
+            {
+                aRow["AgentID"] = resv.ID;
+            }
+            else {
+                aRow["GuestID"] = resv.ID;
+            }
+
+           aRow["CheckIn"] = resv.CheckInDate;
             aRow["CheckOut"] = resv.CheckOutDate;
             aRow["TotalAmount"] = resv.CalculateTotalStayCost();
             aRow["Status"] = resv.Status;
@@ -171,7 +210,6 @@ namespace PhumlaKamnandi.Data
                 case DB.DBOperation.Add:
                     aRow = dsMain.Tables[dataTable].NewRow();
                     FillRow(aRow, resv, operation);
-                    //Add to the dataset
                     dsMain.Tables[dataTable].Rows.Add(aRow);
                     break;
                 case DB.DBOperation.Edit:
@@ -190,10 +228,12 @@ namespace PhumlaKamnandi.Data
           #region Build Parameters, Create Commands & Update database
         private void Build_INSERT_Parameters(Reservation resv)
         {
+            
             //Create Parameters to communicate with SQL INSERT...add the input parameter and set its properties.
             SqlParameter param = default(SqlParameter);
             param = new SqlParameter("ResID", SqlDbType.NVarChar, 15, "ResID");
-            param.SourceVersion = DataRowVersion.Original;
+            param.SourceVersion = DataRowVersion.Current;
+            
             daMain.InsertCommand.Parameters.Add(param);//Add the parameter to the Parameters collection.
 
             if (resv.ID.Contains("AGT"))
@@ -214,7 +254,7 @@ namespace PhumlaKamnandi.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckOut", SqlDbType.DateTime, 1, "CheckOut");
+            param = new SqlParameter("@CheckOut", SqlDbType.DateTime, 15, "CheckOut");
             param.SourceVersion = DataRowVersion.Current;
             daMain.InsertCommand.Parameters.Add(param);
 
@@ -239,7 +279,7 @@ namespace PhumlaKamnandi.Data
                     daMain.InsertCommand = new SqlCommand("INSERT into AgentReservation (ResID, AgentID, CheckIn, CheckOut, Status) VALUES (@ResID, @AgentID, @CheckIn, @CheckOut, @Status)", cnMain);
                     break;
                 case "GUE":
-                    daMain.InsertCommand = new SqlCommand("INSERT into GuestReservation (ResID, GuestID,CheckIn, CheckOut, TotalAmount, Status ) VALUES (@ResID, @AgentID, @CheckIn, @CheckOut, @Status)", cnMain);
+                    daMain.InsertCommand = new SqlCommand("INSERT into GuestReservation (ResID, GuestID,CheckIn, CheckOut, TotalAmount, Status ) VALUES (@ResID, @GuestID, @CheckIn, @CheckOut, @Status)", cnMain);
                     break;
             
             }
@@ -266,11 +306,9 @@ namespace PhumlaKamnandi.Data
         }
         private void Create_UPDATE_Command(Reservation resv)
         {
-          
-
-
+  
            
-                daMain.UpdateCommand = new SqlCommand("UPDATE AgentReservation SET CheckIn=@CheckIn, CheckOut=@CheckIn, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @ResID", cnMain);
+          daMain.UpdateCommand = new SqlCommand("UPDATE AgentReservation SET CheckIn=@CheckIn, CheckOut=@CheckOut, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @ResID", cnMain);
 
 
 

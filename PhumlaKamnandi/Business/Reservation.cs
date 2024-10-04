@@ -12,7 +12,7 @@ namespace PhumlaKamnandi.Business
 
 
     private string reservationID;
-    private string guestID;
+    private string id;
     private DateTime checkoutDate;
     private DateTime checkinDate;
     private decimal totalAmount;
@@ -22,7 +22,7 @@ namespace PhumlaKamnandi.Business
 
     public string ReservationId { get { return reservationID; } set { reservationID = value; } }
     //public string GuestType { get; set; }  // Could be 'Guest' or 'Agent'
-    public string ID { get { return guestID; } set { guestID = value; } }  // The Guest object associated with the reservation
+    public string ID { get { return id; } set { id = value; } }  // The Guest object associated with the reservation
     public int NoOfGuests { get { return noOfGuests; } set { noOfGuests = value; } }
     public ReservationStatus Status  { get { return status; } set { status = value; } }
     public DateTime CheckInDate { get { return checkinDate; } set {checkinDate = value; } }
@@ -42,7 +42,7 @@ namespace PhumlaKamnandi.Business
 
         #region Constructor
         // Constructor for Guest reservations
-        public Reservation(string reservationId, string GuestID, DateTime checkInDate, DateTime checkOutDate, List<Room> rooms, int noOfGuest)
+        public Reservation(string reservationId, string ID, DateTime checkInDate, DateTime checkOutDate, List<Room> rooms, int noOfGuest)
     {
         ReservationId = reservationId;
         CheckInDate = checkInDate;
@@ -51,6 +51,7 @@ namespace PhumlaKamnandi.Business
         _Rooms  = rooms;
         Status = ReservationStatus.Booked;
          totalAmount= CalculateTotalStayCost();
+            this.ID = ID;
     }
 
   
@@ -89,13 +90,13 @@ namespace PhumlaKamnandi.Business
             {
                 allRoomNum += Convert.ToString(room.RoomNumber)+" ";
             }
-            if (guestID.Contains("Gue"))
+            if (ID.Contains("Gue"))
         {
-            return $"Reservation ID: {ReservationId}, Guest ID: {guestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {allRoomNum}\n";
+            return $"Reservation ID: {ReservationId}, Guest ID: {ID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {allRoomNum}\n";
         }
         else
         {
-            return $"Reservation ID: {ReservationId}, Agent ID: {guestID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {allRoomNum}\n";
+            return $"Reservation ID: {ReservationId}, Agent ID: {ID}, Check-in: {CheckInDate.ToShortDateString()}, Check-out: {CheckOutDate.ToShortDateString()}, Guests: {NoOfGuests}, Rooms: {allRoomNum}\n";
         }
        
     } 

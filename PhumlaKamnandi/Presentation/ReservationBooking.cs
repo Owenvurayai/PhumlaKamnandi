@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static PhumlaKamnandi.Business.Room;
+using PhumlaKamnandi.Data;
 namespace PhumlaKamnandi.Presentation
 {
     public partial class ReservationBooking : Form
@@ -18,12 +19,13 @@ namespace PhumlaKamnandi.Presentation
         public bool MoreRooms = false;//Want to ad more rooms? 
       
         public RoomNumberAssignment roomNumber_generator;
+        ReservationDB res;
 
         #endregion
         public ReservationBooking()
         {
             InitializeComponent();
-           
+            res = new ReservationDB();
             roomNumber_generator = new RoomNumberAssignment();
         }
 
@@ -65,42 +67,13 @@ namespace PhumlaKamnandi.Presentation
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            if (MoreRooms)
-            {
-                //here just pass the roomcontroller, no need to create a new room object
-                if (IsGuest)
-                {
 
-                    
-                  // Guest guest = new Guest(guestID_generator.GenerateGuestID(),"resID0001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
+            List<Room> rooms = new List<Room>();
+            rooms.Add(new Room(1, RoomType.Single, OccupancyStatus.Occupied));
+            Reservation reservation = new Reservation("R001", "AGT001", new DateTime(2024, 10, 10), new DateTime(2024, 10, 15),rooms, 3);
+            res.DataSetChange(reservation, DB.DBOperation.Add);
+            res.UpdateDataSource(reservation);
 
-                 }
-                else if (!IsGuest)
-                {
-                    //Create an Agent Object
-                }
-
-            }
-            else if (!MoreRooms)
-            {
-                Room room;//Create the room object here, USE THE ROOMidgENERATOR TO generate the roomID
-                          // roomController.AddRoom(); add it in to the thingie
-                if (IsGuest)
-                {
-
-                   // Guest guest = new Guest(guestID_generator.GenerateGuestID(),"res001", FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
-                    //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
-
-             //       Guest guest = new Guest(guestID_generator.GenerateGuestID(), FirstNametextbox.Text, LastNameLabel.Text, PhonetextBox.Text, CitytextBox.Text + ", " + StatetextBox.Text + ", " + ZipCodetextBox.Text, EmailAddresstextBox.Text, int.Parse(crdTextBox.Text), ExpirationDateTxtbox.Text, int.Parse(cvcTxtBox.Text));
-             //       //  Reservation reservation = new Reservation(reservationID_generator.GenerateReservationID(), guest, checkInDate, checkOutDate, noOfGuests, roomController);
-
-                }
-                else if (!IsGuest)
-                {
-                    //Create an Agent Object
-                }
-
-            }
         }
 
         private void ClearButton_Click(object sender, EventArgs e)

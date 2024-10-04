@@ -36,6 +36,7 @@ namespace PhumlaKamnandi.Data
                 //Open a connection & create a new dataset object
                 cnMain = new SqlConnection(strConn);
                 dsMain = new DataSet();
+                daMain = new SqlDataAdapter();
             }
             catch (SystemException e)
             {
