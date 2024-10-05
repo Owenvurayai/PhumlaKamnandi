@@ -10,8 +10,24 @@ namespace PhumlaKamnandi.Business
 {
     public class RoomNumberAssignment
     {
+        private static readonly RoomNumberAssignment instance = new RoomNumberAssignment();
+
         private ArrayList assignedRooms = new ArrayList();//Store the Assigned Rooms
         private Random random = new Random();//use it to generate a room number
+
+
+
+        // Public static property to access the instance
+        public static RoomNumberAssignment Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        // Private constructor to prevent instantiation
+        private RoomNumberAssignment() { }
 
         public int AssignRoom(RoomType roomType)
         {
@@ -24,8 +40,15 @@ namespace PhumlaKamnandi.Business
             assignedRooms.Add(roomNumber); // Assign the room number
             return roomNumber;
         }
-
-        private int GenerateRoomNumber(RoomType roomType)//generate a room number according to the room type
+        public void RemoveRoomNumber(int roomNumber)
+        {
+            assignedRooms.Remove(roomNumber);
+        }
+        public bool IsAssignedRoom(int roomNumber)
+        {
+            return assignedRooms.Contains(roomNumber);
+        }
+        public int GenerateRoomNumber(RoomType roomType)//generate a room number according to the room type
         {
             // Logic to generate room numbers based on room type
             switch (roomType)

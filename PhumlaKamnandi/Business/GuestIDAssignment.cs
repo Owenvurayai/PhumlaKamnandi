@@ -9,9 +9,16 @@ namespace PhumlaKamnandi.Business
 {
     public class GuestIDAssignment
     {
+        private static readonly AgentIDAssignment agentInstance = new AgentIDAssignment();
         private ArrayList assignedGuestIDs = new ArrayList();
         private int counter = 1;//increment this to make the ID unique
-
+        public static AgentIDAssignment AgentInstance
+        {
+            get
+            {
+                return agentInstance;
+            }
+        }
         public string GenerateGuestID()
         {
             string guestID = "GuS" +(counter++) ;//generate a unique ID, which will be, "GuS1, GuS2

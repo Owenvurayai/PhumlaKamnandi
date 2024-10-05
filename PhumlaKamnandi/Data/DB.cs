@@ -13,7 +13,7 @@ namespace PhumlaKamnandi.Data
     public class DB
     {
         #region Variable declaration
-        //***Once the database is created you can find the correct connection string by using the Settings.Default object to select the correct connection string
+        //*Once the database is created you can find the correct connection string by using the Settings.Default object to select the correct connection string
         private string strConn = Settings.Default.reservationDBconnectionString;
         protected SqlConnection cnMain;
         protected DataSet dsMain;
@@ -36,7 +36,6 @@ namespace PhumlaKamnandi.Data
                 //Open a connection & create a new dataset object
                 cnMain = new SqlConnection(strConn);
                 dsMain = new DataSet();
-                daMain = new SqlDataAdapter();
             }
             catch (SystemException e)
             {
@@ -75,7 +74,7 @@ namespace PhumlaKamnandi.Data
             {
                 //open the connection
                 cnMain.Open();
-                //***update the database table via the data adapter
+                //*update the database table via the data adapter
                 daMain.Update(dsMain, table);
                 //---close the connection
                 cnMain.Close();

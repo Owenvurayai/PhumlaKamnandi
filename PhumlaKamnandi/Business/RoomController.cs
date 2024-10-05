@@ -1,39 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhumlaKamnandi.Data;
-using PhumlaKamnandi.Business;
-using static PhumlaKamnandi.Business.Room;
-using System.Collections.ObjectModel;
 
 namespace PhumlaKamnandi.Business
 {
     public class RoomController
     {
-        private HotelDB hotelDB;
-        // List of Reservations
-        private Collection<Room> rooms;//store the occupied rooms
-
+       
+        private RoomDB roomDB;
+        private List<Room> newRooms;
+        private String resID;
+        private string ID;
+        private Collection<Room> rooms;
+        private ReservationController reservationController;
+        private List<Room> oldRooms;
+        private bool IsGuest;
         // Constructor
-        public RoomController()
+      
+        private void Initialize()
         {
-            hotelDB = new HotelDB();
-            rooms = hotelDB.AllRooms;//gets the occupied rooms in the database
+            roomDB = new RoomDB();
+            rooms = roomDB.Rooms;
         }
-
-        //Add the room in the database
-        public void AddRoom(Room room)
+        public RoomController( List<Room> rooms, string resID, string ID, bool IsGuest)
         {
-            
-            //Add the room in the database
-            hotelDB.CreateRoom(room.RoomNumber, room.RoomNumber, room.roomType);
-            rooms.Add(room);//add in the list too
-         
+            Initialize();
+            this.newRooms = rooms;//Rooms that are updated
+            this.IsGuest = IsGuest;
+            this.resID = resID;
+            reservationController = new ReservationController();
+            this.ID = ID;
+            GetOldRooms();
         }
+        //get the initial booked rooms
+        private void GetOldRooms()
+        { 
+           Reservation reservation = reservationController.FindReservationById(resID);
+           oldRooms = reservation.BookedRooms();//returns the initial booked rooms
 
+        }
+        public void UpdateRooms()
+        {
+            foreach (Room newroom in newRooms)
+            {
+                //check every room if it is new
+                foreach (Room oldroom in oldRooms)
+                {
+                    if (newroom.RoomNumber == oldroom.RoomNumber)
+                    {
+                        //nothing to change here
+                        continue;
+                    }
+                    else
+                    {
+                        //A new room is added
+                        //add it into the database
+                        //but first check whether what type of a Agent/Guest
+                        //SInce we are not deleting the rervation room
+                        //we want to make the old room available
+                        oldroom.occupancyStatus = Room.OccupancyStatus.Availaible;
+                        RoomNumberAssignment.Instance.RemoveRoomNumber(oldroom.RoomNumber);
+                        newroom.occupancyStatus = Room.OccupancyStatus.Occupied;
+                        /*
+                         * Make changes in to the database
+                         * */
+                        roomDB.DataSetChange(oldroom, DB.DBOperation.Edit);
+                        roomDB.DataSetChange(newroom, DB.DBOperation.Add);
+                        //update the changes
+                        roomDB.UpdateDataSource(oldroom);
+                        roomDB.UpdateDataSource(newroom);
+
+                    }
+                }
+            }
+        }
+     
+        //method to change the status of the room when the reservaation is cancelled
+        public void RemoveRooms()
+        {
+            foreach(Room room in newRooms)
+            {
+                room.occupancyStatus = Room.OccupancyStatus.Availaible;
+                /*
+                 * Make changes into the database 
+                 * */
+                roomDB.DataSetChange(room, DB.DBOperation.Edit);
+                roomDB.UpdateDataSource(room);
+            }
+        }
+        
 
         // Method to find a room by room number
         public Room FindRoomByNumber(int roomNumber)
@@ -46,31 +106,26 @@ namespace PhumlaKamnandi.Business
             return null;
         }
 
-        // Method to update a room's availability
-        public void UpdateRoomAvailability(int roomNumber, string newOccupancyStatus)
+      
+        
+
+        //Return all the occupied rooms
+        public Collection<Room> GetAllOccupiedRooms()
         {
-            Room room = FindRoomByNumber(roomNumber);
-            if(room != null)
-              room.occupancyStatus=Room.getStatus(newOccupancyStatus);//Updates the room's availability
-            hotelDB.UpdateRoom(room.RoomNumber, room.RatePerNight, room.roomType);//Updates the availability in the database
+           return rooms;
         }
 
-        //DO not know about this one, but created another one with return type of string
-        public Collection<Room> GetAllRooms()
-        {
-            return rooms;//all the rooms in the database
-        }
-
-        //returns total costs of all booked rooms
+        //returns total costs of all booked rooms (currently booked rooms)
         public decimal getTotalCost()
         {
             decimal totalCost = 0;
-            foreach(Room room in rooms)
+            foreach(Room room in newRooms)
             {
                 totalCost += room.RatePerNight;
             }
             return totalCost;
         }
+
 
         //get the rates using a room number
         public decimal getRatePerNight(int roomNumber)
@@ -88,28 +143,6 @@ namespace PhumlaKamnandi.Business
                   return "Not found!!!";
         }
 
-        //Method to remove rooms
-        public void removeRoom(Room room)
-        {   
-            hotelDB.DeleteRoom(room.RoomNumber);//remove the room in the database
-            rooms.Remove(room);//remove the room in a list
-        }
-
-
-        //Should I keep this one
-        public string getRoomNumbers()
-        {
-            string numbers = "";
-            
-            foreach (Room room in rooms)
-            {
-                if(rooms.Count >1)
-                   numbers += room.RoomNumber + ", ";//comma because they are many
-                else 
-                     numbers += room.RoomNumber;//only 1
-            }
-            return numbers;
-        }
 
         //get all booked rooms details
        public string getAllRoomDetails()
@@ -121,5 +154,6 @@ namespace PhumlaKamnandi.Business
             }
             return results;
         }
+        
     }
 }

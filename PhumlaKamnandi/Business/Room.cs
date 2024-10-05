@@ -36,16 +36,23 @@ namespace PhumlaKamnandi.Business
 
         #endregion
         #region constructor
-        public Room(int roomNumber, RoomType roomtype,OccupancyStatus occupancyStatus)
+        public Room(int roomNumber, RoomType roomtype)
         {
             RoomNumber = roomNumber;
-            this.occupancyStatus=occupancyStatus;
+            this.occupancyStatus=OccupancyStatus.Availaible;
             roomType = roomtype;
             AssignRates();//Assign the rates
 
 
         }
-     
+        public static RoomType GetRoomType(string roomTypeStr)
+        {
+            if (RoomType.Single.ToString().Equals(roomTypeStr)) return RoomType.Single;
+            else if (RoomType.Double.ToString().Equals(roomTypeStr)) return RoomType.Double;
+            else if (RoomType.Suite.ToString().Equals(roomTypeStr)) return RoomType.Suite;
+            return RoomType.Deluxe;
+        }
+
         public static OccupancyStatus getStatus(string status)
         {
             if (OccupancyStatus.Availaible.ToString().Equals(status)) return OccupancyStatus.Availaible;

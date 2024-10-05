@@ -124,4 +124,14 @@ public partial class ChangeReservationForm : Form
     {
 
     }
+
+    private void panel2_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void submitButton_Click(object sender, EventArgs e)
+    {
+
+    }
 }

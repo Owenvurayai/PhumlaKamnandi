@@ -138,7 +138,11 @@ namespace PhumlaKamnandi.Business
         {
             _Rooms.Remove(room);
         }
-       
+       //added this
+       public List<Room> BookedRooms()
+        {
+            return _Rooms;
+        }
         public void RescheduleReservation(DateTime newCheckInDate, DateTime newCheckOutDate)
         {
             // This could call the UpdateDates method internally with additional business logic.

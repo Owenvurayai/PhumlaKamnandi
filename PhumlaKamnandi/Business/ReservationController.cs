@@ -13,148 +13,196 @@ namespace PhumlaKamnandi.Business
     {
         // List of Reservations
         private Collection<Reservation> reservations;
-       private HotelDB hotelDB;
-        private ReservationDB reservationDB;
-        private GuestController guestController;
+        private ReservationDB resDB;
         private RoomController roomController;
-        //private A
-       private AgentController agentController;
-        
 
         // Constructor
         public ReservationController()
         {
-            reservations = reservationDB.Reservations;
-            hotelDB = new HotelDB();
-            reservationDB = new ReservationDB();
-            guestController = new GuestController();
-            roomController = new RoomController();
-            agentController = new AgentController();
+            reservations = resDB.Reservations;
+            resDB = new ReservationDB();
         }
-
-      
-        public void Add2List(Reservation res, bool IsGuest)
+        #region Updating into the DB
+        public void DataMaintenance(string reservationID, string ID, DateTime checkInDate, DateTime checkOutDate, List<Room> rooms, int noOfGuest, DB.DBOperation dBOperation)
         {
-            if (IsGuest)//If it is a Guest
-            {
-                //add to the database
-                reservationDB.CreateGuestReservation(res.ReservationId, res.GuestID, res.CheckInDate, res.CheckOutDate,res.NoOfGuests, res.CalculateTotalStayCost());
-                reservations.Add(res);//adds it into a List
-            }
-            else//An Agent
-            {
-                //add to the database
-                 reservationDB.CreateAgentReservation(res.ReservationId, res.AgentID, res.CheckInDate, res.CheckOutDate, res.NoOfGuests,res.CalculateTotalStayCost());
-                reservations.Add(res);//adds it into a List
-            }
+           
+            //Create a reservation object
+          //  string reservationID = ReservationIDAssignment.instance.GenerateReservationID();
+            Reservation reservation = new Reservation(reservationID, ID, checkInDate, checkOutDate, rooms, noOfGuest);
 
+            
+
+            //Store the index of the Reservation that must be Added/Changed/Deleted
+            int index = 0;
+            //Need to know which Table we are supposed to work with between
+            //Agent and A guEST
+            //Use DataSetChange in the DB
+            resDB.DataSetChange(reservation, dBOperation);
+            //Check which operation is being done
+            switch (dBOperation)
+            {
+                //Create a Reservation
+                case DB.DBOperation.Add:
+                    if (reservation.ID.Contains("AGT"))
+                    {
+                        
+                        //Add the Reservation to the Reservation Table
+                        resDB.DataSetChange(reservation, dBOperation);
+                        //pushing the changes in to the database
+                        resDB.UpdateDataSource(reservation);
+                        reservations.Add(reservation);
+                        //Change in the Room Table
+                        roomController = new RoomController(rooms, reservationID, ID, false);
+                        roomController.UpdateRooms();
+                        //Deal with the changes into the database
+
+                    }
+                    else
+                    {
+                        //Add the Reservation to the Reservation Table
+                        resDB.DataSetChange(reservation, dBOperation);
+                        //pushing the changes in to the database
+                        resDB.UpdateDataSource(reservation);
+                        reservations.Add(reservation);
+                        //Change in the Room Table
+                        roomController = new RoomController( rooms, reservationID, ID, true);
+                        //Deals with the Room changes(Room DB)
+                        roomController.UpdateRooms();
+                    }
+                    break;
+                case DB.DBOperation.Edit:
+                    if (reservation.ID.Contains("AGT"))
+                    {
+                        //Add the Reservation to the Reservation Table
+                        resDB.DataSetChange(reservation, dBOperation);
+                        //pushing the changes in to the database
+                        resDB.UpdateDataSource(reservation);
+                        index = FindIndex(reservationID);
+                        reservations[index] = reservation;
+                        //Change in the Room Table
+                        roomController = new RoomController( rooms, reservationID, ID, true);
+                        //Deals with the Room changes
+                        roomController.UpdateRooms();
+                    }
+                    else
+                    {
+                        //Add the Reservation to the Reservation Table
+                        resDB.DataSetChange(reservation, dBOperation);
+                        //pushing the changes in to the database
+                        resDB.UpdateDataSource(reservation);
+                        index = FindIndex(reservationID);
+                        reservations[index] = reservation;
+                        //Change in the Room Table
+                        roomController = new RoomController(rooms, reservationID, ID, true);
+                        //Deals with the Room changes
+                        roomController.UpdateRooms();
+                    }
+
+                    break;
+
+                case DB.DBOperation.Delete:
+                    //We update, we do not delete, we change the status
+                    if (reservation.ID.Contains("AGT"))
+                    {
+                        //Add the Reservation to the Reservation Table
+                        reservation = ChangeStatus(reservation.ReservationId);
+                        resDB.DataSetChange(reservation, dBOperation);
+                        //pushing the changes in to the database
+                        resDB.UpdateDataSource(reservation);
+                        index = FindIndex(reservationID);
+                        reservations.Remove(reservations[index]);
+                        //Change in the Room Table
+                        roomController = new RoomController(rooms, reservationID, ID, true);
+                        //Deals with the Room changes
+                        roomController.RemoveRooms();
+
+                    }
+                    else
+                    {
+                        //Add the Reservation to the Reservation Table
+                        reservation = ChangeStatus(reservation.ReservationId);
+                        resDB.DataSetChange(reservation, dBOperation);
+                        //pushing the changes in to the database
+                        resDB.UpdateDataSource(reservation);
+                        index = FindIndex(reservationID);
+                        reservations.Remove(reservations[index]);
+                        //Change in the Room Table
+                        roomController = new RoomController(rooms, reservationID, ID, true);
+                        //Deals with the Room changes
+                        roomController.RemoveRooms();
+                    }
+                    ReservationIDAssignment.instance.RemoveRes(reservationID);//Deletes the generated reservationID from the ArrayList
+                    break;
+            
+
+            }
         }
 
-       
-       public void Remove2List(Reservation res, bool IsGuest)
-       {
-           if (IsGuest)
-           {
-                //remove from the database
-                reservationDB.DeleteGuestReservation(res.ReservationId);
-                //delete from the collection
-                reservations.Remove(res);
-           }
-           else
-           {
-                //remove from the database
-                reservationDB.DeleteAgentReservation(res.ReservationId);
-                //delete from the collection
-                reservations.Remove(res);
-            }
-       }
       
-       // Method to update a reservation
-       public bool UpdateReservation(Reservation res, bool IsGuest)
-       {
-           int Index = reservations.IndexOf(res);
-            if (IsGuest)
-            {
-                reservationDB.UpdateGuestReservation(res.ReservationId, res.CheckInDate, res.CheckOutDate, res.NoOfGuests, res.CalculateTotalStayCost());
-                reservations[Index] = res;
-            }
-            else if (IsGuest == false)
-            {
-                reservationDB.UpdateAgentReservation(res.ReservationId, res.CheckInDate, res.CheckOutDate, res.NoOfGuests, res.CalculateTotalStayCost());
-                reservations[Index] = res;
-            }
-           return true;
-       }
+        #endregion
 
-       // Method to cancel a reservation
-       public bool CancelReservationByResID(string reservationId, bool IsGuest)
-       {
-           Reservation reservation = FindReservationById(reservationId);
-
-            if(reservation!=null)
-            {
-                if(IsGuest)
-                {
-                    //Delete the reservation in the GuestReservationTable
-                    reservations.Remove(reservation);
-                    reservationDB.DeleteGuestReservation(reservationId);
-                    //Delete the data of the guest in the Guest Table
-                    Guest guest = guestController.FindGuest(reservation.GuestID);
-                    guestController.RemoveGuest(guest);
-                    //Remove the Room 
-                    reservationDB.DeleteGuestReservation(reservationId);
+        public Reservation ChangeStatus(string resID)
+        {
+            Reservation reservation = FindReservationById(resID);
+            reservation.Status = Reservation.ReservationStatus.Cancelled;
+            return reservation;
+        }
 
 
-                    return true;
-                }
-                else if (IsGuest == false)
-                {
-                    //Delete the reservation in the AgentReservationTable
-                    reservations.Remove(reservation);
-                    reservationDB.DeleteAgentReservation(reservationId);
-                    //Delete the data of the guest in the Agent Table
-                    BookingAgent agent = agentController.FindAgent(reservation.AgentID);
-                    agentController.RemoveAgent(agent);
-                    //Delete the room in the Room Table
-                    reservationDB.DeleteAgentReservation(reservationId);
-                    return true;
-                }
-            }
-          
-           return false;
-       }
         //method
-        public Collection<Reservation> GetReservations()
+        public Collection<Reservation> AllReservations()
         {
             return reservations;
         }
 
+        public string DisplayReservation(string res)
+        {
+            Reservation reservation = FindReservationById(res);
+            return reservation.GetReservationDetails();
+        }
 
         // Method to retrieve reservation details
         public Reservation FindReservationById(string reservationId)
         {
-            foreach (Reservation res in reservations)
+            int index = 0;
+            //Check if the first Reservation matched with the one that is wanted
+            bool found = (reservations[index].ReservationId == reservationId);
+            //We will iterate through all the Reservation Collection
+            int count = reservations.Count;
+            //iterate while the wanted one is not found
+            //Keep on checking while it is not found and there are still elements in the collection
+            while(!(found) && (index < reservations.Count - 1))
             {
-                if (res.ReservationId == reservationId)
-                {
-                    return res;
-                }
+                index++;
+                found= (reservations[index].ReservationId==reservationId);
             }
-            return null;
-
+            return reservations[index];
 
         }
 
-        // Method to get all reservations
-        public string DisplayAllReservations()
+        //Find the index of the Rersevation in the collection that must be changed
+        public int FindIndex(string resID)
         {
-            string results = "";
-            foreach (var reservation in reservations)
+            int counter = 0;
+            //Check if the first resID in the Collection matches the one that is needed
+            bool found = (resID == reservations[counter].ReservationId);
+            //Iterate over the collection
+            while(!found && (counter < reservations.Count - 1))
             {
-                results += reservation.GetReservationDetails();
+                counter++;  
+                found = (resID== reservations[counter].ReservationId);
+
             }
-            return results;
+            if (found)
+            {
+                return counter;
+            }
+            else
+            {
+                return -1;
+            }
         }
+     
 
     }
 }
