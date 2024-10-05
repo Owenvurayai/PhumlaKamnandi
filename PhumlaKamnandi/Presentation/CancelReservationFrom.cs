@@ -4,18 +4,24 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PhumlaKamnandi.Business;
+using PhumlaKamnandi.Data;
 
 namespace PhumlaKamnandi.Presentation
 {
     public partial class CancelReservationFrom : Form
     {
-        public CancelReservationFrom()
+        ReservationDB reservationDB;
+
+
+        public CancelReservationFrom(ReservationDB reservationDB)
         {
             InitializeComponent();
+            this.reservationDB = reservationDB;
         }
 
         private void reservationTextBox_TextChanged(object sender, EventArgs e)
@@ -41,7 +47,24 @@ namespace PhumlaKamnandi.Presentation
 
         private void search_Click(object sender, EventArgs e)
         {
-            
+            string id = reservationIDTextBox.Text;
+            Reservation reservation = null;
+            //Reservation 
+            foreach (Reservation r in reservationDB.Reservations)
+            {
+
+
+                if (id.Equals(r.ReservationId))
+                {
+                    reservation = r;
+                    break;
+                }
+            }
+
+            if (reservation != null)
+            {
+                MessageBox.Show(reservation.GetReservationDetails());
+            }
         }
     }
 }

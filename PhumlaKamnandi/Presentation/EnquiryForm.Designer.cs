@@ -70,6 +70,7 @@
             search.TabIndex = 4;
             search.Text = "search";
             search.UseVisualStyleBackColor = true;
+            search.Click += search_Click_1;
             // 
             // panel1
             // 

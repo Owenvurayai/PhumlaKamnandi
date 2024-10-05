@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PhumlaKamnandi.Business
 {
@@ -32,7 +33,13 @@ namespace PhumlaKamnandi.Business
         }
 
 
-
+        public static RoomType GetRoomType(string roomTypeStr)
+        {
+            if (RoomType.Single.ToString().Equals(roomTypeStr)) return RoomType.Single;
+            else if (RoomType.Double.ToString().Equals(roomTypeStr)) return RoomType.Double;
+            else if (RoomType.Suite.ToString().Equals(roomTypeStr)) return RoomType.Suite;
+            return RoomType.Deluxe;
+        }
 
         #endregion
         #region constructor

@@ -1,7 +1,10 @@
 using System.Reflection.Emit;
 using System.Windows.Forms;
 
+using PhumlaKamnandi.Data;
+
 namespace PhumlaKamnandi.Presentation;
+
 
 public partial class HomeForm : Form
 {
@@ -9,13 +12,15 @@ public partial class HomeForm : Form
     Form cancelReservationForm;
     Form makeReservationForm;
     Form enquiryForm;
-    //Form changeReservationForm;
     LoginForm loginForm;
-
+    ReservationDB reservationDB;
+    RoomDB roomDB;
 
     public HomeForm(LoginForm loginForm)
     {
         this.loginForm = loginForm;
+        this.reservationDB = new ReservationDB();
+        roomDB = new RoomDB();
         InitializeComponent();
     }
 
@@ -62,7 +67,7 @@ public partial class HomeForm : Form
     {
 
 
-        findReservationForm = new FindReservation();
+        findReservationForm = new FindReservation(reservationDB,roomDB);
         findReservationForm.ShowDialog();
         //this.Visible = false;
 
@@ -124,7 +129,7 @@ public partial class HomeForm : Form
     private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
 
-        enquiryForm = new EnquiryForm();
+        enquiryForm = new EnquiryForm(reservationDB);
         enquiryForm.ShowDialog();
         //this.Visible = false;
 
@@ -132,7 +137,7 @@ public partial class HomeForm : Form
 
     private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-        cancelReservationForm = new CancelReservationFrom();
+        cancelReservationForm = new CancelReservationFrom(reservationDB);
         cancelReservationForm.ShowDialog();
         //this.Visible = false;
 

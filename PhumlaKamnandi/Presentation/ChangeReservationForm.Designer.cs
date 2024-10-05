@@ -189,6 +189,7 @@ partial class ChangeReservationForm
         submitButton.TabIndex = 16;
         submitButton.Text = "Submit";
         submitButton.UseVisualStyleBackColor = false;
+        submitButton.Click += submitButton_Click;
         // 
         // returnHomeButton
         // 
