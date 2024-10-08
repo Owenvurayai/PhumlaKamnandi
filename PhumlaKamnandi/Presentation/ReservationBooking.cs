@@ -1,5 +1,4 @@
-﻿using PhumlaKamnandi.Business;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static PhumlaKamnandi.Business.Room;
+using PhumlaKamnandi.Business;
 using PhumlaKamnandi.Data;
+using static PhumlaKamnandi.Business.Room;
+
 namespace PhumlaKamnandi.Presentation
 {
     public partial class ReservationBooking : Form
     {
         #region Properties
-        public bool IsGuest;//chech whether creating for a guest or an Agent
-        public bool MoreRooms = false;//Want to ad more rooms? 
-      
+        public bool IsGuest; //chech whether creating for a guest or an Agent
+        public bool MoreRooms = false; //Want to ad more rooms?
+
         public RoomNumberAssignment roomNumber_generator;
         ReservationDB res;
 
@@ -29,21 +30,18 @@ namespace PhumlaKamnandi.Presentation
             roomNumber_generator = new RoomNumberAssignment();
         }
 
-        private void ReservationBooking_Load(object sender, EventArgs e)
-        {
-           
-        }
+        private void ReservationBooking_Load(object sender, EventArgs e) { }
 
         /*
          * ADD MORE ROOM BUTTON
          * roomController.Add(new Room(roomNumberGenerator))
-         * 
+         *
          * */
 
-        
+
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (GuestRadioButton.Checked)//Guest Radio Button is Checked
+            if (GuestRadioButton.Checked) //Guest Radio Button is Checked
             {
                 IsGuest = true;
 
@@ -53,7 +51,7 @@ namespace PhumlaKamnandi.Presentation
                 cvcTxtBox.Visible = true;
                 cvcLabel.Visible = true;
             }
-            else if (AgentRadioButton.Checked)//Agent Radio Button is Checked
+            else if (AgentRadioButton.Checked) //Agent Radio Button is Checked
             {
                 IsGuest = false;
                 creditCardLabel.Text = "Company Name";
@@ -61,19 +59,23 @@ namespace PhumlaKamnandi.Presentation
                 ExpirationDateTxtbox.Width = 150;
                 cvcTxtBox.Visible = false;
                 cvcLabel.Visible = false;
-
             }
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-
             List<Room> rooms = new List<Room>();
             rooms.Add(new Room(1, RoomType.Single, OccupancyStatus.Occupied));
-            Reservation reservation = new Reservation("R001", "AGT001", new DateTime(2024, 10, 10), new DateTime(2024, 10, 15),rooms, 3);
+            Reservation reservation = new Reservation(
+                "R001",
+                "AGT001",
+                new DateTime(2024, 10, 10),
+                new DateTime(2024, 10, 15),
+                rooms,
+                3
+            );
             res.DataSetChange(reservation, DB.DBOperation.Add);
             res.UpdateDataSource(reservation);
-
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -85,7 +87,7 @@ namespace PhumlaKamnandi.Presentation
             CitytextBox.Text = "";
             StatetextBox.Text = "";
             ZipCodetextBox.Text = "";
-           
+
             ExpirationDateTxtbox.Text = "";
             cvcTxtBox.Text = "";
             ExpirationDateTxtbox.Text = "";
@@ -96,7 +98,17 @@ namespace PhumlaKamnandi.Presentation
         private void ReturnHomeButton1_Click(object sender, EventArgs e)
         {
             // Go to the Home Page
-            if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
+            if (
+                MessageBox.Show(
+                    "If you exit now, the data will be discarded",
+                    "Go to Homepage",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question
+                ) == DialogResult.OK
+            )
+            {
+                this.Close();
+            }
         }
 
         private void addRoomRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -108,7 +120,6 @@ namespace PhumlaKamnandi.Presentation
             roomTypeComboBox.Items.Add("Single");
             roomTypeComboBox.Items.Add("Double");
             roomTypeComboBox.Items.Add("Deluxe");
-
 
             roomTypeLabel.Visible = true;
             roomTypeLabel.Text = "Room Type";

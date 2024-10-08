@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +23,7 @@ namespace PhumlaKamnandi.Data
         {
             Add,
             Edit,
-            Delete
+            Delete,
         }
         #endregion
 
@@ -66,7 +65,7 @@ namespace PhumlaKamnandi.Data
 
         #endregion
 
-        #region Update the data source 
+        #region Update the data source
         protected bool UpdateDataSource(string sqlLocal, string table)
         {
             bool success;
@@ -87,9 +86,7 @@ namespace PhumlaKamnandi.Data
                 MessageBox.Show(errObj.Message + "  " + errObj.StackTrace);
                 success = false;
             }
-            finally
-            {
-            }
+            finally { }
             return success;
         }
         #endregion

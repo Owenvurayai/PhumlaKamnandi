@@ -273,7 +273,10 @@ namespace PhumlaKamnandi.Data
             SqlParameter param = default(SqlParameter);
             param = new SqlParameter("ResID", SqlDbType.NVarChar, 15, "ResID");
             param.SourceVersion = DataRowVersion.Original;
-            
+            daMain.InsertCommand.Parameters.Add(param);//Add the parameter to the Parameters collection.
+
+            param = new SqlParameter("Original_ResID", SqlDbType.NVarChar, 15, "ResID");
+            param.SourceVersion = DataRowVersion.Original;
             daMain.InsertCommand.Parameters.Add(param);//Add the parameter to the Parameters collection.
 
             if (resv.ID.Contains("AGT"))
@@ -281,7 +284,11 @@ namespace PhumlaKamnandi.Data
                 if (!daMain.InsertCommand.Parameters.Contains("AgentID"))
                 {
 
-                    param = new SqlParameter("AgentID", SqlDbType.NVarChar, 10, "AgentID");//check the original
+                    param = new SqlParameter("@AgentID", SqlDbType.NVarChar, 10, "AgentID");//check the original
+                    param.SourceVersion = DataRowVersion.Original;
+                    daMain.InsertCommand.Parameters.Add(param);
+
+                    param = new SqlParameter("@Original_AgentID", SqlDbType.NVarChar, 10, "AgentID");//check the original
                     param.SourceVersion = DataRowVersion.Original;
                     daMain.InsertCommand.Parameters.Add(param);
                 }
@@ -290,7 +297,11 @@ namespace PhumlaKamnandi.Data
             {
                 if (!daMain.InsertCommand.Parameters.Contains("GuestID"))
                 {
-                    param = new SqlParameter("GuestID", SqlDbType.NVarChar, 10, "GuestID");//check the original
+                    param = new SqlParameter("@GuestID", SqlDbType.NVarChar, 10, "GuestID");//check the original
+                    param.SourceVersion = DataRowVersion.Original;
+                    daMain.InsertCommand.Parameters.Add(param);
+
+                    param = new SqlParameter("@Original_GuestID", SqlDbType.NVarChar, 10, "GuestID");//check the original
                     param.SourceVersion = DataRowVersion.Original;
                     daMain.InsertCommand.Parameters.Add(param);
                 }
@@ -356,12 +367,12 @@ namespace PhumlaKamnandi.Data
         {
             if (resv.ID.Contains("AGT"))
             {
-                daMain.UpdateCommand = new SqlCommand("UPDATE AgentReservation SET CheckIn=@CheckIn, CheckOut=@CheckOut, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @ResID", cnMain);
+                daMain.UpdateCommand = new SqlCommand("UPDATE AgentReservation SET ResID=@Original_ResID, AgentID=@Original_AgentID, CheckIn=@CheckIn, CheckOut=@CheckOut, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @Original_AgentID", cnMain);
 
             }
             else
             {
-                daMain.UpdateCommand = new SqlCommand("UPDATE GuestReservation SET CheckIn=@CheckIn, CheckOut=@CheckOut, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @ResID", cnMain);
+                daMain.UpdateCommand = new SqlCommand("UPDATE GuestReservation SET ResID=@Original_ResID, AgentID=@Original_GuestID,CheckIn=@CheckIn, CheckOut=@CheckOut, TotalAmount=@TotalAmount, Status=@Status  " + "WHERE ResID = @Original_GuestID", cnMain);
             }
 
 

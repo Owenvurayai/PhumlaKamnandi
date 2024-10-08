@@ -1,6 +1,6 @@
+using System.Collections.ObjectModel;
 using PhumlaKamnandi.Business;
 using PhumlaKamnandi.Data;
-using System.Collections.ObjectModel;
 
 namespace PhumlaKamnandi.Presentation;
 
@@ -9,33 +9,42 @@ public partial class ChangeReservationForm : Form
     private FindReservation findReservation;
     private Reservation reservation;
     public RoomDB roomDB;
-
-    public ChangeReservationForm(FindReservation findReservation, Reservation reservation, RoomDB roomDB)
+    ReservationDB reservationDB;
+    public ChangeReservationForm(
+        FindReservation findReservation,
+        Reservation reservation,
+        RoomDB roomDB,
+        ReservationDB reservationDB
+    )
     {
         InitializeComponent();
         this.findReservation = findReservation;
         this.reservation = reservation;
-        this.roomDB=roomDB;
+        this.roomDB = roomDB;
+        this.reservationDB = reservationDB;
+
         label10.Text = reservation.ReservationId;
-        
     }
 
-
-    private void ChangeReservationForm_Load(object sender, EventArgs e)
-    {
-
-    }
+    private void ChangeReservationForm_Load(object sender, EventArgs e) { }
 
     private void button3_Click_1(object sender, EventArgs e)
     {
         // Go to the Home Page
-        if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
+        if (
+            MessageBox.Show(
+                "If you exit now, the data will be discarded",
+                "Go to Homepage",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question
+            ) == DialogResult.OK
+        )
+        {
+            this.Close();
+        }
     }
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
     private void removeRoomRadioButton_CheckedChanged(object sender, EventArgs e)
     {
@@ -49,10 +58,7 @@ public partial class ChangeReservationForm : Form
         addRoomButton.ForeColor = Color.Red;
     }
 
-    private void panel3_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
+    private void panel3_Paint(object sender, PaintEventArgs e) { }
 
     private void addRoomRadioButton_CheckedChanged(object sender, EventArgs e)
     {
@@ -64,7 +70,6 @@ public partial class ChangeReservationForm : Form
         roomTypeComboBox.Items.Add("Double");
         roomTypeComboBox.Items.Add("Deluxe");
 
-
         roomTypeLabel.Visible = true;
         roomTypeLabel.Text = "Room Type";
         numOfRoomsLabel.Text = "Number of Rooms";
@@ -75,10 +80,7 @@ public partial class ChangeReservationForm : Form
         addRoomButton.ForeColor = Color.Black;
     }
 
-    private void label1_Click_1(object sender, EventArgs e)
-    {
-
-    }
+    private void label1_Click_1(object sender, EventArgs e) { }
 
     private void changeGuestRadioButton_CheckedChanged(object sender, EventArgs e)
     {
@@ -88,14 +90,14 @@ public partial class ChangeReservationForm : Form
         roomTypeComboBox.Items.Add("2");
         roomTypeComboBox.Items.Add("3");
         roomTypeComboBox.Items.Add("4");
-        roomTypeComboBox.SelectedIndex = 0;     //currently
+        roomTypeComboBox.SelectedIndex = 0; //currently
 
         adultsNumComboBox.Items.Clear();
         adultsNumComboBox.Items.Add("1");
         adultsNumComboBox.Items.Add("2");
         adultsNumComboBox.Items.Add("3");
         adultsNumComboBox.Items.Add("4");
-        adultsNumComboBox.SelectedIndex = 0;  //currently
+        adultsNumComboBox.SelectedIndex = 0; //currently
         numOfRoomsLabel.Text = "RoomID";
         roomTypeLabel.Visible = true;
         roomTypeComboBox.Visible = true;
@@ -114,13 +116,12 @@ public partial class ChangeReservationForm : Form
 
         if (operation.Equals("Add Room"))
         {
-
             int i = 10;
 
-            bool roomsAvailable=true;
-            int noRoomsAvailable=0;
+            bool roomsAvailable = true;
+            int noRoomsAvailable = 0;
             Collection<Room> desiredRooms = new Collection<Room>();
-            Collection<int> oper = new Collection<int>();  // Store the add or edit operation for the rooms 
+            Collection<int> oper = new Collection<int>(); // Store the add or edit operation for the rooms
 
             for (int numRooms = 0; numRooms < numericUpDown1.Value; numRooms++)
             {
@@ -128,29 +129,42 @@ public partial class ChangeReservationForm : Form
 
                 // All rooms of this type are occupied
                 if (roomID[0] == -1)
-                { break; roomsAvailable = false; }
+                {
+                    break;
+                    roomsAvailable = false;
+                }
 
                 //Create a new room and add it to collection
-                Room r = new Room(roomID[0], Room.GetRoomType(roomTypeComboBox.Text), Room.OccupancyStatus.Occupied);
+                Room r = new Room(
+                    roomID[0],
+                    Room.GetRoomType(roomTypeComboBox.Text),
+                    Room.OccupancyStatus.Occupied
+                );
                 desiredRooms.Add(r);
                 noRoomsAvailable++;
                 oper.Add(roomID[1]);
-                //roomDB.DataSetChange(r, DB.DBOperation.Add);
-                //roomDB.UpdateDataSource(r);
+                
+
                 roomDB.Add2Rooms(r);
                 reservation.AddRoom(r);
-              
             }
-            if (roomsAvailable) {
-                for (int numRooms = 0; numRooms < desiredRooms.Count; numRooms++) {
+            if (roomsAvailable)
+            {
+                for (int numRooms = 0; numRooms < desiredRooms.Count; numRooms++)
+                {
                     if (oper[numRooms] == 0)
                     {
                         roomDB.DataSetChange(desiredRooms.ElementAt(numRooms), DB.DBOperation.Add);
                         roomDB.UpdateDataSource(desiredRooms.ElementAt(numRooms));
                     }
-                    else {
+                    else
+                    {
                         roomDB.DataSetChange(desiredRooms.ElementAt(numRooms), DB.DBOperation.Edit);
                         roomDB.UpdateDataSource(desiredRooms.ElementAt(numRooms));
+                        
+                        reservation.RemoveRoom(desiredRooms.ElementAt(numRooms));
+                        roomDB.RemoveRoom(desiredRooms.ElementAt(numRooms));
+
                     }
                 }
             }
@@ -159,37 +173,18 @@ public partial class ChangeReservationForm : Form
                 MessageBox.Show("Only " + noRoomsAvailable + " of this type are available.");
                 for (int numRooms = 0; numRooms < desiredRooms.Count; numRooms++)
                 {
-                    
-                    reservation.RemoveRoom(desiredRooms.ElementAt(numRooms));
-                    roomDB.RemoveRoom(desiredRooms.ElementAt(numRooms));
-
-
+                   
                 }
-
-                }
-
+            }
         }
-        else if (operation.Equals("Remove Room"))
-        {
-
-
-        }
-        else if (operation.Equals("Modify"))
-        {
-
-
-
-        }
+        else if (operation.Equals("Remove Room")) { }
+        else if (operation.Equals("Modify")) { }
     }
 
-    private void adultsNumComboBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
+    private void adultsNumComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
 
     private void submitButton_Click(object sender, EventArgs e)
     {
-        findReservation.reservationDB.DataSetChange(reservation, DB.DBOperation.Edit);
-        findReservation.reservationDB.UpdateDataSource(reservation);
+       
     }
 }
