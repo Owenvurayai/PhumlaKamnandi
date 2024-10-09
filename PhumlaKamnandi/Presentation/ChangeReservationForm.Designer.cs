@@ -32,37 +32,35 @@ partial class ChangeReservationForm
         panel1 = new Panel();
         label6 = new Label();
         panel2 = new Panel();
-        label10 = new Label();
-        label9 = new Label();
-        label8 = new Label();
-        label7 = new Label();
-        label5 = new Label();
+        ID = new Label();
+        contactDetailsLabel = new Label();
+        nameLabel = new Label();
         pictureBox1 = new PictureBox();
         cancelButton = new Button();
         submitButton = new Button();
         returnHomeButton = new Button();
         addRemRoomPanel = new Panel();
-        changeGuestRadioButton = new RadioButton();
-        adultsNumComboBox = new ComboBox();
-        adultsNumLabel = new Label();
-        listView1 = new ListView();
+        numeric2 = new NumericUpDown();
+        guestLabel = new Label();
+        resListView = new ListView();
         removeRoomRadioButton = new RadioButton();
         addRoomRadioButton = new RadioButton();
         addRoomButton = new Button();
-        numericUpDown1 = new NumericUpDown();
+        numeric1 = new NumericUpDown();
         numOfRoomsLabel = new Label();
         roomTypeComboBox = new ComboBox();
         roomTypeLabel = new Label();
         panel3 = new Panel();
         label11 = new Label();
         label2 = new Label();
-        dateTimePicker5 = new DateTimePicker();
-        dateTimePicker1 = new DateTimePicker();
+        checkOut = new DateTimePicker();
+        checkIn = new DateTimePicker();
         panel1.SuspendLayout();
         panel2.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         addRemRoomPanel.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numeric2).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numeric1).BeginInit();
         panel3.SuspendLayout();
         SuspendLayout();
         // 
@@ -90,11 +88,9 @@ partial class ChangeReservationForm
         // panel2
         // 
         panel2.BackColor = Color.FromArgb(60, 99, 130);
-        panel2.Controls.Add(label10);
-        panel2.Controls.Add(label9);
-        panel2.Controls.Add(label8);
-        panel2.Controls.Add(label7);
-        panel2.Controls.Add(label5);
+        panel2.Controls.Add(ID);
+        panel2.Controls.Add(contactDetailsLabel);
+        panel2.Controls.Add(nameLabel);
         panel2.Controls.Add(pictureBox1);
         panel2.Location = new Point(894, 96);
         panel2.Margin = new Padding(0);
@@ -103,61 +99,39 @@ partial class ChangeReservationForm
         panel2.TabIndex = 1;
         panel2.Paint += panel2_Paint;
         // 
-        // label10
+        // ID
         // 
-        label10.AutoSize = true;
-        label10.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        label10.ForeColor = Color.White;
-        label10.Location = new Point(35, 245);
-        label10.Name = "label10";
-        label10.Size = new Size(93, 19);
-        label10.TabIndex = 21;
-        label10.Text = "refID: 100256";
+        ID.AutoSize = true;
+        ID.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        ID.ForeColor = Color.White;
+        ID.Location = new Point(35, 186);
+        ID.Name = "ID";
+        ID.Size = new Size(93, 19);
+        ID.TabIndex = 21;
+        ID.Text = "refID: 100256";
         // 
-        // label9
+        // contactDetailsLabel
         // 
-        label9.AutoSize = true;
-        label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        label9.ForeColor = Color.White;
-        label9.Location = new Point(35, 214);
-        label9.Name = "label9";
-        label9.Size = new Size(33, 19);
-        label9.TabIndex = 20;
-        label9.Text = "[ID]";
+        contactDetailsLabel.AutoSize = true;
+        contactDetailsLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        contactDetailsLabel.ForeColor = Color.White;
+        contactDetailsLabel.Location = new Point(35, 162);
+        contactDetailsLabel.Name = "contactDetailsLabel";
+        contactDetailsLabel.Size = new Size(41, 19);
+        contactDetailsLabel.TabIndex = 18;
+        contactDetailsLabel.Text = "[Sex]";
         // 
-        // label8
+        // nameLabel
         // 
-        label8.AutoSize = true;
-        label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        label8.ForeColor = Color.White;
-        label8.Location = new Point(35, 188);
-        label8.Name = "label8";
-        label8.Size = new Size(43, 19);
-        label8.TabIndex = 19;
-        label8.Text = "[Age]";
-        // 
-        // label7
-        // 
-        label7.AutoSize = true;
-        label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        label7.ForeColor = Color.White;
-        label7.Location = new Point(35, 162);
-        label7.Name = "label7";
-        label7.Size = new Size(41, 19);
-        label7.TabIndex = 18;
-        label7.Text = "[Sex]";
-        // 
-        // label5
-        // 
-        label5.AutoSize = true;
-        label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        label5.ForeColor = Color.FromArgb(224, 224, 224);
-        label5.Location = new Point(35, 136);
-        label5.Name = "label5";
-        label5.RightToLeft = RightToLeft.Yes;
-        label5.Size = new Size(125, 19);
-        label5.TabIndex = 17;
-        label5.Text = "[Name] [Surname]";
+        nameLabel.AutoSize = true;
+        nameLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        nameLabel.ForeColor = Color.FromArgb(224, 224, 224);
+        nameLabel.Location = new Point(35, 136);
+        nameLabel.Name = "nameLabel";
+        nameLabel.RightToLeft = RightToLeft.Yes;
+        nameLabel.Size = new Size(48, 19);
+        nameLabel.TabIndex = 17;
+        nameLabel.Text = "fname";
         // 
         // pictureBox1
         // 
@@ -208,14 +182,13 @@ partial class ChangeReservationForm
         // addRemRoomPanel
         // 
         addRemRoomPanel.BackColor = Color.FromArgb(236, 240, 241);
-        addRemRoomPanel.Controls.Add(changeGuestRadioButton);
-        addRemRoomPanel.Controls.Add(adultsNumComboBox);
-        addRemRoomPanel.Controls.Add(adultsNumLabel);
-        addRemRoomPanel.Controls.Add(listView1);
+        addRemRoomPanel.Controls.Add(numeric2);
+        addRemRoomPanel.Controls.Add(guestLabel);
+        addRemRoomPanel.Controls.Add(resListView);
         addRemRoomPanel.Controls.Add(removeRoomRadioButton);
         addRemRoomPanel.Controls.Add(addRoomRadioButton);
         addRemRoomPanel.Controls.Add(addRoomButton);
-        addRemRoomPanel.Controls.Add(numericUpDown1);
+        addRemRoomPanel.Controls.Add(numeric1);
         addRemRoomPanel.Controls.Add(numOfRoomsLabel);
         addRemRoomPanel.Controls.Add(roomTypeComboBox);
         addRemRoomPanel.Controls.Add(roomTypeLabel);
@@ -226,56 +199,40 @@ partial class ChangeReservationForm
         addRemRoomPanel.TabIndex = 41;
         addRemRoomPanel.Paint += panel3_Paint;
         // 
-        // changeGuestRadioButton
+        // numeric2
         // 
-        changeGuestRadioButton.AutoSize = true;
-        changeGuestRadioButton.Location = new Point(416, 12);
-        changeGuestRadioButton.Margin = new Padding(3, 2, 3, 2);
-        changeGuestRadioButton.Name = "changeGuestRadioButton";
-        changeGuestRadioButton.Size = new Size(121, 19);
-        changeGuestRadioButton.TabIndex = 51;
-        changeGuestRadioButton.Text = "Number of Guests";
-        changeGuestRadioButton.UseVisualStyleBackColor = true;
-        changeGuestRadioButton.CheckedChanged += changeGuestRadioButton_CheckedChanged;
+        numeric2.BorderStyle = BorderStyle.FixedSingle;
+        numeric2.Location = new Point(261, 267);
+        numeric2.Margin = new Padding(3, 2, 3, 2);
+        numeric2.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
+        numeric2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        numeric2.Name = "numeric2";
+        numeric2.ReadOnly = true;
+        numeric2.Size = new Size(263, 23);
+        numeric2.TabIndex = 50;
+        numeric2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        numeric2.ValueChanged += numeric2_ValueChanged;
         // 
-        // adultsNumComboBox
+        // guestLabel
         // 
-        adultsNumComboBox.BackColor = Color.FromArgb(231, 76, 60);
-        adultsNumComboBox.FlatStyle = FlatStyle.Flat;
-        adultsNumComboBox.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        adultsNumComboBox.ForeColor = Color.White;
-        adultsNumComboBox.FormattingEnabled = true;
-        adultsNumComboBox.ItemHeight = 19;
-        adultsNumComboBox.Location = new Point(261, 266);
-        adultsNumComboBox.Margin = new Padding(3, 2, 3, 2);
-        adultsNumComboBox.MinimumSize = new Size(287, 0);
-        adultsNumComboBox.Name = "adultsNumComboBox";
-        adultsNumComboBox.Size = new Size(287, 27);
-        adultsNumComboBox.TabIndex = 50;
-        adultsNumComboBox.Text = "Select";
-        adultsNumComboBox.Visible = false;
-        adultsNumComboBox.SelectedIndexChanged += adultsNumComboBox_SelectedIndexChanged;
+        guestLabel.AutoSize = true;
+        guestLabel.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+        guestLabel.Location = new Point(10, 266);
+        guestLabel.Name = "guestLabel";
+        guestLabel.Size = new Size(52, 20);
+        guestLabel.TabIndex = 49;
+        guestLabel.Text = "Adults";
+        guestLabel.Visible = false;
+        guestLabel.Click += label1_Click_1;
         // 
-        // adultsNumLabel
+        // resListView
         // 
-        adultsNumLabel.AutoSize = true;
-        adultsNumLabel.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
-        adultsNumLabel.Location = new Point(10, 266);
-        adultsNumLabel.Name = "adultsNumLabel";
-        adultsNumLabel.Size = new Size(52, 20);
-        adultsNumLabel.TabIndex = 49;
-        adultsNumLabel.Text = "Adults";
-        adultsNumLabel.Visible = false;
-        adultsNumLabel.Click += label1_Click_1;
-        // 
-        // listView1
-        // 
-        listView1.Location = new Point(10, 64);
-        listView1.Margin = new Padding(3, 2, 3, 2);
-        listView1.Name = "listView1";
-        listView1.Size = new Size(537, 92);
-        listView1.TabIndex = 46;
-        listView1.UseCompatibleStateImageBehavior = false;
+        resListView.Location = new Point(10, 64);
+        resListView.Margin = new Padding(3, 2, 3, 2);
+        resListView.Name = "resListView";
+        resListView.Size = new Size(537, 92);
+        resListView.TabIndex = 46;
+        resListView.UseCompatibleStateImageBehavior = false;
         // 
         // removeRoomRadioButton
         // 
@@ -312,18 +269,19 @@ partial class ChangeReservationForm
         addRoomButton.UseVisualStyleBackColor = true;
         addRoomButton.Click += addRoomButton_Click;
         // 
-        // numericUpDown1
+        // numeric1
         // 
-        numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
-        numericUpDown1.Location = new Point(261, 179);
-        numericUpDown1.Margin = new Padding(3, 2, 3, 2);
-        numericUpDown1.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
-        numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-        numericUpDown1.Name = "numericUpDown1";
-        numericUpDown1.ReadOnly = true;
-        numericUpDown1.Size = new Size(263, 23);
-        numericUpDown1.TabIndex = 45;
-        numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        numeric1.BorderStyle = BorderStyle.FixedSingle;
+        numeric1.Location = new Point(261, 179);
+        numeric1.Margin = new Padding(3, 2, 3, 2);
+        numeric1.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
+        numeric1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        numeric1.Name = "numeric1";
+        numeric1.ReadOnly = true;
+        numeric1.Size = new Size(263, 23);
+        numeric1.TabIndex = 45;
+        numeric1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        numeric1.ValueChanged += numeric1_ValueChanged;
         // 
         // numOfRoomsLabel
         // 
@@ -350,6 +308,7 @@ partial class ChangeReservationForm
         roomTypeComboBox.Size = new Size(287, 27);
         roomTypeComboBox.TabIndex = 43;
         roomTypeComboBox.Text = "Select";
+        roomTypeComboBox.SelectedIndexChanged += roomTypeComboBox_SelectedIndexChanged;
         // 
         // roomTypeLabel
         // 
@@ -366,8 +325,8 @@ partial class ChangeReservationForm
         panel3.BackColor = Color.FromArgb(236, 240, 241);
         panel3.Controls.Add(label11);
         panel3.Controls.Add(label2);
-        panel3.Controls.Add(dateTimePicker5);
-        panel3.Controls.Add(dateTimePicker1);
+        panel3.Controls.Add(checkOut);
+        panel3.Controls.Add(checkIn);
         panel3.Location = new Point(609, 141);
         panel3.Margin = new Padding(3, 2, 3, 2);
         panel3.Name = "panel3";
@@ -394,23 +353,25 @@ partial class ChangeReservationForm
         label2.TabIndex = 50;
         label2.Text = "Check-in Date";
         // 
-        // dateTimePicker5
+        // checkOut
         // 
-        dateTimePicker5.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dateTimePicker5.Location = new Point(32, 137);
-        dateTimePicker5.Margin = new Padding(3, 2, 3, 2);
-        dateTimePicker5.Name = "dateTimePicker5";
-        dateTimePicker5.Size = new Size(222, 23);
-        dateTimePicker5.TabIndex = 49;
+        checkOut.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        checkOut.Location = new Point(32, 137);
+        checkOut.Margin = new Padding(3, 2, 3, 2);
+        checkOut.Name = "checkOut";
+        checkOut.Size = new Size(222, 23);
+        checkOut.TabIndex = 49;
+        checkOut.ValueChanged += checkOutDate_ValueChanged;
         // 
-        // dateTimePicker1
+        // checkIn
         // 
-        dateTimePicker1.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dateTimePicker1.Location = new Point(29, 44);
-        dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
-        dateTimePicker1.Name = "dateTimePicker1";
-        dateTimePicker1.Size = new Size(217, 23);
-        dateTimePicker1.TabIndex = 48;
+        checkIn.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        checkIn.Location = new Point(29, 44);
+        checkIn.Margin = new Padding(3, 2, 3, 2);
+        checkIn.Name = "checkIn";
+        checkIn.Size = new Size(217, 23);
+        checkIn.TabIndex = 48;
+        checkIn.ValueChanged += checkInDate_ValueChanged;
         // 
         // ChangeReservationForm
         // 
@@ -439,7 +400,8 @@ partial class ChangeReservationForm
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
         addRemRoomPanel.ResumeLayout(false);
         addRemRoomPanel.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numeric2).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numeric1).EndInit();
         panel3.ResumeLayout(false);
         panel3.PerformLayout();
         ResumeLayout(false);
@@ -452,29 +414,26 @@ partial class ChangeReservationForm
     private Label label6;
     private Button cancelButton;
     private Button submitButton;
-    private Label label5;
+    private Label nameLabel;
     private PictureBox pictureBox1;
-    private Label label7;
-    private Label label10;
-    private Label label9;
-    private Label label8;
+    private Label ID;
     private DateTimePicker dateTimePicker2;
     private Button returnHomeButton;
     private Panel addRemRoomPanel;
-    private ListView listView1;
+    private ListView resListView;
     private RadioButton removeRoomRadioButton;
     private RadioButton addRoomRadioButton;
     private Button addRoomButton;
-    private NumericUpDown numericUpDown1;
+    private NumericUpDown numeric1;
     private Label numOfRoomsLabel;
     private ComboBox roomTypeComboBox;
     private Label roomTypeLabel;
-    private ComboBox adultsNumComboBox;
-    private Label adultsNumLabel;
+    private Label guestLabel;
     private Panel panel3;
     private Label label11;
     private Label label2;
-    private DateTimePicker dateTimePicker5;
-    private DateTimePicker dateTimePicker1;
-    private RadioButton changeGuestRadioButton;
+    private DateTimePicker checkOut;
+    private DateTimePicker checkIn;
+    private NumericUpDown numeric2;
+    private Label contactDetailsLabel;
 }

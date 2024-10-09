@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhumlaKamnandi.Business;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,9 @@ namespace PhumlaKamnandi.Presentation
     public partial class EnquiryForm : Form
     {
         #region Fields
-        bool isOpen=false;
+        bool isOpen = false;
+        ReservationController reservationController;
+        Reservation res;
         #endregion
         public EnquiryForm()
         {
@@ -51,6 +54,22 @@ namespace PhumlaKamnandi.Presentation
         {
             // Go to the Home Page
             if (MessageBox.Show("If you exit now, the data will be discarded", "Go to Homepage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) { this.Close(); }
+        }
+
+        private void search_Click_1(object sender, EventArgs e)
+        {
+            string res1 = reservationTextBox.Text;
+            string ressFound = "";
+            if (res1 == res.ID)
+            {
+                MessageBox.Show("Reservation found");
+             //   OutputView.Show(res.
+            }
+        }
+
+        private void reservationTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

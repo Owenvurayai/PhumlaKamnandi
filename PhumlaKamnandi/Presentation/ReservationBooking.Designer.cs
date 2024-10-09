@@ -48,8 +48,8 @@
             StatetextBox = new TextBox();
             EmailAddresstextBox = new TextBox();
             ZipCodetextBox = new TextBox();
-            IDLabel = new Label();
-            IDtextBox = new TextBox();
+            streetLabel = new Label();
+            streetTextBox = new TextBox();
             GuestRadioButton = new RadioButton();
             AgentRadioButton = new RadioButton();
             label1 = new Label();
@@ -60,18 +60,17 @@
             cvcTxtBox = new TextBox();
             cvcLabel = new Label();
             addRemRoomPanel = new Panel();
-            changeGuestRadioButton = new RadioButton();
-            adultsNumComboBox = new ComboBox();
-            adultsNumLabel = new Label();
-            listView1 = new ListView();
+            numeric2 = new NumericUpDown();
+            guestLabel = new Label();
+            resListView = new ListView();
             removeRoomRadioButton = new RadioButton();
             addRoomRadioButton = new RadioButton();
             addRoomButton = new Button();
-            numericUpDown1 = new NumericUpDown();
+            numeric1 = new NumericUpDown();
             numOfRoomsLabel = new Label();
             roomTypeComboBox = new ComboBox();
             roomTypeLabel = new Label();
-            label3 = new Label();
+            paymentLabel = new Label();
             panel3 = new Panel();
             label11 = new Label();
             label2 = new Label();
@@ -79,7 +78,8 @@
             checkIn = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             addRemRoomPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numeric2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numeric1).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -120,11 +120,12 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.FromArgb(137, 12, 12);
-            pictureBox2.Location = new Point(2, -3);
+            pictureBox2.Location = new Point(35, 12);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(1233, 66);
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // PersonalDetailsLabel
             // 
@@ -258,21 +259,21 @@
             ZipCodetextBox.Size = new Size(98, 23);
             ZipCodetextBox.TabIndex = 28;
             // 
-            // IDLabel
+            // streetLabel
             // 
-            IDLabel.AutoSize = true;
-            IDLabel.Location = new Point(38, 191);
-            IDLabel.Name = "IDLabel";
-            IDLabel.Size = new Size(40, 15);
-            IDLabel.TabIndex = 37;
-            IDLabel.Text = "ID No.";
+            streetLabel.AutoSize = true;
+            streetLabel.Location = new Point(35, 190);
+            streetLabel.Name = "streetLabel";
+            streetLabel.Size = new Size(72, 15);
+            streetLabel.TabIndex = 37;
+            streetLabel.Text = "Street Name";
             // 
-            // IDtextBox
+            // streetTextBox
             // 
-            IDtextBox.Location = new Point(130, 188);
-            IDtextBox.Name = "IDtextBox";
-            IDtextBox.Size = new Size(153, 23);
-            IDtextBox.TabIndex = 38;
+            streetTextBox.Location = new Point(130, 188);
+            streetTextBox.Name = "streetTextBox";
+            streetTextBox.Size = new Size(153, 23);
+            streetTextBox.TabIndex = 38;
             // 
             // GuestRadioButton
             // 
@@ -361,14 +362,13 @@
             // addRemRoomPanel
             // 
             addRemRoomPanel.BackColor = Color.FromArgb(236, 240, 241);
-            addRemRoomPanel.Controls.Add(changeGuestRadioButton);
-            addRemRoomPanel.Controls.Add(adultsNumComboBox);
-            addRemRoomPanel.Controls.Add(adultsNumLabel);
-            addRemRoomPanel.Controls.Add(listView1);
+            addRemRoomPanel.Controls.Add(numeric2);
+            addRemRoomPanel.Controls.Add(guestLabel);
+            addRemRoomPanel.Controls.Add(resListView);
             addRemRoomPanel.Controls.Add(removeRoomRadioButton);
             addRemRoomPanel.Controls.Add(addRoomRadioButton);
             addRemRoomPanel.Controls.Add(addRoomButton);
-            addRemRoomPanel.Controls.Add(numericUpDown1);
+            addRemRoomPanel.Controls.Add(numeric1);
             addRemRoomPanel.Controls.Add(numOfRoomsLabel);
             addRemRoomPanel.Controls.Add(roomTypeComboBox);
             addRemRoomPanel.Controls.Add(roomTypeLabel);
@@ -379,54 +379,39 @@
             addRemRoomPanel.TabIndex = 54;
             addRemRoomPanel.Paint += addRemRoomPanel_Paint;
             // 
-            // changeGuestRadioButton
+            // numeric2
             // 
-            changeGuestRadioButton.AutoSize = true;
-            changeGuestRadioButton.Location = new Point(416, 12);
-            changeGuestRadioButton.Margin = new Padding(3, 2, 3, 2);
-            changeGuestRadioButton.Name = "changeGuestRadioButton";
-            changeGuestRadioButton.Size = new Size(121, 19);
-            changeGuestRadioButton.TabIndex = 51;
-            changeGuestRadioButton.Text = "Number of Guests";
-            changeGuestRadioButton.UseVisualStyleBackColor = true;
-            changeGuestRadioButton.CheckedChanged += changeGuestRadioButton_CheckedChanged;
+            numeric2.BorderStyle = BorderStyle.FixedSingle;
+            numeric2.Location = new Point(261, 267);
+            numeric2.Margin = new Padding(3, 2, 3, 2);
+            numeric2.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
+            numeric2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numeric2.Name = "numeric2";
+            numeric2.ReadOnly = true;
+            numeric2.Size = new Size(263, 23);
+            numeric2.TabIndex = 51;
+            numeric2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numeric2.ValueChanged += numericUpDown2_ValueChanged;
             // 
-            // adultsNumComboBox
+            // guestLabel
             // 
-            adultsNumComboBox.BackColor = Color.FromArgb(231, 76, 60);
-            adultsNumComboBox.FlatStyle = FlatStyle.Flat;
-            adultsNumComboBox.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            adultsNumComboBox.ForeColor = Color.White;
-            adultsNumComboBox.FormattingEnabled = true;
-            adultsNumComboBox.ItemHeight = 19;
-            adultsNumComboBox.Location = new Point(261, 266);
-            adultsNumComboBox.Margin = new Padding(3, 2, 3, 2);
-            adultsNumComboBox.MinimumSize = new Size(287, 0);
-            adultsNumComboBox.Name = "adultsNumComboBox";
-            adultsNumComboBox.Size = new Size(287, 27);
-            adultsNumComboBox.TabIndex = 50;
-            adultsNumComboBox.Text = "Select";
-            adultsNumComboBox.Visible = false;
+            guestLabel.AutoSize = true;
+            guestLabel.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            guestLabel.Location = new Point(10, 266);
+            guestLabel.Name = "guestLabel";
+            guestLabel.Size = new Size(52, 20);
+            guestLabel.TabIndex = 49;
+            guestLabel.Text = "Adults";
+            guestLabel.Visible = false;
             // 
-            // adultsNumLabel
+            // resListView
             // 
-            adultsNumLabel.AutoSize = true;
-            adultsNumLabel.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
-            adultsNumLabel.Location = new Point(10, 266);
-            adultsNumLabel.Name = "adultsNumLabel";
-            adultsNumLabel.Size = new Size(52, 20);
-            adultsNumLabel.TabIndex = 49;
-            adultsNumLabel.Text = "Adults";
-            adultsNumLabel.Visible = false;
-            // 
-            // listView1
-            // 
-            listView1.Location = new Point(10, 64);
-            listView1.Margin = new Padding(3, 2, 3, 2);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(537, 92);
-            listView1.TabIndex = 46;
-            listView1.UseCompatibleStateImageBehavior = false;
+            resListView.Location = new Point(10, 64);
+            resListView.Margin = new Padding(3, 2, 3, 2);
+            resListView.Name = "resListView";
+            resListView.Size = new Size(537, 92);
+            resListView.TabIndex = 46;
+            resListView.UseCompatibleStateImageBehavior = false;
             // 
             // removeRoomRadioButton
             // 
@@ -463,19 +448,19 @@
             addRoomButton.UseVisualStyleBackColor = true;
             addRoomButton.Click += addRoomButton_Click;
             // 
-            // numericUpDown1
+            // numeric1
             // 
-            numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDown1.Location = new Point(261, 179);
-            numericUpDown1.Margin = new Padding(3, 2, 3, 2);
-            numericUpDown1.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.ReadOnly = true;
-            numericUpDown1.Size = new Size(263, 23);
-            numericUpDown1.TabIndex = 45;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            numeric1.BorderStyle = BorderStyle.FixedSingle;
+            numeric1.Location = new Point(261, 179);
+            numeric1.Margin = new Padding(3, 2, 3, 2);
+            numeric1.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
+            numeric1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numeric1.Name = "numeric1";
+            numeric1.ReadOnly = true;
+            numeric1.Size = new Size(263, 23);
+            numeric1.TabIndex = 45;
+            numeric1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numeric1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // numOfRoomsLabel
             // 
@@ -514,15 +499,15 @@
             roomTypeLabel.TabIndex = 42;
             roomTypeLabel.Text = "Room Type";
             // 
-            // label3
+            // paymentLabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(35, 317);
-            label3.Name = "label3";
-            label3.Size = new Size(109, 17);
-            label3.TabIndex = 55;
-            label3.Text = "Payment Details";
+            paymentLabel.AutoSize = true;
+            paymentLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            paymentLabel.Location = new Point(35, 317);
+            paymentLabel.Name = "paymentLabel";
+            paymentLabel.Size = new Size(109, 17);
+            paymentLabel.TabIndex = 55;
+            paymentLabel.Text = "Payment Details";
             // 
             // panel3
             // 
@@ -581,9 +566,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1199, 562);
+            ClientSize = new Size(1199, 636);
             Controls.Add(panel3);
-            Controls.Add(label3);
+            Controls.Add(paymentLabel);
             Controls.Add(addRemRoomPanel);
             Controls.Add(cvcLabel);
             Controls.Add(cvcTxtBox);
@@ -594,8 +579,8 @@
             Controls.Add(label1);
             Controls.Add(AgentRadioButton);
             Controls.Add(GuestRadioButton);
-            Controls.Add(IDtextBox);
-            Controls.Add(IDLabel);
+            Controls.Add(streetTextBox);
+            Controls.Add(streetLabel);
             Controls.Add(ZipCodetextBox);
             Controls.Add(EmailAddresstextBox);
             Controls.Add(StatetextBox);
@@ -623,7 +608,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             addRemRoomPanel.ResumeLayout(false);
             addRemRoomPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numeric2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numeric1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -652,8 +638,8 @@
         private TextBox StatetextBox;
         private TextBox EmailAddresstextBox;
         private TextBox ZipCodetextBox;
-        private Label IDLabel;
-        private TextBox IDtextBox;
+        private Label streetLabel;
+        private TextBox streetTextBox;
         private RadioButton GuestRadioButton;
         private RadioButton AgentRadioButton;
         private Label label1;
@@ -664,14 +650,12 @@
         private TextBox cvcTxtBox;
         private Label cvcLabel;
         private Panel addRemRoomPanel;
-        private RadioButton changeGuestRadioButton;
-        private ComboBox adultsNumComboBox;
-        private Label adultsNumLabel;
-        private ListView listView1;
+        private Label guestLabel;
+        private ListView resListView;
         private RadioButton removeRoomRadioButton;
         private RadioButton addRoomRadioButton;
         private Button addRoomButton;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numeric1;
         private Label numOfRoomsLabel;
         private ComboBox roomTypeComboBox;
         private Label roomTypeLabel;
@@ -681,5 +665,7 @@
         private Label label2;
         private DateTimePicker checkOut;
         private DateTimePicker checkIn;
+        private NumericUpDown numeric2;
+        private Label paymentLabel;
     }
 }

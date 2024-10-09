@@ -89,7 +89,7 @@ namespace PhumlaKamnandi.Business
                 /*
                  * Make changes into the database 
                  * */
-                roomDB.DataSetChange(room, DB.DBOperation.Edit);
+                roomDB.DataSetChange(room, DB.DBOperation.Delete);
                 roomDB.UpdateDataSource(room);
             }
         }

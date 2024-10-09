@@ -19,8 +19,9 @@ namespace PhumlaKamnandi.Business
         // Constructor
         public ReservationController()
         {
-            reservations = resDB.Reservations;
             resDB = new ReservationDB();
+            reservations = resDB.Reservations;
+           
         }
         #region Updating into the DB
         public void DataMaintenance(string reservationID, string ID, DateTime checkInDate, DateTime checkOutDate, List<Room> rooms, int noOfGuest, DB.DBOperation dBOperation)
@@ -179,7 +180,7 @@ namespace PhumlaKamnandi.Business
             return reservations[index];
 
         }
-
+       
         //Find the index of the Rersevation in the collection that must be changed
         public int FindIndex(string resID)
         {
