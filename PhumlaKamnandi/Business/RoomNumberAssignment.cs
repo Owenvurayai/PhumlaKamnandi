@@ -48,6 +48,10 @@ namespace PhumlaKamnandi.Business
         {
             return assignedRooms.Contains(roomNumber);
         }
+        public ArrayList getRoomNumbers()
+        {
+            return assignedRooms;
+        }
         public int GenerateRoomNumber(RoomType roomType)//generate a room number according to the room type
         {
             // Logic to generate room numbers based on room type

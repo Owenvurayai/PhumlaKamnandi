@@ -96,7 +96,7 @@ namespace PhumlaKamnandi.Business
         // Method to get room details
         public string getRoomDetails()
         {
-            string results = $"RoomNumber: {RoomNumber}, Room Type: {roomType.ToString()}\nOccupancy Status: {occupancyStatus}\nRate Per Night: {RatePerNight}\n MaxOccupancy: {MaxOccupancy}\n";
+            string results = $"RoomNumber: {RoomNumber},  Room Type: {roomType.ToString()}";
             return results;
         }
 
