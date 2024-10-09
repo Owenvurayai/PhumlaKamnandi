@@ -11,25 +11,25 @@ namespace PhumlaKamnandi.Business
     public class GuestController
     {
         private Collection<Guest> guests;
-        private HotelDB hotelDB;
+       // private HotelDB hotelDB;
 
         public GuestController()
         {
-            hotelDB = new HotelDB();
-            guests = hotelDB.AllGuests;
+            //hotelDB = new HotelDB();
+           // guests = hotelDB.AllGuests;
             
         }
 
         public void AddGuest(Guest guest)
         {
             guests.Add(guest);
-            hotelDB.CreateGuest(guest.GuestID, guest.FirstName + " " + guest.LastName, guest.Email, guest.Address, guest.ContactDetails);
+           // hotelDB.CreateGuest(guest.GuestID, guest.FirstName + " " + guest.LastName, guest.Email, guest.Address, guest.ContactDetails);
         }
 
         public void RemoveGuest(Guest guest)
         {
             guests.Remove(guest);
-            hotelDB.DeleteGuest(guest.GuestID);
+            //hotelDB.DeleteGuest(guest.GuestID);
         }
         public Collection<Guest> GetGuests()
         {
@@ -46,11 +46,12 @@ namespace PhumlaKamnandi.Business
             return null;
         }
 
+
         public void UpdatePaymentDetails(string id, int creditCardNo, string SecurityCode, int CVC)
         {
             Guest guest = FindGuest(id);
             guest.UpdatePaymentDetails(creditCardNo, SecurityCode, CVC);
-            hotelDB.UpdateGuest(guest.GuestID, guest.FirstName + " " + guest.LastName, guest.Email, guest.Address, guest.ContactDetails);
+            //hotelDB.UpdateGuest(guest.GuestID, guest.FirstName + " " + guest.LastName, guest.Email, guest.Address, guest.ContactDetails);
             int index = guests.IndexOf(guest);
             guests[index] = guest;
         }
@@ -59,7 +60,7 @@ namespace PhumlaKamnandi.Business
         {
             Guest guest = FindGuest(id);
             guest.UpdateEmail(newEmail);
-            hotelDB.UpdateGuest(guest.GuestID, guest.FirstName + " " + guest.LastName, guest.Email, guest.Address, guest.ContactDetails);
+           // hotelDB.UpdateGuest(guest.GuestID, guest.FirstName + " " + guest.LastName, guest.Email, guest.Address, guest.ContactDetails);
             int index = guests.IndexOf(guest);
             guests[index] = guest;
         }

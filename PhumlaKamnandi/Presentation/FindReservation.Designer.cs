@@ -33,8 +33,8 @@
             ClearButton = new Button();
             panel1 = new Panel();
             label6 = new Label();
-            search = new Button();
-            reservationTextBox = new TextBox();
+            searchBtn = new Button();
+            resTextBox = new TextBox();
             label2 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -82,25 +82,25 @@
             label6.TabIndex = 3;
             label6.Text = "Find Reservation";
             // 
-            // search
+            // searchBtn
             // 
-            search.FlatStyle = FlatStyle.Flat;
-            search.Font = new Font("Microsoft Sans Serif", 8.25F);
-            search.ForeColor = Color.FromArgb(68, 189, 50);
-            search.Location = new Point(52, 169);
-            search.Name = "search";
-            search.Size = new Size(358, 26);
-            search.TabIndex = 10;
-            search.Text = "Find reservation";
-            search.UseVisualStyleBackColor = true;
-            search.Click += search_Click;
+            searchBtn.FlatStyle = FlatStyle.Flat;
+            searchBtn.Font = new Font("Microsoft Sans Serif", 8.25F);
+            searchBtn.ForeColor = Color.FromArgb(68, 189, 50);
+            searchBtn.Location = new Point(52, 169);
+            searchBtn.Name = "searchBtn";
+            searchBtn.Size = new Size(358, 26);
+            searchBtn.TabIndex = 10;
+            searchBtn.Text = "Find reservation";
+            searchBtn.UseVisualStyleBackColor = true;
+            searchBtn.Click += search_Click;
             // 
-            // reservationTextBox
+            // resTextBox
             // 
-            reservationTextBox.Location = new Point(206, 115);
-            reservationTextBox.Name = "reservationTextBox";
-            reservationTextBox.Size = new Size(204, 23);
-            reservationTextBox.TabIndex = 11;
+            resTextBox.Location = new Point(206, 115);
+            resTextBox.Name = "resTextBox";
+            resTextBox.Size = new Size(204, 23);
+            resTextBox.TabIndex = 11;
             // 
             // label2
             // 
@@ -120,13 +120,14 @@
             Controls.Add(button1);
             Controls.Add(ClearButton);
             Controls.Add(panel1);
-            Controls.Add(search);
-            Controls.Add(reservationTextBox);
+            Controls.Add(searchBtn);
+            Controls.Add(resTextBox);
             Controls.Add(label2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "FindReservation";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FindReservation";
+            Load += FindReservation_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -139,8 +140,8 @@
         private Button ClearButton;
         private Panel panel1;
         private Label label6;
-        private Button search;
-        private TextBox reservationTextBox;
+        private Button searchBtn;
+        private TextBox resTextBox;
         private Label label2;
     }
 }

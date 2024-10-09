@@ -9,9 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Business\AgentController.cs" />
     <Compile Remove="Business\AgentReservationRoomController.cs" />
-    <Compile Remove="Business\GuestController.cs" />
     <Compile Remove="Business\Staff.cs" />
     <Compile Remove="Data\HotelDB.cs" />
   </ItemGroup>
