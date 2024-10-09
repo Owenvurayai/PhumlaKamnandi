@@ -32,5 +32,10 @@ namespace PhumlaKamnandi.Presentation
         {
             this.Close();
         }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            reservationTextBox.Text = "";
+        }
     }
 }

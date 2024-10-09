@@ -19,8 +19,9 @@ namespace PhumlaKamnandi.Business
         // Constructor
         public ReservationController()
         {
-            reservations = resDB.Reservations;
             resDB = new ReservationDB();
+            reservations = resDB.Reservations;
+           
         }
         #region Updating into the DB
         public void DataMaintenance(string reservationID, string ID, DateTime checkInDate, DateTime checkOutDate, List<Room> rooms, int noOfGuest, DB.DBOperation dBOperation)
