@@ -23,6 +23,8 @@ namespace PhumlaKamnandi.Presentation
         //  RoomController roomController;
         private Guest guest;
         private BookingAgent agent;
+        private GuestController guestController;
+        private AgentController agentController;
         private List<Room> roomList;//store thenumber of rooms that are added by the user
         private Room.RoomType roomType;//store the room type of the wanted rooms
         private int number_of_rooms = 0;//store the number of rooms to be created
@@ -44,6 +46,8 @@ namespace PhumlaKamnandi.Presentation
             rescontroller = new ReservationController();
             roomList = new List<Room>();
             resDB = new ReservationDB();
+            agentController = new AgentController();
+            guestController = new GuestController();
             resID = ReservationIDAssignment.instance.GenerateReservationID();
         }
 
@@ -84,7 +88,7 @@ namespace PhumlaKamnandi.Presentation
                 /*
                  * I should change the Agent Class to take the reservationID
                  */
-                agent = new BookingAgent(FirstNametextbox.Text, lastNameTextBox.Text, PhonetextBox.Text, EmailAddresstextBox.Text, streetTextBox.Text+", "+CitytextBox.Text + "," + StatetextBox.Text + "," + ZipCodetextBox.Text, crdTextBox.Text, AgentIDAssignment.instance.GenerateGuestID(), 2);
+                agent = new BookingAgent(AgentIDAssignment.instance.GenerateGuestID(), resID, FirstNametextbox.Text, lastNameTextBox.Text, PhonetextBox.Text, EmailAddresstextBox.Text, streetTextBox.Text+", "+CitytextBox.Text + "," + StatetextBox.Text + "," + ZipCodetextBox.Text, crdTextBox.Text, 2);
             }
         }
 
@@ -95,7 +99,7 @@ namespace PhumlaKamnandi.Presentation
             if (roomList == null || roomList.Count == 0)
             {
                 MessageBox.Show("No rooms added.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return;+
             }
 
             // Check if reservation ID is generated
@@ -114,7 +118,7 @@ namespace PhumlaKamnandi.Presentation
                     MessageBox.Show("Guest information is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                guestController.AddGuest(guest);
                 roomController = new RoomController(roomList, resID, guest.GuestID, IsGuest);
                 Reservation reser = new Reservation(resID, guest.GuestID, checkInDate, checkOutDate, roomList, guest_num);
                 //Add to Database
@@ -125,6 +129,7 @@ namespace PhumlaKamnandi.Presentation
             else if(IsGuest == false)
             {
                 //Check this
+                agentController.AddAgent(agent);
                 roomController = new RoomController(roomList, resID, agent.AgentID, IsGuest);
                 Reservation reser = new Reservation(resID, agent.AgentID, checkInDate, checkOutDate, roomList, guest_num);
                 /**
@@ -389,7 +394,20 @@ namespace PhumlaKamnandi.Presentation
         private void checkOut_ValueChanged(object sender, EventArgs e)
         {
             //Store the Check out Date
-            checkInDate = checkOut.Value;
+            checkOutDate = checkOut.Value;
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            /*
+             * Gets the number of guests
+             * */
+            guest_num = (int)numeric2.Value;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)

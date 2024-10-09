@@ -14,6 +14,7 @@ namespace PhumlaKamnandi
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new LoginForm());
+       //   Application.Run(new ReservationBooking());
         }
     }
 }

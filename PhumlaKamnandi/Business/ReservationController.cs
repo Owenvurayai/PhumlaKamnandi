@@ -180,7 +180,7 @@ namespace PhumlaKamnandi.Business
             return reservations[index];
 
         }
-
+       
         //Find the index of the Rersevation in the collection that must be changed
         public int FindIndex(string resID)
         {

@@ -14,12 +14,15 @@ namespace PhumlaKamnandi.Business
         public String CompanyName { get; set; }
          
         public int NoOfGuest { get; set; }
+        
+        public string ReservationID { get; set; }
         #endregion
         #region Constructor
-        public BookingAgent( String FName, String LName, String Phone,string email,  String Address,String agentID,String companyName, int NoOfGuest)
+        public BookingAgent(string agentID, string resID, String FName, String LName, String Phone,string email,  String Address,String companyName, int NoOfGuest)
          : base( FName, LName,email, Phone, Address)
         {
             AgentID = agentID;
+            ReservationID = resID;
             CompanyName = companyName;
             NoOfGuest = NoOfGuest;
         }

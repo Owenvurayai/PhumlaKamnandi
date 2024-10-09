@@ -120,7 +120,7 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.FromArgb(137, 12, 12);
-            pictureBox2.Location = new Point(2, -3);
+            pictureBox2.Location = new Point(35, 12);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(1233, 66);
             pictureBox2.TabIndex = 7;
